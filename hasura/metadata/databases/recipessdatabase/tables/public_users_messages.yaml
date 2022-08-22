@@ -1,0 +1,3 @@
+table:
+  name: users_messages
+  schema: public
