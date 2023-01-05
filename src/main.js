@@ -1,25 +1,36 @@
+import { createApp } from 'vue'
 import App from './App.vue'
-import  apolloClient from './ApolloClient'
-import { createApp, provide, h } from 'vue'
-import { DefaultApolloClient } from '@vue/apollo-composable'
-import { createAuth0 } from '@auth0/auth0-vue';
-import './tailwind.css'
 import router from './routes/index.js'
+import './tailwind.css'
+import './axioss.js'
+import store from './store';
+import {createPinia} from 'pinia'
 
-const app = createApp({
-    setup() {
-        provide(DefaultApolloClient,apolloClient)
-    },
+const pinia=createPinia()
 
-    render: () => h(App),
-})
-app.use(
-    createAuth0({
-      domain: "dev-ttz49z63.us.auth0.com",
-      client_id: "hEVccCUFvVYyrT9owQwEBpItcrBW8ARo",
-      redirect_uri: window.location.origin
-    })
-  );
 
-app.use(router)
-app.mount("#app");
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+
+pinia.use(piniaPluginPersistedstate)
+
+
+createApp(App).use(router).use(pinia).use(store).mount('#app')
+
+
+
+
+
+// import App from './App.vue'
+
+// import { createApp } from 'vue'
+
+
+// import './tailwind.css'
+// import router from './routes/index.js'
+
+
+
+// app.use(router)
+
+
+// app.mount("#app");

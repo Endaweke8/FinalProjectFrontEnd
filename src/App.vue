@@ -1,31 +1,18 @@
 
 <template>
   <div >
-    <NavigationVue />
-<!--   
-<router-link to="/">Home</router-link>
-<router-link to="/about">About Page</router-link> 
-<router-link  to="/profile">Profile</router-link>
-<router-link  to="/logout">Logout</router-link>       -->
-
+    <!-- <NavigationVue /> -->
+    <!-- <button class="bg-gray-500 p-3 m-5"  @click="authStore.logout" v-if="authStore.isAuthenticated">Logout</button>
+    <button class="bg-gray-500 p-3 m-5"  @click="authStore.login" v-else>Login</button> -->
 <router-view></router-view>
-<FooterV/>
+<!-- <FooterV/> -->
   </div>
 </template>
-<script>
-import NavigationVue from './components/NavigationVue.vue';
-import FooterV from './components/FooterV.vue';
+<script setup>
+  // import {useAuthStore} from './stores/auth';
+  // const authStore=useAuthStore();
 
-  export default {
-    components:{
-    NavigationVue,
-    FooterV
-},
-    setup(){
-    
-    }
-    
-  }
+
 </script>
 
 <style >
