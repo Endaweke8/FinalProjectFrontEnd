@@ -87,16 +87,25 @@
                 Voluptatibus quia, nulla! Maiores et perferendis eaque,
                 exercitationem praesentium nihil.
               </p>
-             
+              <span class="text-3xl mt-5 mb-5 font-bold text-gray-900 dark:text-white"
+                >${{ item.price }}</span
+              >
+        
              
 
               <div class="mt-5 mb-5">
-                <span><i class="fa fa-star" style="font-size:25px;color:yellow"></i></span>
-              <span><i class="fa fa-star" style="font-size:25px;color:yellow"></i></span>
-              <span><i class="fa fa-star" style="font-size:25px;color:yellow"></i></span>
-              <span><i class="fa fa-star" style="font-size:25px;color:yellow"></i></span>
-              <span><i class="fa fa-star" style="font-size:25px;color:yellow"></i></span>
-              <small class="mb-4">{{ rateCount}}</small> 
+                
+                <span v-if="rateCount>=1"><i class="fa fa-star checked" style="font-size:25px;"></i></span>
+              <span v-else><i class="fa fa-star " style="font-size:25px;"></i></span>
+              <span v-if="rateCount>=2"><i class="fa fa-star checked" style="font-size:25px;"></i></span>
+              <span v-else><i class="fa fa-star " style="font-size:25px;"></i></span>
+              <span v-if="rateCount>=3"><i class="fa fa-star checked" style="font-size:25px;"></i></span>
+              <span v-else><i class="fa fa-star " style="font-size:25px;"></i></span>
+              <span v-if="rateCount>=4"><i class="fa fa-star checked" style="font-size:25px;"></i></span>
+              <span v-else><i class="fa fa-star " style="font-size:25px;"></i></span>
+              <span v-if="rateCount>=5"><i class="fa fa-star checked" style="font-size:25px;"></i></span>
+              <span v-else><i class="fa fa-star " style="font-size:25px;"></i></span>
+              <span class="mb-4 text-xl ml-2 text-amber-500">{{ rateCount}}</span> 
             </div>
 
 
@@ -148,18 +157,16 @@
             </div>
       
             <div class="flex items-center justify-between">
-              <span class="text-3xl font-bold text-gray-900 dark:text-white"
-                >${{ item.price }}</span
-              >
-        
+              
            
-
-              <span>
-                <button @click="showRate=true">
-                  <small class="mb-4">{{ item.likes.length }}</small>
-                  <span><i class="fa fa-star" style="font-size:20px;color:yellow"></i></span>
-                </button>
-              </span>
+              
+              <button
+              @click="showRate=true"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Rate this product
+              </button>
+              
               <span>
                 <button @click="likeIt(item.id)">
                   <small class="mb-4">{{ item.likes.length }}</small>
@@ -337,7 +344,7 @@ const getProducts = async () => {
 const getRates = async () => {
   let response = await axios.get("http://127.0.0.1:8000/api/rates/"+route.params.id);
   console.log("totalrate", response.data.totalRateGiven);
-  rateCount.value = response.data.totalRateGiven;
+  rateCount.value = Math.ceil(response.data.totalRateGiven);
   
 };
 
@@ -472,5 +479,12 @@ const addToBookmark = async (title) => {
   .rating-css label:active {
     transform: scale(0.8);
     transition: 0.3s ease;
+  }
+  .checked{
+    color:#ffe400
+  }
+
+  .unchecked{
+    color:#e6e5dd
   }
 </style>
