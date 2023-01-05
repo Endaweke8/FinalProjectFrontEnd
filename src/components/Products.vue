@@ -1,4 +1,5 @@
 <template>
+ 
 <div v-show="isLoading" class="flex items-center mt-12 h-48  mb-12 justify-center">
   <img   class="w-20 h-20 absolute  left-1/2 -ml-2.5" src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif" alt="" />
 </div>
@@ -162,11 +163,13 @@
 import {useRoute, useRouter} from 'vue-router'
 import VPagination from "@hennge/vue3-pagination";
     import "@hennge/vue3-pagination/dist/vue3-pagination.css";
-import {computed,onMounted,ref} from 'vue'
+import {computed,onMounted,ref,watch} from 'vue'
 
 import axios from 'axios'
 
        let page = ref(1)
+       let queryField = ref('name')
+       let query = ref('')
        let posts = ref(null)
         let pageCount = ref(null)
         const route=useRoute()
@@ -184,6 +187,8 @@ import axios from 'axios'
 
     })
 
+   
+
     const getProducts=async()=>{
     let res=await axios.get('http://127.0.0.1:8000/api/products?page=' + page.value)
     
@@ -193,6 +198,18 @@ import axios from 'axios'
     if(res.data.products.data){
       isLoading.value=false;
     }
+    // products.value=response.data.products
+    // console.log(products.value)
+
+   }
+   const searchProduct=async(query)=>{
+    alert(query);
+    let res=await axios.post('http://127.0.0.1:8000/api/search',{
+      searchData:query,
+    })
+    // products.value=res.data.serchproducts
+    console.log(res.data.searchedproducts);
+    products.value=res.data.searchedproducts;
     // products.value=response.data.products
     // console.log(products.value)
 
