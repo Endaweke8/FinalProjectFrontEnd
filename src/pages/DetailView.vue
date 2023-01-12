@@ -212,33 +212,11 @@
               >
                 Add to Cart
               </button>
-              <!-- <img class="w-10 h-10 rounded-full mr-4" src="/img/jonathan.jpg" alt="Avatar of Jonathan Reinink">
-      <div class="text-sm">
-        <p class="text-gray-900 leading-none">Jonathan Reinink</p>
-        <p class="text-gray-600">Aug 18</p>
-      </div> -->
+
             </div>
           </div>
         </div>
 
-        <!-- <div
-          class="py-4 px-6 shadow-md bg-white hover:bg-grey-50 h-[470px]"
-        >
-          <img :src="item.image_name" alt="" class=" h-48 object-cover" />
-          <h4 class="mt-4 text-lg font-bold">{{ item.name}}</h4>
-          <h4 class="mt-4 text-lg font-bold">{{ item.slug}}</h4>
-          <h4 class="mt-4 text-lg font-bold">{{ item.description}}</h4>
-          <h4 class="mt-4 text-lg font-bold">{{ item.price}}</h4>
-          <h4 class="mt-4 text-lg font-bold">{{ item.sale_price}}</h4>
-          
-          <div class="flex justify-between items-centere mt-2">
-             <button  @click="addToCart(item.name)" class="flex py-2 px-4 border border-transparent text-sm rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500"
->
-              Add To Cart
-            </button>
-            
-          </div>
-        </div> -->
       </div>
     </div>
   </div>
@@ -388,7 +366,7 @@ const addToCart = async (title) => {
       console.log(response.data);
     
     });
-};
+}
 
 const addToBookmark = async (title) => {
   //  if(bookmarkStore.bookmarks.quantity>0){

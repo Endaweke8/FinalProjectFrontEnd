@@ -150,7 +150,7 @@
      
   
       const getProducts=async()=>{
-      let res=await axios.get('http://127.0.0.1:8000/api/products/electronics/laptopcomputers?page=' + page.value)
+      let res=await axios.get('http://127.0.0.1:8000/api/products/electronics/desktopcomputers?page=' + page.value)
       
       pageCount.value = res.data.page_count
       products.value = res.data.products.data
@@ -158,7 +158,9 @@
       if(res.data.products.data){
         isLoading.value=false;
       }
-     
+      // products.value=response.data.products
+      // console.log(products.value)
+  
      }
    
     

@@ -168,8 +168,7 @@ import {computed,onMounted,ref,watch} from 'vue'
 import axios from 'axios'
 
        let page = ref(1)
-       let queryField = ref('name')
-       let query = ref('')
+       
        let posts = ref(null)
         let pageCount = ref(null)
         const route=useRoute()
@@ -202,87 +201,9 @@ import axios from 'axios'
     // console.log(products.value)
 
    }
-   const searchProduct=async(query)=>{
-    alert(query);
-    let res=await axios.post('http://127.0.0.1:8000/api/search',{
-      searchData:query,
-    })
-    // products.value=res.data.serchproducts
-    console.log(res.data.searchedproducts);
-    products.value=res.data.searchedproducts;
-    // products.value=response.data.products
-    // console.log(products.value)
-
-   }
+ 
   
 
-// import axios from "axios";
-// export default {
-//   data() {
-//     return {
-//       products: {},
-//     };
-//   },
-//   created() {
-//     this.getProducts();
-//   },
-//   methods: {
-//     getProducts() {
-      
-//       let response=await axios.get('http://127.0.0.1:8000/api/products')
-//       console.log('response',response);
-//       this.products=response.data.products
-//     console.log(products.value)
-//     },
-
-
-//     const getProducts=async()=>{
-//     let response=await axios.get('http://127.0.0.1:8000/api/products')
-//     console.log('response',response);
-
-//     products.value=response.data.products
-//     console.log(products.value)
-
-//    }
-  
-    //     save(){
-    //       if(this.employee.id==''){
-    //         this.saveData();
-    //       }
-    //       else{
-    //         this.updateData();
-    //       }
-    //     },
-    //     saveData(){
-    //         axios.post("http://127.0.0.1:8000/api/save",this.employee)
-    //         .then(({data})=>{
-    //             alert("Saved")
-    //             this.EmployeeLoad();
-    //         })
-    //     },
-    //     edit(employee){
-    //         this.employee=employee
-    //     },
-
-    //     updateData(){
-    //        var editrecords='http://127.0.0.1:8000/api/update/'+this.employee.id;
-    //        axios.put(editrecords,this.employee)
-    //        .then(({data})=>{
-    //         this.employee.name="",
-    //         this.employee.address="",
-    //         this.employee.mobile="",
-    //         this.id="",
-    //         alert("updated");
-    //         this.EmployeeLoad();
-    //        })
-    //     },
-    //     remove(employee){
-    //         var url=`http://127.0.0.1:8000/api/delete/${employee.id}`
-    //         axios.delete(url)
-    //         alert("Deleted");
-    //         this.EmployeeLoad();
-    //     }
-    // }
 
 </script>
 

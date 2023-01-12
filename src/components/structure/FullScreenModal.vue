@@ -73,28 +73,28 @@
                         url="/account/posts"
                     />
 
-                    <RouterLinkButton
+                    <button
                     
                         v-if="userStore.id"
                         @click="logout"
-                        class="w-full text-gray-100 text-center text-lg mt-2"
-                        btnText="Logout"
-                        color="green"
-                    />
+                        class="w-full text-white  font-semibold rounded hover:border-transparent border  px-4 py-2 hover:text-white text-center bg-transparent text-lg mt-2"
+                       
+        
+                    >Logout</button>
 
 
                    
-
-                    <RouterLinkButton
+                    <button
+                    
+                        
                         @click="open = !open"
-                        class="w-full text-gray-100 text-center text-lg mt-4"
-                        btnText="Close"
-                        color="red"
-                    />
+                        class="w-full bg-red-600 text-white  font-semibold rounded hover:border-transparent border  px-4 py-2 hover:text-white text-center bg-transparent text-lg mt-2"
+                       
+        
+                    >Logout</button>
 
-                    <button class="p-2 bg-red-400" @click="deleteBookmark()">
-                    deleteBookmark
-                    </button>
+
+                    
             </div>
         </div>
 

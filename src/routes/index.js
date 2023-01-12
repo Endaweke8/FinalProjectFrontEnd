@@ -4,6 +4,10 @@ import ContactUs from '../pages/ContactUs.vue'
 import Electronics from '../pages/Electronics.vue'
 import BookmarkStore from '../pages/BookmarkStore.vue'
 import LaptopComputers from '../pages/LaptopComputers.vue'
+import DesktopComputers from '../pages/DesktopComputers.vue'
+import IphoneMobilesView from '../pages/IphoneMobilesView.vue'
+import ButtonMobilesView from '../pages/ButtonMobilesView.vue'
+import AndroidMobilesView from '../pages/AndroidMobilesView.vue'
 import Clothes from '../pages/Clothes.vue'
 import Orders from '../pages/Orders.vue'
 import Products from '../pages/Products.vue'
@@ -300,6 +304,30 @@ const routes = [
       component: LaptopComputers,
   
       },
+      {
+        path: '/desktopcomputers',
+        name: 'DesktopComputers',
+        component: DesktopComputers,
+    
+        },
+        {
+          path: '/iphonemobiles',
+          name: 'IphoneMobilesView',
+          component: IphoneMobilesView,
+      
+          },
+          {
+            path: '/androidmobiles',
+            name: 'AndroidMobilesView',
+            component: AndroidMobilesView,
+        
+            },
+            {
+              path: '/buttonmobiles',
+              name: 'ButtonMobilesView',
+              component: ButtonMobilesView,
+          
+              },
     {
       path: '/clothes',
       name: 'Clothes',

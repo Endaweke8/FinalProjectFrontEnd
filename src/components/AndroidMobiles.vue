@@ -1,9 +1,12 @@
 
 <template>
- 
-  <div v-show="isLoading" class="flex items-center mt-12 h-48  mb-12 justify-center">
+  <div v-if="products.length<=0" class="flex items-center mt-12 h-48  mb-12 justify-center">
+    <div class="flex mt-5 bold text-3xl justify-center items-center">Sorry, Android Mobiles aren't Found</div>
+  </div>
+  <div v-else v-show="isLoading" class="flex items-center mt-12 h-48  mb-12 justify-center">
     <img   class="w-20 h-20 absolute  left-1/2 -ml-2.5" src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif" alt="" />
   </div>
+  
   
     <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-4">
   
@@ -150,7 +153,7 @@
      
   
       const getProducts=async()=>{
-      let res=await axios.get('http://127.0.0.1:8000/api/products/electronics/laptopcomputers?page=' + page.value)
+      let res=await axios.get('http://127.0.0.1:8000/api/products/electronics/mobiles/androids?page=' + page.value)
       
       pageCount.value = res.data.page_count
       products.value = res.data.products.data

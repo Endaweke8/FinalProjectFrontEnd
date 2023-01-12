@@ -2,15 +2,16 @@
     <TopNavigation />
     <NavigationVue />
     <div>
-        <div class="flex mt-5 bold text-3xl justify-center items-center">Laptop Computers</div>
-    <LaptopComputer />
+        <div class="flex mt-5 bold text-3xl justify-center items-center">Button  Mobiles</div>
+    <ButtonMobiles />
     </div>
     <FooterSection />
 </template>
 
 <script setup>
    
-import LaptopComputer from '../components/LaptopComputer.vue';
+import ButtonMobiles from '../components/ButtonMobiles.vue';
+
 import NavigationVue from '../components/NavigationVue.vue';
 import FooterSection from '../components/structure/FooterSection.vue';
 import TopNavigation from '../components/structure/TopNavigation.vue';

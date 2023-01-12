@@ -1,6 +1,6 @@
 
 <template>
- 
+ <div v-if="products.length<=0">No Smart Phones found</div>
   <div v-show="isLoading" class="flex items-center mt-12 h-48  mb-12 justify-center">
     <img   class="w-20 h-20 absolute  left-1/2 -ml-2.5" src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif" alt="" />
   </div>
@@ -150,7 +150,7 @@
      
   
       const getProducts=async()=>{
-      let res=await axios.get('http://127.0.0.1:8000/api/products/electronics/laptopcomputers?page=' + page.value)
+      let res=await axios.get('http://127.0.0.1:8000/api/products/electronics/mobiles/iphones?page=' + page.value)
       
       pageCount.value = res.data.page_count
       products.value = res.data.products.data

@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="sticky relative top-0 z-40 fixed border-b-2 border-slate-200 bg-slate-50 text-black fadeInTop"
+    class="sticky relative top-0 z-19 fixed border-b-2 border-slate-200 bg-slate-50 text-black fadeInTop"
   >
     <div class="max-w-6xl mx-auto px-4">
       <div class="flex justify-between">
@@ -78,24 +78,23 @@
                       aria-labelledby="doubleDropdownButton"
                     >
                       <li>
-                        <a
-                          href="#"
+                        <router-link
+                          to="/iphonemobiles"
                           class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
-                          >Iphone</a
+                          >Iphone</router-link
                         >
                       </li>
                       <li>
-                        <a
-                          href="#"
+                        <router-link 
+                          to="androidmobiles"
                           class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >Adroid</a
-                        >
+                          >Adroid</router-link>
                       </li>
                       <li>
-                        <a
-                          href="#"
+                        <router-link
+                          to="/buttonmobiles"
                           class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >Buttons</a
+                          >Buttons</router-link
                         >
                       </li>
                       
@@ -382,7 +381,22 @@
             class="py-2 px-2 text-base font-regular primary-color"
             >Stocks</router-link
           >
-          <span> <input
+          
+        
+        </div>
+
+<div>   
+    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+    <div class="relative">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </div>
+        <input type="text " v-model="query" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." required>
+        <button @click="searchProducts(query)"   class="text-white visible focus:invisible absolute  right-1 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+    </div>
+</div>
+<!-- 
+        <span class="divide-x divide-white md:flex items-center space-x-3"> <input
                   type="text"
                   id="voice-search"
                   v-model="query"
@@ -390,9 +404,7 @@
                   placeholder="Search..."
                   required
                 /></span>
-                <button  @click="searchProducts(query)" class="bg-blue-600 p-1 rounded">Search</button>
-        
-        </div>
+                <button  class="bg-blue-200 rounded-full">Search</button> -->
 
         <!-- Mobile menu button -->
         <div @click="showSide = !showSide" class="md:hidden flex items-center">
@@ -412,52 +424,7 @@
           </button>
           <span class="ml-5">Categories</span>
         </div>
-        <span  class="flex items-center">
-                <router-link to="/bookmarks">
-                <span>
-                    <svg
-                 
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="red"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-8 h-8 cursor-pointer hover:stroke-blue-600"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-                  />
-                </svg>
-                </span>
-                <span v-if="bookmarkStore.bookmarks">{{bookmarkStore.bookmarks.quantity }}</span>
-                
-                </router-link >
-              </span>
-        <div class="flex items-center">
-          <router-link to="/checkout">
-            <button class="outline-none mobile-menu-button">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-6 h-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-                />
-              </svg>
-              <span class="text-green-600 text-2xl" v-if="cartStore.carts">
-                {{ cartStore.carts.quantity }}
-              </span>
-            </button>
-          </router-link>
-        </div>
+       
         
       </div>
     </div>
@@ -493,7 +460,7 @@
     <SideBar />
 
   </div>
-  {{ products.length }}
+
   <div class="mt-10" v-if="products.length>0">
   <h1 class="h-full flex items-center justify-center text-3xl">Searched Products</h1>
   
@@ -622,8 +589,7 @@ class=" max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray
 <script setup>
 import {computed,onMounted,ref,watch} from 'vue'
 import {useRoute, useRouter} from 'vue-router'
-import { useCartStore } from "../stores/cart-store";
-import { useBookmarkStore } from "../stores/bookmark-store";
+
 import VPagination from "@hennge/vue3-pagination";
     import "@hennge/vue3-pagination/dist/vue3-pagination.css";
 import SideBar from "./SideBar.vue";
@@ -647,15 +613,11 @@ import axios from 'axios'
     console.log('response',res);
     
 
-    // console.log(res.data.searchedproducts);
-    // products.value=res.data.searchedproducts;
     
 
    }
 
 
-const bookmarkStore = useBookmarkStore();
-const cartStore = useCartStore();
 const showSide = ref(false);
 const show = ref(false);
 const showDrop = ref(false);
