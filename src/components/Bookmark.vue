@@ -1,19 +1,19 @@
 <template>
-  <div class="flex items-center mt-12 h-48  mb-12 justify-center" v-if="bookmarkStore.bookmarks.bookmarkwithproduct.length<1"><span class="text-5xl text-bold">No Favorites</span></div>
+  <div class="flex items-center mt-12 h-48   mb-12 justify-center" v-if="bookmarkStore.bookmarks.bookmarkwithproduct.length<1"><span class="text-5xl text-bold">No Favorites</span></div>
  <div v-show="isLoading" class="flex items-center mt-12 h-48  mb-12 justify-center">
   <img   class="w-20 h-20 absolute  left-1/2 -ml-2.5" src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif" alt="" />
 </div>
 
-  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-4">
+  <div class="grid grid-cols-1 z-17 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-4">
 
     <div
     v-for="product in bookmarkStore.bookmarks.bookmarkwithproduct"
       :key="product.id"
-    class="relative max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+    class="relative max-w-sm bg-white  z-17 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
   >
   <span 
         @click="removeFromBookmark(product.id)"
-        class="absolute right-0 top-0"
+        class="absolute z-1 right-0 top-0"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

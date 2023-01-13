@@ -149,17 +149,17 @@
                       aria-labelledby="doubleDropdownButton"
                     >
                       <li>
-                        <a
-                          href="#"
+                        <router-link
+                          to="/mentrousers"
                           class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
-                          >Trouser</a
+                          >Trouser</router-link
                         >
                       </li>
                       <li>
-                        <a
-                          href="#"
+                        <router-link
+                          to="/mentshirts"
                           class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >Tshirt</a
+                          >Tshirt</router-link
                         >
                       </li>
                       <li>

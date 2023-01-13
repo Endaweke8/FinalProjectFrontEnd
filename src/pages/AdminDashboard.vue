@@ -1,13 +1,15 @@
 <template>
   <div class="w-screen h-screen flex">
     <!-- Side bar -->
-    <div class="w-[400px] h-full  bg-gray-200 text-white" v-show="showSide">
+    <div class="w-[400px] h-full bg-gray-200 text-white" v-show="showSide">
       <div class="h-[50px] bg-gray-900 flex justify-start items-center">
         <div class="px-[20px]">
           <h3 class="font-bold text-xl">Admin Dashboard</h3>
         </div>
       </div>
-      <div class="overflow-y-scroll h-full sticky bottom-0 h-[calc(100vh-50px)] bg-gray-800 py-[20px]">
+      <div
+        class="overflow-y-scroll h-full sticky bottom-0 h-[calc(100vh-50px)] bg-gray-800 py-[20px]"
+      >
         <div
           class="flex flex-col justify-between h-full px-[20px] space-y-[10px]"
         >
@@ -259,21 +261,128 @@
               </div>
             </form>
           </div>
+          <!-- Notification -->
           <!-- User login -->
           <div class="w-[200px]">
+            <div
+              class="flex items-center justify-start space-x-4"
+              @click="toggleDropNotification"
+            >
+              <div class="inline-flex mt-3 relative w-fit">
+                <div
+                  class="absolute inline-block top-0 right-0 bottom-auto left-auto translate-x-2/4 -translate-y-1/2 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 py-1 px-2.5 text-xs leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-700 text-white rounded-full z-10"
+                >
+                  {{ notifications.length }}
+                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="red"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="red"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+                  />
+                </svg>
+              </div>
+              <!--             
+              <div class="font-semibold dark:text-white text-left">
+                <div class="mr-10">
+                  
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="red"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="red"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+              />
+             
+            </svg>
+            
+            {{notifications.length}}
+          </div>
+              </div> -->
+            </div>
+            <!-- Drop down -->
+            <div
+              v-show="showDropDownNotifications"
+              class="absolute right-[0px] z-10 mt-2 w-70 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="menu-button"
+              tabindex="-1"
+            >
+              <div
+                class="py-1 text-left"
+                role="none"
+                v-for="notification in notifications"
+                :key="notification.id"
+              >
+                <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                <span>
+                  <div
+                    href="#"
+                    class="text-gray-700 block px-4 py-2 text-sm"
+                    role="menuitem"
+                    tabindex="-1"
+                    id="menu-item-0"
+                  >
+                    {{ notification.data }}
+                    <router-link to="/adminnotification"
+                     class="text-bluej-500" >View Detail</router-link
+                    >
+                    <button @click="markAsRead(notification.id)" class="m-3  items-center justify-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="white"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="blue"
+                        class="w-6 h-6"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+                        />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </span>
+
+                <hr />
+              </div>
+            </div>
+          </div>
+          <div class="w-[350px]">
             <div
               class="flex items-center justify-start space-x-4"
               @click="toggleDrop"
             >
               <img
                 class="w-10 h-10 rounded-full border-2 border-gray-50"
-                src="https://yt3.ggpht.com/hqsxh-Vnbw9OK0_X4DAWh6RkmEUVnL-82SRCyh-IKr9fIXR8zhUCRdBEwgWWL_14q_L8Piod=s108-c-k-c0x00ffffff-no-rj"
+                :src="useStore.image"
                 alt=""
               />
               <div class="font-semibold dark:text-white text-left">
-                <div>{{ user.name }}- {{ user.email }}</div>
+                <div>Welcome {{ userStore.firstName }}</div>
                 <div class="text-xs text-gray-500 dark:text-gray-400">
-                  {{ user.role }}
+                  {{ userStore.role }}
                 </div>
               </div>
             </div>
@@ -337,45 +446,151 @@
   </div>
   <!-- <FooterSection /> -->
 </template>
-<script>
+<script setup>
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { computed } from "vue";
-import FooterSection from "../components/structure/FooterSection.vue";
-export default {
-    data() {
-        return {
-            showDropDown: false,
-            showSide: true,
-        };
-    },
-    setup() {
-        const store = useStore();
-        const router = useRouter();
-        function logout() {
-            store.dispatch("logout").then(() => {
-                localStorage.clear();
-                router.push({ name: "LoginV" });
-            });
-        }
-        return {
-            user: computed(() => store.state.user.data),
-            logout,
-        };
-        console.log(user);
-    },
-    methods: {
-        // hide show side bar
-        toggleSideBar() {
-            this.showSide = !this.showSide;
-        },
-        // toggle user
-        toggleDrop() {
-            this.showDropDown = !this.showDropDown;
-        },
-    },
-    components: { FooterSection }
+import { computed, ref, onMounted } from "vue";
+import { useUserStore } from "../stores/user-store";
+
+import { useBookmarkStore } from "../stores/bookmark-store";
+import { usePostStore } from "../stores/post-store";
+import { useCartStore } from "../stores/cart-store";
+import { useProfileStore } from "../stores/profile-store";
+import { useSongStore } from "../stores/song-store";
+import { useVideoStore } from "../stores/video-store";
+import axios from "axios";
+// import FooterSection from "../components/structure/FooterSection.vue";
+
+const bookmarkStore = useBookmarkStore();
+const userStore = useUserStore();
+const profileStore = useProfileStore();
+const songStore = useSongStore();
+const postStore = usePostStore();
+const videoStore = useVideoStore();
+const cartStore = useCartStore();
+const store = useStore();
+const router = useRouter();
+
+const showDropDownNotifications = ref(false);
+const showDropDown = ref(false);
+const showSide = ref(true);
+const notifications = ref([]);
+
+onMounted(() => {
+  getNotification();
+});
+
+var user = ref([]);
+const logout = async () => {
+  try {
+    deleteBookmark();
+    let res = await axios.post("http://127.0.0.1:8000/api/logout", {
+      user_id: userStore.id,
+    });
+    deleteCart();
+    console.log(res.data);
+
+    cartStore.clearCarts();
+    userStore.clearUser();
+    profileStore.clearProfile();
+    songStore.clearSongs();
+    postStore.clearPosts();
+    videoStore.clearVideos();
+    bookmarkStore.clearBookmarks();
+
+    open.value = !open.value;
+    router.push("/");
+  } catch (err) {
+    console.log(err);
+  }
 };
+const deleteCart = async () => {
+  try {
+    let res = await axios.delete(
+      "http://127.0.0.1:8000/api/clearCartItem/" + userStore.id
+    );
+    console.log(res.data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+const deleteBookmark = async () => {
+  try {
+    let res = await axios.delete(
+      "http://127.0.0.1:8000/api/bookmarks/" + userStore.id
+    );
+    console.log(res.data);
+    bookmarkStore.clearBookmarks();
+  } catch (err) {
+    console.log(err);
+  }
+};
+const markAsRead = (id) => {
+  alert(id);
+
+  try {
+    var page = "http://127.0.0.1:8000/api/notification/" + id;
+    axios.put(page, {
+      read_at: "2023-01-13 08:39:36",
+    });
+    getNotification();
+  } catch (err) {
+    console.log(err);
+  }
+};
+const toggleSideBar = () => {
+  showSide.value = !showSide.value;
+};
+
+const toggleDropNotification = () => {
+  showDropDownNotifications.value = !showDropDownNotifications.value;
+};
+
+const toggleDrop = () => {
+  showDropDown.value = !showDropDown.value;
+};
+user.value = computed(() => store.state.user.data);
+
+const getNotification = async () => {
+  let res = await axios.get("http://127.0.0.1:8000/api/notifications");
+  console.log(res.data);
+  notifications.value = res.data;
+};
+
+// export default {
+//   data() {
+//     return {
+//       showDropDown: false,
+//       showSide: true,
+//     };
+//   },
+//   setup() {
+//     const store = useStore();
+//     const router = useRouter();
+//     function logout() {
+//       store.dispatch("logout").then(() => {
+//         localStorage.clear();
+//         router.push({ name: "LoginV" });
+//       });
+//     }
+//     return {
+//       user: computed(() => store.state.user.data),
+//       logout,
+//     };
+//     console.log(user);
+//   },
+//   methods: {
+//     // hide show side bar
+//     toggleSideBar() {
+//       this.showSide = !this.showSide;
+//     },
+//     // toggle user
+//     toggleDrop() {
+//       this.showDropDown = !this.showDropDown;
+//     },
+//   },
+//   components: { FooterSection },
+// };
 </script>
 
 <style></style>

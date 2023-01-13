@@ -152,7 +152,7 @@ import NavigationVue from '../components/NavigationVue.vue';
             }
             else
             {
-                router.push('/')
+              router.push("/account/profile/" + userStore.id);
             }
         
         } catch (err) {

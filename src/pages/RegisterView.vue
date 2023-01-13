@@ -148,12 +148,13 @@ const register = async () => {
     });
     axios.defaults.headers.common["Authorization"] = "Bearer " + res.data.token;
     isLoading.value=false
-    userStore.setUserDetails(res);
-    await profileStore.fetchProfileById(userStore.id);
-    // await songStore.fetchSongsByUserId(userStore.id)
-    await postStore.fetchPostsByUserId(userStore.id);
-    await videoStore.fetchVideosByUserId(userStore.id);
-    router.push("/account/profile/" + userStore.id);
+    // userStore.setUserDetails(res);
+    // await profileStore.fetchProfileById(userStore.id);
+    // // await songStore.fetchSongsByUserId(userStore.id)
+    // await postStore.fetchPostsByUserId(userStore.id);
+    // await videoStore.fetchVideosByUserId(userStore.id);
+   
+    router.push("/LoginView");
   } catch (err) {
     errors.value = err.response.data.errors;
     isLoading.value=false
