@@ -2,8 +2,8 @@
 
 <template>
 <NavigationVue />
-    
-<SideBar />
+<SignUp />
+
 
    
 
@@ -12,11 +12,13 @@
 
 <script setup>
 import NavigationVue from '../components/NavigationVue.vue';
+import SignUp from '../components/SignUp.vue'
+
 import store from '../store';
 import { useRouter
  } from 'vue-router';
  import {ref} from 'vue'
-import SideBar from '../components/SideBar.vue';
+
  const router=useRouter()
 
  const show=ref(false)

@@ -21,7 +21,7 @@ export const useUserStore = defineStore('user', {
         this.$state.firstName = res.data.user.first_name
         this.$state.lastName = res.data.user.last_name
         this.$state.email = res.data.user.email
-        
+        this.$state.image = res.data.user.image
         this.$state.role = res.data.user.role
         this.$state.location = res.data.user.location
         this.$state.description = res.data.user.description
@@ -33,6 +33,7 @@ export const useUserStore = defineStore('user', {
         this.$state.id = res.data.user.id
         this.$state.firstName = res.data.user.first_name
         this.$state.lastName = res.data.user.last_name
+        this.$state.email = res.data.user.email
         this.$state.role = res.data.user.role
         this.$state.location = res.data.user.location
         this.$state.description = res.data.user.description

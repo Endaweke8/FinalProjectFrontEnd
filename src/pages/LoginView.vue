@@ -148,7 +148,7 @@ import NavigationVue from '../components/NavigationVue.vue';
             await postStore.fetchPostsByUserId(userStore.id)
             await videoStore.fetchVideosByUserId(userStore.id)
             if(userStore.role=='admin'){
-                router.push('/admindashboard')   
+                router.push('/dashboardhome')   
             }
             else
             {
@@ -156,8 +156,9 @@ import NavigationVue from '../components/NavigationVue.vue';
             }
         
         } catch (err) {
+            
             errors.value = err.response.data.errors
-            console.log(errors)
+            console.log(err)
             isLoading.value=false
         }
     }

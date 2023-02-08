@@ -1,7 +1,7 @@
 <template>
-
-    <div class="w-full">
-        <div class="mx-auto flex mt-10 mr-10">
+<div >
+    <div class="w-full ">
+        <div class=" flex mt-10 mr-10">
             <div class="w-1/3">
                 <img 
                     class="w-full rounded-lg h-auto shadow-lg" 
@@ -29,12 +29,25 @@
                             url="/account/edit-profile"
                         />
                     </div>
+                    <div class="w-1/2 mt-2 ml-2" v-if="userStore.id == route.params.id">
+                        <RouterLinkButton
+                            btnText="View Order History"
+                            color="green"
+                            url="/userorderhistory"
+                        />
+                    </div>
                 </div>
                 <ProfileInfoSection />
                 <ProfileAboutSection />
-                <CartsByIdSection />
+                
+                
             </div>
+
         </div>
+        <CartsByIdSection />
+       
+             
+        <CheckOutForm />
         <!-- <SongsSection />
         <YoutubeVideoSection />
         <PostsSection/> -->
@@ -42,6 +55,8 @@
         <YoutubeVideosSection />
         <PostsSection /> -->
     </div>
+</div>
+   
    
 </template>
 
@@ -66,6 +81,8 @@ import PostsSection from '../../components/partials/profile/PostsSection.vue'
     import { useRoute } from 'vue-router'
 import CartsByIdSection from '../../components/partials/profile/CartsByIdSection.vue';
 import FooterSection from '../../components/structure/FooterSection.vue';
+import CheckOutForm from '../../components/CheckOutForm.vue';
+import OrderResponse from '../../components/OrderResponse.vue';
     const route = useRoute()
     const userStore = useUserStore()
 
@@ -77,3 +94,6 @@ import FooterSection from '../../components/structure/FooterSection.vue';
 
     })
 </script>
+<style scoped>
+
+</style>

@@ -1,18 +1,14 @@
 <template>
     <div>
 
-<ImageUpload />
     </div>
 </template>
 
-<script>
-import ImageUpload from '../components/ImageUpload.vue';
+<script setup>
 
 
 
-    export default {
-    components: { ImageUpload }
-}
+
 </script>
 
 <style scoped>

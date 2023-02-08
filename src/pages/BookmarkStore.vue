@@ -1,7 +1,7 @@
 <template>
 <TopNavigation />
 <NavigationVue />
-    <div>
+    <div class="bg-gray-200">
     <Bookmark />
     </div>
 

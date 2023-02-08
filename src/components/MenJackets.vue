@@ -1,5 +1,6 @@
 
 <template>
+  <div class="antialiased bg-gray-200 text-gray-900 font-sans p-6">
   <div v-if="products.length<=0" class="flex items-center mt-12 h-48  mb-12 justify-center">
     <div class="flex mt-5 bold text-3xl justify-center items-center">Sorry, jackets aren't Found</div>
   </div>
@@ -17,7 +18,7 @@
     >
       <a href="#">
         <img
-          class="p-8 ml-10 h-60 w-full rounded-t-lg"
+          class="h-60 w-full rounded-t-lg"
           :src="product.image_name" alt="product name"
         
         />
@@ -123,6 +124,7 @@
                       @update:modelValue="getProducts"
                   />
               </div>
+  </div>
     
   </template>
   

@@ -1,14 +1,16 @@
 <template>
-  <div class="w-screen h-screen flex">
+  <div class="w-screen relative h-screen flex">
     <!-- Side bar -->
-    <div class="w-[400px] h-full bg-gray-200 text-white" v-show="showSide">
-      <div class="h-[50px] bg-gray-900 flex justify-start items-center">
+    <div class="w-[290px] h-full bg-gray-200 text-white" v-show="showSide">
+      <div
+        class="h-[60px] w-1/5 bg-gray-900 fixed flex justify-start items-center"
+      >
         <div class="px-[20px]">
           <h3 class="font-bold text-xl">Admin Dashboard</h3>
         </div>
       </div>
       <div
-        class="overflow-y-scroll h-full sticky bottom-0 h-[calc(100vh-50px)] bg-gray-800 py-[20px]"
+        class="overflow-y-scroll h-full w-1/5 xs:hidden md:flex fixed z-20 bottom-0 h-[calc(100vh-70px)] bg-gray-800 py-[20px]"
       >
         <div
           class="flex flex-col justify-between h-full px-[20px] space-y-[10px]"
@@ -58,6 +60,7 @@
               Profile
             </router-link>
             <router-link
+             v-if="userStore.role=='manager'"
               to="/messages"
               class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
             >
@@ -99,7 +102,9 @@
 
               Orders
             </router-link>
+          
             <router-link
+              v-if="userStore.role=='manager'"
               to="/products"
               class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
             >
@@ -121,6 +126,29 @@
               Products
             </router-link>
             <router-link
+              v-if="userStore.role=='manager'"
+              to="/adminstocks"
+              class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="mr-2 w-[25px] h-[25px] fill-current"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"
+                />
+              </svg>
+
+              Stocks
+            </router-link>
+            <router-link
+              v-if="userStore.role=='manager'"
               to="/users"
               class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
             >
@@ -143,8 +171,34 @@
             </router-link>
           </div>
           <div class="h-[60px]">
-            <div>
+            <div  v-if="userStore.role=='manager'">
               <router-link
+                to="/addemployeerole"
+                class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="mr-2 w-[25px] h-[25px] fill-current"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4.5v15m7.5-7.5h-15"
+                  />
+                </svg>
+
+                Add Employee role
+              </router-link>
+            </div>
+  
+
+            <div  v-if="userStore.role=='manager'">
+              <router-link
+                
                 to="/addproducts"
                 class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
               >
@@ -166,6 +220,32 @@
                 Add Products
               </router-link>
             </div>
+  
+            <div>
+              <router-link
+                v-if="userStore.role=='manager'"
+                to="/addstocks"
+                class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="mr-2 w-[25px] h-[25px] fill-current"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4.5v15m7.5-7.5h-15"
+                  />
+                </svg>
+
+                Add Stock
+              </router-link>
+            </div>
+
             <div>
               <router-link
                 to="/settings"
@@ -193,7 +273,7 @@
     </div>
     <div class="w-full h-full bg-gray-400">
       <div
-        class="h-[50px] bg-gray-100 flex items-center shadow-sm px-[20px] w-full py-[10px] z-10 border-b"
+        class="h-[50px] bg-gray-100 w-4/5 absolute inset-y-0 right-0 flex items-center shadow-sm px-[20px] w-full py-[10px] z-10 border-b"
       >
         <!-- Hambuger menu -->
         <div class="cursor-pointer w-[30px]" @click="toggleSideBar">
@@ -212,8 +292,8 @@
 
         <div class="w-[calc(100%-30px)] flex">
           <div class="w-[calc(100%-200px)] flex justify-center">
-            <!-- Search bar -->
-            <form class="flex items-center w-[500px]">
+          
+            <!-- <form class="flex items-center w-[500px]">
               <label for="voice-search" class="sr-only">Search</label>
               <div class="relative w-full">
                 <div
@@ -259,11 +339,11 @@
                   </svg>
                 </router-link>
               </div>
-            </form>
+            </form> -->
           </div>
           <!-- Notification -->
           <!-- User login -->
-          <div class="w-[200px]">
+          <div v-if="userStore.role=='manager'" class="w-[200px]">
             <div
               class="flex items-center justify-start space-x-4"
               @click="toggleDropNotification"
@@ -315,6 +395,7 @@
             </div>
             <!-- Drop down -->
             <div
+              
               v-show="showDropDownNotifications"
               class="absolute right-[0px] z-10 mt-2 w-70 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
               role="menu"
@@ -338,10 +419,13 @@
                     id="menu-item-0"
                   >
                     {{ notification.data }}
-                    <router-link to="/adminnotification"
-                     class="text-bluej-500" >View Detail</router-link
+                    <router-link to="/adminnotification" class="text-bluej-500"
+                      >View Detail</router-link
                     >
-                    <button @click="markAsRead(notification.id)" class="m-3  items-center justify-center">
+                    <button
+                      @click="markAsRead(notification.id)"
+                      class="m-3 items-center justify-center"
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="white"
@@ -376,7 +460,7 @@
             >
               <img
                 class="w-10 h-10 rounded-full border-2 border-gray-50"
-                :src="useStore.image"
+                :src="userStore.image"
                 alt=""
               />
               <div class="font-semibold dark:text-white text-left">
@@ -436,9 +520,122 @@
           </div>
         </div>
       </div>
-      <div class="h-[calc(100vh-40px)] bg-gray-50 p-[20px]">
-        <div class="border border-gray-300 rounded-md p-[20px] mb-10 z-1">
-          <router-view></router-view>
+      <div
+        class="h-[calc(100vh-40px)] w-4/5 absolute inset-y-0 mt-12 right-0 bg-gray-50 p-[20px]"
+      >
+        <div class="border border-gray-300 rounded-md p-[20px] mb-10 z-19">
+          <div class="grid gap-4 lg:grid-cols-4">
+            <div v-if="userStore.role=='manager'"
+              class="flex border-gray-800 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
+            >
+              <div class="p-3 bg-indigo-600 rounded">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-6 h-6 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                </svg>
+              </div>
+              <div class="mx-4">
+                <h4 class="text-2xl font-semibold text-gray-700">
+                  {{ totalUsers }}
+                </h4>
+                <div class="text-gray-500">All Customers</div>
+              </div>
+            </div>
+            <div v-if="userStore.role=='manager'"
+              class="flex transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
+            >
+              <div class="p-3 bg-indigo-600 rounded">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6 text-white"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"
+                  />
+                </svg>
+              </div>
+              <div class="mx-4">
+                <h4 class="text-2xl font-semibold text-gray-700">
+                  {{ totalProducts }}
+                </h4>
+                <div class="text-gray-500">All Products</div>
+              </div>
+            </div>
+            <div
+             
+              class="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
+            >
+              <div class="p-3 bg-indigo-600 rounded">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-6 h-6 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 8h6m-5 0a3 3 0 110 6H9l3 3m-3-6h6m6 1a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <div class="mx-4">
+                <h4 class="text-2xl font-semibold text-gray-700">
+                  {{ totalTransactions }}
+                </h4>
+                <div class="text-gray-500">All Orders</div>
+              </div>
+            </div>
+            <div
+            v-if="userStore.role=='manager'"
+              class="flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100"
+            >
+              <div class="p-3 bg-indigo-600 rounded">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6 text-white"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <div class="mx-4">
+                <span class="text-2xl font-semibold text-gray-700">
+                  {{ totalSales }} 
+                </span>
+                <span class="ml-1 text-xl text-blue-400">birr</span >
+                <div class="text-gray-500">Total Sales</div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-10">
+            <router-view></router-view>
+          </div>
         </div>
       </div>
     </div>
@@ -475,10 +672,50 @@ const showDropDownNotifications = ref(false);
 const showDropDown = ref(false);
 const showSide = ref(true);
 const notifications = ref([]);
+const totalUsers = ref(0);
+const totalProducts = ref(0);
+const totalTransactions = ref(0);
+const totalSales = ref(0);
 
 onMounted(() => {
   getNotification();
+  getTotalUsers();
+  getTotalProducts();
+  getTotalTransaction();
+  getTotalSales();
 });
+
+const getTotalUsers = async () => {
+  let res = await axios.get("http://127.0.0.1:8000/api/get_total_users");
+
+  totalUsers.value = res.data.totalUsers;
+
+  console.log("response", res);
+};
+
+const getTotalProducts = async () => {
+  let res = await axios.get("http://127.0.0.1:8000/api/get_total_products");
+
+  totalProducts.value = res.data.totalProducts;
+
+  console.log("response", res);
+};
+
+const getTotalTransaction = async () => {
+  let res = await axios.get("http://127.0.0.1:8000/api/get_total_transactions");
+
+  totalTransactions.value = res.data.totalTransactions;
+
+  console.log("response", res);
+};
+
+const getTotalSales = async () => {
+  let res = await axios.get("http://127.0.0.1:8000/api/get_total_sales");
+
+  totalSales.value = res.data.totalSales;
+
+  console.log("response", res);
+};
 
 var user = ref([]);
 const logout = async () => {

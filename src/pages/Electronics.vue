@@ -1,7 +1,7 @@
 <template>
     <TopNavigation />
     <NavigationVue />
-    <div>
+    <div class="bg-gray-200">
         <h1>Electronics</h1>
     <Electronics />
     </div>

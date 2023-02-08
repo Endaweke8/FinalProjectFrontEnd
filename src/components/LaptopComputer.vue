@@ -1,126 +1,70 @@
-
 <template>
- 
-  <div v-show="isLoading" class="flex items-center mt-12 h-48  mb-12 justify-center">
-    <img   class="w-20 h-20 absolute  left-1/2 -ml-2.5" src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif" alt="" />
-  </div>
+
+
+   <div class="antialiased bg-gray-200 text-gray-900 font-sans p-6">
   
-    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-4">
   
-      <div
-      v-for="product in products"
-      :key="product.id"
-      class=" max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+    <div
+      v-show="isLoading"
+      class="flex items-center mt-12 h-48 mb-12 justify-center"
     >
-      <a href="#">
-        <img
-          class="p-8 ml-10 h-60 w-full rounded-t-lg"
-          :src="product.image_name" alt="product name"
-        
-        />
-      </a>
-      <div class="px-5 pb-5">
-        <a href="#">
-          <h5
-            class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white"
-          >
-          {{ product.name }}
-          </h5>
-        </a>
-        <div class="flex items-center mt-2.5 mb-5">
-          <svg
-            aria-hidden="true"
-            class="w-5 h-5 text-yellow-300"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>First star</title>
-            <path
-              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-            ></path>
-          </svg>
-          <svg
-            aria-hidden="true"
-            class="w-5 h-5 text-yellow-300"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>Second star</title>
-            <path
-              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-            ></path>
-          </svg>
-          <svg
-            aria-hidden="true"
-            class="w-5 h-5 text-yellow-300"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>Third star</title>
-            <path
-              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-            ></path>
-          </svg>
-          <svg
-            aria-hidden="true"
-            class="w-5 h-5 text-yellow-300"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>Fourth star</title>
-            <path
-              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-            ></path>
-          </svg>
-          <svg
-            aria-hidden="true"
-            class="w-5 h-5 text-yellow-300"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>Fifth star</title>
-            <path
-              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-            ></path>
-          </svg>
-          <span
-            class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3"
-            >5.0</span
-          >
-        </div>
-        <div class="flex items-center justify-between">
-          <span class="text-3xl font-bold text-gray-900 dark:text-white"
-            >${{ product.price }}</span
-          >
-          <router-link
-          :to="`/detailview/${product.id}`"
-            
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >Add to cart</router-link
-          >
-        </div>
-      </div>
-    </div>
- 
+      <img
+        class="w-20 h-20 absolute left-1/2 -ml-2.5"
+        src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif"
+        alt=""
+      />
     </div>
   
+    <div
+      class="grid  grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-4"
+    >
+      <div
+        v-for="product in products"
+        :key="product.id"
+        class="hover:scale-110 transition duration-300 ease-in-out hover:shadow-lg max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+      >
+      <router-link :to="`/detailview/${product.id}`" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden" >
+          
+            <img  class=" h-60 w-full rounded-t-lg " :src="product.image_name" alt="">
+         
+          <div class="p-4">
+            <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">{{product.subcategory1}}</span>
+            <h2 class="mt-2 mb-2  font-bold">{{product.name}}</h2>
+            <div class="mt-3 flex items-center">
+              <span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{product.sale_price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span>
+            </div>
+          </div>
+          <div class="p-4 border-t border-b text-xs text-gray-700">
+            <span class="flex items-center mb-1">
+              <i class="far fa-clock fa-fw mr-2 text-gray-900"></i>posted {{ filterTime( product.created_at)}}
+            </span>
+            <!-- <span class="flex items-center mb-1" >
+              <i class="fa fa-users mr-2" aria-hidden="true"></i> reviewed by {{ product.stars.length}} person
+            </span> -->
+                  
+          </div>
+          <div class="p-4 flex items-center text-sm text-gray-600"> <div
+            
+              
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  w-full py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >Ad to cart</div
+            ></div>
+          </router-link>
+      </div>
+     
+    </div>
   
     <div class="flex items-center justify-center p-2">
-                  <v-pagination
-                      class="p-10"
-                      v-model="page"
-                      :pages="pageCount"
-                      :range-size="1"
-                      active-color="#337aff"
-                      @update:modelValue="getProducts"
-                  />
-              </div>
-    
+      <v-pagination
+        class="p-10"
+        v-model="page"
+        :pages="pageCount"
+        :range-size="1"
+        active-color="#337aff"
+        @update:modelValue="getProducts"
+      />
+    </div>
+    </div>
   </template>
   
   <script setup>
@@ -140,6 +84,7 @@
           const route=useRoute()
           const products=ref([])
           const isLoading=ref(false)
+          const findTime=ref(0);
   
        onMounted(async() => {
         isLoading.value=true
@@ -162,6 +107,43 @@
      }
    
     
+   
+const filterTime = (created_at) => {
+  const currentTime = new Date();
+
+  findTime.value = parseInt((currentTime - Date.parse(created_at)) / (1000));
+  if(findTime.value>60)
+  {
+    findTime.value = parseInt((currentTime - Date.parse(created_at)) / (1000*60));
+    if(findTime.value>60)
+  {
+    findTime.value = parseInt((currentTime - Date.parse(created_at)) / (1000 * 60*60));
+     
+  if (findTime.value > 24) {
+    findTime.value =parseInt((currentTime - Date.parse(created_at)) / (1000 * 60 * 60 * 24));  
+    if (findTime.value >= 7) {
+      findTime.value = parseInt(
+        (currentTime - Date.parse(created_at)) / (1000 * 60 * 60 * 24 * 7)
+      );
+      if (findTime >= 4) {
+        findTime.value = parseInt(
+          (currentTime - Date.parse(created_at)) / (1000 * 60 * 60 * 24 * 7 * 4)
+        );
+        return `${findTime.value} monthes ago`;
+      }
+      return `${findTime.value} weeks ago`;
+    }
+    return `${findTime.value} days ago`;
+  } 
+    return `${findTime.value} hours ago`;
+  }
+
+    return `${findTime.value} minutes ago`;
+  }
+ 
+  return `${findTime.value} seconds ago`;
+
+} 
   
   
   </script>

@@ -1,56 +1,379 @@
 
-
 <template>
+    <div id="EditProfile" class="container max-w-4xl mx-auto pt-20 pb-20 px-6">
+        
+        <div class="text-gray-900 text-xl">Add Product</div>
+        <div class="bg-green-500 w-full h-1"></div>
 
-      <div class="relative flex items-top justify-center min-h-screen bg-blue dark:bg-blue-500 sm:items-down sm:pt-0" style="margin-top: 50px;">
-          <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-              <div class="mt-8 overflow-hidden">
-                  <div class="grid grid-cols-1 md:grid-cols-2">
-  
-                     <form @submit="save" class="max-w-sm m-auto" >
-  
-                  <div class="flex flex-col items-center mt-7">
-  
-                  <label>Name<span class="text-red-500">*</span></label>
-                  <input type="text" placeholder="product name" name="name" v-model="product.name" class="w-full p-2 rounded-xl bg-none border border-gray-500" required>
-                  <label>Category<span class="text-red-500">*</span></label>
-                  <input type="text" placeholder="product category" name="category" v-model="product.category" class="w-full p-2 rounded-xl bg-none border border-gray-500" required>
-                  <label>Subcategory<span class="text-red-500">*</span></label>
-                  <input type="text" placeholder="product subcategory" name="subcategory" v-model="product.subcategory" class="w-full p-2 rounded-xl bg-none border border-gray-500" required>
-                  <label>Another Subcategory<span class="text-red-500">*</span></label>
-                  <input type="text" placeholder="product additional subcategory" name="subcategory1" v-model="product.subcategory1" class="w-full p-2 rounded-xl bg-none border border-gray-500" required>
-                  
-                  <label>Slug<span class="text-red-500">*</span></label>
-                  <input type="text" placeholder="slug" name="slug" v-model="product.slug" class="w-full p-2 rounded-xl bg-none border border-gray-500" required>
-                  
-                  <label>Description<span class="text-red-500">*</span></label>
-                  <input type="text" placeholder="product description" name="description" v-model="product.description" class="w-full p-2 rounded-xl bg-none border border-gray-500" required>
+        <!-- <CropperModal
+        
+        v-if="showModal"
+            :minAspectRatioProp="{width: 8, height: 8}"
+            :maxAspectRatioProp="{width: 8, height: 8}"
+            @croppedImageData="setCroppedImageData"
+            @showModal="showModal = false"
+        /> -->
+ 
+        <div class="flex flex-wrap mt-4 mb-6">
+            <div class="w-full md:w-1/2 px-3">
+                <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product Name
+        </label>
+             <input type="text" name="product name" v-model="product.name" id="" placeholder="Enter the product name" class="appearance-none
+                block
+                w-full
+                bg-white
+                text-gray-700
+                border
+                border-gray-400
+                rounded
+                py-3
+                px-4
+                leading-tight
+                focus:outline-none
+                focus:bg-white
+                focus:border-gray-500
+                " >
+                <p class="text-red-600" v-if="errors.name">* {{ errors.name[0] }}</p>
+               
+            </div>
+            <div class="w-full md:w-1/2 px-3">
+                <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product Category
+        </label>
+               <input type="text" v-model="product.category" placeholder="Enter the product category" class="appearance-none
+                block
+                w-full
+                bg-white
+                text-gray-700
+                border
+                border-gray-400
+                rounded
+                py-3
+                px-4
+                leading-tight
+                focus:outline-none
+                focus:bg-white
+                focus:border-gray-500
+                " >
+                <p class="text-red-600" v-if="errors.category">* {{ errors.category[0] }}</p>
+            </div>
+        </div>
 
-                  <label>image_name<span class="text-red-500">*</span></label>
-                  <input type="file" placeholder="image_name" @change="getImagePath" class="w-full p-2 rounded-xl bg-none border border-gray-500" required>
-                  
-                  <label>Price<span class="text-red-500">*</span></label>
-                  <input type="text" placeholder="product price" name="price" v-model="product.price" class="w-full p-2 rounded-xl bg-none border border-gray-500" required>
+        <div class="flex flex-wrap mt-4 mb-6">
+            <div class="w-full md:w-1/2 px-3">
+                <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product Subcategory
+        </label>
+             <input type="text" name="" v-model="product.subcategory" id="" placeholder="Enter the product subcategory"  class="appearance-none
+                block
+                w-full
+                bg-white
+                text-gray-700
+                border
+                border-gray-400
+                rounded
+                py-3
+                px-4
+                leading-tight
+                focus:outline-none
+                focus:bg-white
+                focus:border-gray-500
+                " >
+                <p class="text-red-600" v-if="errors.subcategory">* {{ errors.subcategory[0] }}</p>
+            </div>
+            <div class="w-full md:w-1/2 px-3">
+                <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product subcategory1
+        </label>
+               <input type="text" v-model="product.subcategory1" placeholder="Enter the product subcategory1" class="appearance-none
+                block
+                w-full
+                bg-white
+                text-gray-700
+                border
+                border-gray-400
+                rounded
+                py-3
+                px-4
+                leading-tight
+                focus:outline-none
+                focus:bg-white
+                focus:border-gray-500
+                " >
+                <p class="text-red-600" v-if="errors.subcategory1">* {{ errors.subcategory1[0] }}</p>
+            </div>
+        </div>
 
-                  <label>Sale Price<span class="text-red-500">*</span></label>
-                  <input type="text" placeholder="sale price" name="sale_price" v-model="product.sale_price" class="w-full p-2 rounded-xl bg-none border border-gray-500" required>
-                  
-                  </div>
-  
-                  <button type="submit" class="bg-green-500 text-white py-2 px-4 mt-5 rounded-lg ">Save</button>
+        <div class="flex flex-wrap mt-4 mb-6">
+            <div class="w-full md:w-1/2 px-3">
+                <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product Slug
+        </label>
+             <input type="text" name="" v-model="product.slug" id="" placeholder="Enter the product slug" class="appearance-none
+                block
+                w-full
+                bg-white
+                text-gray-700
+                border
+                border-gray-400
+                rounded
+                py-3
+                px-4
+                leading-tight
+                focus:outline-none
+                focus:bg-white
+                focus:border-gray-500
+                " >
+                <p class="text-red-600" v-if="errors.slug">* {{ errors.slug[0] }}</p>
+            </div>
+            <div class="w-full md:w-1/2 px-3">
+                <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product Price
+        </label>
+               <input type="text" v-model="product.price" class="appearance-none 
+                block
+                w-full
+                bg-white
+                text-gray-700
+                border
+                border-gray-400
+                rounded
+                py-3
+                px-4
+                leading-tight
+                focus:outline-none
+                focus:bg-white
+                focus:border-gray-500
+                " placeholder="Enter the product price">
+                <p class="text-red-600" v-if="errors.price">* {{ errors.price[0] }}</p>
+            </div>
+        </div>
+        
+        <div class="flex flex-wrap mt-4 mb-6">
+            <div class="w-full md:w-1/2 px-3">
+                <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product sale_price
+        </label>
+             <input type="text" name="" v-model="product.sale_price" id="" placeholder="Enter the product sale Price" class="appearance-none
+                block
+                w-full
+                bg-white
+                text-gray-700
+                border
+                border-gray-400
+                rounded
+                py-3
+                px-4
+                leading-tight
+                focus:outline-none
+                focus:bg-white
+                focus:border-gray-500
+                " >
+                <p class="text-red-600" v-if="errors.sale_price">* {{ errors.sale_price[0] }}</p>
+            </div>
             
-                  </form>
-                  </div>
-                  <img :src="imagePath" alt="image" height="200" width="300" />
-              </div>
-          </div>
-      </div>
-     
-  
-  </template>
-  
+        </div>
+        <div class="flex flex-wrap mt-4 mb-6">
+            <div class="w-full md:w-1/2 px-3">
+                <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product quantity
+        </label>
+             <input type="text" name="" v-model="product.productquantity" id="" placeholder="Enter the product quantity" class="appearance-none
+                block
+                w-full
+                bg-white
+                text-gray-700
+                border
+                border-gray-400
+                rounded
+                py-3
+                px-4
+                leading-tight
+                focus:outline-none
+                focus:bg-white
+                focus:border-gray-500
+                " >
+                <p class="text-red-600" v-if="errors.productquantity">* {{ errors.productquantity[0] }}</p>
+            </div>
+            
+        </div>
+
+        <div class="flex flex-wrap mt-4 mb-6">
+            <div class="w-full px-3">
+                <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product Description
+        </label>
+                <textarea
+                    class=" appearance-none
+            block
+            w-full
+            bg-white
+            text-gray-700
+            border
+            border-gray-400
+            rounded
+            py-3
+            px-4
+            leading-tight
+            focus:outline-none
+            focus:bg-white
+            focus:border-gray-500"
+                cols="30" 
+                rows="10"
+                    placeholder="Please Enter the product information here!!!"
+                    v-model="product.description"
+                ></textarea>
+                <p class="text-red-600" v-if="errors.description">* {{ errors.description[0] }}</p>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap mt-4 mb-6">
+            <div class="w-full md:w-1/2 px-3">
+             <input type="file" name="" @change="getImagePath" id="" placeholder="Enter the product image" class="appearance-none
+                block
+                w-full
+                bg-white
+                text-gray-700
+                border
+                border-gray-400
+                rounded
+                py-3
+                px-4
+                leading-tight
+                focus:outline-none
+                focus:bg-white
+                focus:border-gray-500
+                " >
+            </div>
+            <img :src="imagePath" alt="image" height="200" width="300" />
+           
+        </div>
+
+        </div>
+
+      
+
+      
+        
+       
+
+        <div class="flex flex-wrap mt-8 mb-6">
+            <div class="w-full px-3">
+                <SubmitFormButton
+                    btnText="Add Product"
+                    @click="save"
+                />
+            </div>
+        </div>
+        
+
+</template>
+
+
   
   <script setup>
+  import TextArea from '../components/global/TextArea.vue';
+import SubmitFormButton from '../components/global/SubmitFormButton.vue'
   import axios from 'axios';
   import Swal from 'sweetalert2';
   import store from '../store';
@@ -59,7 +382,9 @@
    } from 'vue-router';
    
    const router=useRouter()
-  
+   const name=ref('');
+   let errors = ref([]);
+   const category=ref('');
     const product={
       name:'',
       category:'',
@@ -70,6 +395,7 @@
       image_name:'',
       price:'',
       sale_price:'',
+      productquantity:'',
     }
 
     const imagePath=ref('');
@@ -89,28 +415,37 @@
         //  console.log(file)
        }
   
-    function save(ev){
-      ev.preventDefault();
-      store.dispatch('save',product).then((res)=>{
-        Swal.fire({
-              toast: true,
-              icon: "success",
-              title: "You added product successfully ",
-              animation: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 6500,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                  toast.addEventListener("mouseenter", Swal.stopTimer);
-                  toast.addEventListener("mouseleave", Swal.resumeTimer);
-              }
-          });
-          console.log(res)
-          router.push({
-              name:"AdminDashboard"
-          })
-      })
+       const save=async(ev)=>{
+        errors.value = [];
+        await  ev.preventDefault();
+     try {
+        const res= await axios.post('http://127.0.0.1:8000/api/saveproduct',product)
+            console.log(res)
+            Swal.fire({
+            toast: true,
+            icon: "success",
+            title: "You added product successfully ",
+            animation: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 6500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener("mouseenter", Swal.stopTimer);
+                toast.addEventListener("mouseleave", Swal.resumeTimer);
+            }
+        });
+       
+    
+    
+     
+      
+
+               
+     } catch (err) {
+        errors.value = err.response.data.errors;
+        console.log(errors.value)
+     }
     }
   
   </script>

@@ -1,10 +1,12 @@
 <template>
-  <div class="flex items-center mt-12 h-48   mb-12 justify-center" v-if="bookmarkStore.bookmarks.bookmarkwithproduct.length<1"><span class="text-5xl text-bold">No Favorites</span></div>
+<div v-if="!bookmarkStore.bookmarks">
+  <div class="flex items-center mt-12 h-48   mb-12 justify-center" v-if="!bookmarkStore.bookmarks"><span class="text-5xl text-bold">No Favorites</span></div>
+</div>
  <div v-show="isLoading" class="flex items-center mt-12 h-48  mb-12 justify-center">
   <img   class="w-20 h-20 absolute  left-1/2 -ml-2.5" src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif" alt="" />
 </div>
 
-  <div class="grid grid-cols-1 z-17 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-4">
+  <div v-if="bookmarkStore.bookmarks" class="grid grid-cols-1 z-17 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-4">
 
     <div
     v-for="product in bookmarkStore.bookmarks.bookmarkwithproduct"
@@ -32,7 +34,7 @@
       </span>
     <router-link :to="`/detailview/${product.id}`">
       <img
-        class="p-8 ml-10 h-60 w-full rounded-t-lg"
+        class="h-60 w-full rounded-t-lg"
         :src="product.image_name" alt="product name"
       
       />

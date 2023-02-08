@@ -1,8 +1,8 @@
 <template>
     <TopNavigation />
     <NavigationVue />
-    <div>
-        <div class="flex mt-5 bold text-3xl justify-center items-center">Desktop Computers</div>
+    <div class="bg-gray-200">
+        <div class="flex  bold text-3xl justify-center items-center">Desktop Computers</div>
     <DesktopComputer />
     </div>
     <FooterSection />

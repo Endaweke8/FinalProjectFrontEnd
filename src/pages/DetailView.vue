@@ -7,6 +7,7 @@
     {{ filtereProducts }} -->
     <!-- {{ bookmarkStore.bookmarks.quantity }} -->
     
+   <div class="antialiased bg-gray-200 text-gray-900 font-sans p-6">
     <div
       v-show="isLoading"
       class="flex items-center mt-12 h-48 mb-12 justify-center"
@@ -39,16 +40,16 @@
         v-for="item in filtereProducts"
         :key="item.id"
       >
-        <div class="w-75% lg:flex">
+        <div class="w-75% lg:flex ">
           <div
-            class="h-60 lg:h-auto m-4 lg:w-60 flex-none rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+            class="card-zoom  lg:h-auto m-4 lg:w-60 flex-none rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
           >
-            <img :src="item.image_name" alt="" width="600" class="h-60" />
+            <img :src="item.image_name" alt="" width="600" class="card-zoom-image w-96 h-96" />
           </div>
           <div
-            class="border-r max-w-md mb-10 border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r lg:rounded-l p-4 flex flex-col justify-between leading-normal"
+            class="border-r  shadow-xl max-w-md mb-10 border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r lg:rounded-l p-4 flex flex-col justify-between leading-normal"
           >
-            <div class="mb-8">
+            <div class="mb-8 ">
               <p class="text-sm text-gray-600 flex items-center">
                 <svg
                   class="fill-current text-gray-500 w-3 h-3 mr-2"
@@ -88,7 +89,11 @@
                 exercitationem praesentium nihil.
               </p>
               <span class="text-3xl mt-5 mb-5 font-bold text-gray-900 dark:text-white"
-                >${{ item.price }}</span
+                >{{ item.price }} Birr</span
+              >
+              <br>
+              <span class="text-3xl mt-5 mb-5 font-bold text-gray-900 dark:text-white"
+                >quantity :{{ item.productquantity }} </span
               >
         
              
@@ -105,7 +110,8 @@
               <span v-else><i class="fa fa-star " style="font-size:25px;"></i></span>
               <span v-if="rateCount>=5"><i class="fa fa-star checked" style="font-size:25px;"></i></span>
               <span v-else><i class="fa fa-star " style="font-size:25px;"></i></span>
-              <span class="mb-4 text-xl ml-2 text-amber-500">{{ rateCount}}</span> 
+              <span class="mb-4 text-xl ml-2 text-amber-500">{{ rateCount}} <small class="text-black font-style-italic">reviewed by {{item.stars.length }} customer</small></span> 
+              
             </div>
 
 
@@ -207,7 +213,7 @@
               </span>
 
               <button
-                @click="addToCart(item.name)"
+                @click="addToCart(item.name,item.id,item.productquantity)"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Add to Cart
@@ -219,7 +225,9 @@
 
       </div>
     </div>
+   </div>
   </div>
+ 
   <FooterSection />
 </template>
 
@@ -233,6 +241,7 @@ import NavigationVue from "../components/NavigationVue.vue";
 import { useUserStore } from "../stores/user-store";
 import { useBookmarkStore } from "../stores/bookmark-store";
 import { useCartStore } from "../stores/cart-store";
+
 
 import TopNavigation from "../components/structure/TopNavigation.vue";
 
@@ -248,6 +257,7 @@ const store = useStore();
 const isLoading = ref(false);
 const userStore = useUserStore();
 const cartStore = useCartStore();
+const cartQuantity = ref(0);
 
 const bookmarkStore = useBookmarkStore();
 
@@ -269,6 +279,7 @@ const rateProduct = async (stars_rated,product_id) => {
   });
   showRate.value=false
   getRates();
+  getProducts();
   console.log("response from rateProduct function", response.data.totalRateGiven);
   Swal.fire({
         toast: true,
@@ -340,7 +351,29 @@ const filtereProducts = computed(() => {
   return products.value.filter((item) => item.id == route.params.id);
 });
 
-const addToCart = async (title) => {
+const addToCart = async (title,product_id,product_quantity) => {
+  let res = await axios.get('http://127.0.0.1:8000/api/getcart/' + product_id )
+  cartQuantity.value=res.data.cartQuantity;
+  if(cartQuantity.value>=product_quantity){
+    Swal.fire({
+        toast: true,
+        icon: "error",
+        title: "Sorry,You are ordering " + cartQuantity.value + " currently the available quantity of this product is "  + product_quantity,
+        animation: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 5000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+    return
+  }
+  console.log('cartresponse',res);
+
+
   var url = "http://127.0.0.1:8000/api/cart";
   await axios
     .post("http://127.0.0.1:8000/api/cart/" + userStore.id, {
@@ -366,6 +399,7 @@ const addToCart = async (title) => {
       console.log(response.data);
     
     });
+    filtereProducts();
 }
 
 const addToBookmark = async (title) => {
@@ -465,4 +499,13 @@ const addToBookmark = async (title) => {
   .unchecked{
     color:#e6e5dd
   }
+  .card-zoom {
+  @apply  flex items-center justify-center m-3 overflow-hidden shadow-xl w-96 h-96 rounded-2xl;
+}
+.card-zoom:hover .card-zoom-image {
+  @apply scale-150;
+}
+.card-zoom-image:hover{
+  @apply scale-150;
+}
 </style>

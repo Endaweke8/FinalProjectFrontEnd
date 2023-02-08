@@ -39,11 +39,11 @@
                     Our company
                 </div>
                 <p class="mb-4 leading-normal">
-                    123 Main Street <br>
-                    London <br>
-                    SW1 SW1
+                    Derartu Building  <br>
+                    Addis Ababa <br>
+                    Fourth Floor
                 </p>
-                <p class="text-sm">07775 444 999</p>
+                <p class="text-sm">0949963101</p>
             </div>
         </div>
 

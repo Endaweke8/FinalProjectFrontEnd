@@ -1,7 +1,9 @@
 <template>
   <TopNavigation /> 
   <div>
+    <Slider />
     <NavigationVue />
+  
     
     <Products />
   </div>
@@ -12,13 +14,14 @@
 
 import NavigationVue from '../components/NavigationVue.vue';
 import Products from '../components/Products.vue';
+import Slider from '../components/Slider.vue';
 
 import FooterSection from '../components/structure/FooterSection.vue';
 import TopNavigation from '../components/structure/TopNavigation.vue';
 
 
   export default {
-    components: { NavigationVue, Products, TopNavigation, FooterSection}
+    components: { NavigationVue, Products, TopNavigation, FooterSection, Slider }
 }
 </script>
 

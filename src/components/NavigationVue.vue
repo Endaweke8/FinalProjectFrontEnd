@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="sticky relative top-0 z-19 fixed border-b-2 border-slate-200 bg-slate-50 text-black fadeInTop"
+    class="sticky relative top-0 z-19 fixed border-b-8 border-t-8 border-green-200 bg-slate-500  text-white fadeInTop"
   >
     <div class="max-w-6xl mx-auto px-4">
       <div class="flex justify-between">
@@ -10,7 +10,7 @@
         >
           <router-link
             to="/"
-            class="vue-active-class py-4 sm:flex px-2 text-base font-regular primary-color"
+            class="vue-active-class py-4 sm:flex px-2 text-white font-regular primary-color"
             >Home</router-link
           >
           <!-- <router-link
@@ -20,8 +20,8 @@
           > -->
 
         
-          <ul class="space-y-2">
-            <li @click="show = true" @mouseleave="show = false">
+          <ul class="space-y-2 hover:bg-gray-300 " >
+            <li @click="show = true" @mouseleave="show = false" >
               <button
                 type="button"
                 class="flex relative items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
@@ -29,33 +29,126 @@
                 data-collapse-toggle="dropdown-example"
               >
                
-                <span
-                  class="flex-1 ml-3 text-left whitespace-nowrap"
+                <span :class="showActiveElectronics? 'text-red-400':'text-white'"
+                  class="flex-1 ml-3 hover:text-black  text-left whitespace-nowrap"
                   sidebar-toggle-item
-                  >Electronics</span
+                  >Computers</span
                 >
                
               </button>
               <ul
+             
                 id="dropdown-example"
                 v-if="show"
-                class="bg-slate-200 absolute py-2 space-y-2"
+                class="bg-slate-200 text-black absolute py-2 space-y-2"
               >
-                <li>
-                  <router-link
-                    to="/laptopcomputers"
+              <li  >
+                  <button
+                    @click="showLaptopDrop =true" 
+                    id="doubleDropdownButton"
+                    data-dropdown-toggle="doubleDropdown"
+                    data-dropdown-placement="right-start"
+                    type="button"
                     class="flex justify-between items-center py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >Laptop Computer</router-link
                   >
+                    Laptop Computers
+                  </button>
+                  <div
+                    v-if="showLaptopDrop"
+                    
+                    id="doubleDropdown"
+                    class="z-10  w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700"
+                  >
+                    <ul
+                      @mouseleave="showLaptopDrop=false"
+                      class="py-1 ml-6 text-sm text-gray-700 dark:text-gray-200"
+                      aria-labelledby="doubleDropdownButton"
+                    >
+                      <li >
+                        <router-link
+                          to="/hplaptopcomputers"
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
+                          >Hp-Laptop</router-link
+                        >
+                      </li>
+                      <li>
+                        <router-link 
+                          to="/lenevolaptopcomputers"
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >Lenevo Laptop</router-link>
+                      </li>
+                      <li>
+                        <router-link
+                          to="/applelaptopcomputers"
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >Apple Laptop</router-link
+                        >
+                      </li>
+                      <li>
+                        <router-link
+                          to="/buttonmobiles"
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >Other Laptop</router-link
+                        >
+                      </li>
+                      
+                    </ul>
+                  </div>
                 </li>
-                <li>
-                  <router-link
-                    to="/desktopcomputers"
+                <li  >
+                  <button
+                    @click="showDesktopDrop =true" 
+                    id="doubleDropdownButton"
+                    data-dropdown-toggle="doubleDropdown"
+                    data-dropdown-placement="right-start"
+                    type="button"
                     class="flex justify-between items-center py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >Desktop Computer</router-link
                   >
+                    Desktop Computers
+                  </button>
+                  <div
+                    v-if="showDesktopDrop"
+                    
+                    id="doubleDropdown"
+                    class="z-10  w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700"
+                  >
+                    <ul
+                      @mouseleave="showDesktopDrop=false"
+                      class="py-1 ml-6 text-sm text-gray-700 dark:text-gray-200"
+                      aria-labelledby="doubleDropdownButton"
+                    >
+                      <li >
+                        <router-link
+                          to="/hpdesktopcomputers"
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
+                          >Hp desktop</router-link
+                        >
+                      </li>
+                      <li>
+                        <router-link 
+                          to="/lenevodesktopcomputers"
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >Lenevo Desktop</router-link>
+                      </li>
+                      <li>
+                        <router-link
+                          to="/appledesktopcomputers"
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >Apple Desktop</router-link
+                        >
+                      </li>
+                      <li>
+                        <router-link
+                          to="/buttonmobiles"
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >Other Desktop</router-link
+                        >
+                      </li>
+                      
+                    </ul>
+                  </div>
                 </li>
-                <li>
+                <!-- <li  >
                   <button
                     @click="showDrop =true" 
                     id="doubleDropdownButton"
@@ -77,7 +170,104 @@
                       class="py-1 ml-6 text-sm text-gray-700 dark:text-gray-200"
                       aria-labelledby="doubleDropdownButton"
                     >
+                      <li >
+                        <router-link
+                          to="/iphonemobiles"
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
+                          >Iphone</router-link
+                        >
+                      </li>
                       <li>
+                        <router-link 
+                          to="androidmobiles"
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >Adroid</router-link>
+                      </li>
+                      <li>
+                        <router-link
+                          to="/buttonmobiles"
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >Buttons</router-link
+                        >
+                      </li>
+                      
+                    </ul>
+                  </div>
+                </li> -->
+               
+              </ul>
+            </li>
+          </ul>
+          
+          <ul class="space-y-2 hover:bg-gray-300 " >
+            <li @click="showMobile = true" @mouseleave="showMobile = false" >
+              <button
+                type="button"
+                class="flex relative items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                aria-controls="dropdown-example"
+                data-collapse-toggle="dropdown-example"
+              >
+               
+                <span :class="showActiveElectronics? 'text-red-400':'text-white'"
+                  class="flex-1 ml-3 hover:text-black  text-left whitespace-nowrap"
+                  sidebar-toggle-item
+                  >Mobiles</span
+                >
+               
+              </button>
+              <ul
+             
+                id="dropdown-example"
+                v-if="showMobile"
+                class="bg-slate-200 text-black absolute py-2 space-y-2"
+              >
+                <li >
+                  <router-link
+                  
+                    to="/iphonemobiles"
+                    class="flex justify-between items-center  py-2 px-4 w-full hover:bg-white dark:hover:bg-gray-600 dark:hover:text-white"
+                    >Iphone Mobiles</router-link
+                  >
+                </li>
+                <li>
+                  <router-link
+                  
+                    to="/androidmobiles"
+                    class="flex justify-between items-center py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >Android Mobiles</router-link
+                  >
+                </li>
+                <li>
+                  <router-link
+                  
+                    to="/buttonmobiles"
+                    class="flex justify-between items-center py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >Button Mobiles</router-link
+                  >
+                </li>
+                <li  >
+                  <button
+                    @click="showMobileDrop =true" 
+                    id="doubleDropdownButton"
+                    data-dropdown-toggle="doubleDropdown"
+                    data-dropdown-placement="right-start"
+                    type="button"
+                    class="flex justify-between items-center py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    Others
+                  </button>
+                  <div
+                    v-if="showMobileDrop"
+                    
+                    id="doubleDropdown"
+                    class="z-10  w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700"
+                  >
+                    <ul
+                      @mouseleave="showMobileDrop=false"
+                      class="py-1 ml-6 text-sm text-gray-700 dark:text-gray-200"
+                      aria-labelledby="doubleDropdownButton"
+                    >
+                      <li >
                         <router-link
                           to="/iphonemobiles"
                           class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
@@ -105,17 +295,28 @@
               </ul>
             </li>
           </ul>
-          <ul class="space-y-2">
-            <li @click="showClothe = true" @mouseleave="showClothe = false">
+          <router-link
+            to="/television"
+            class="vue-active-class py-4 sm:flex px-2 text-white font-regular primary-color"
+            >Televisons</router-link
+          >
+          <router-link
+            to="/headsets"
+            class="vue-active-class py-4 sm:flex px-2 text-white font-regular primary-color"
+            >HeadSets</router-link
+          >
+
+          <!-- <ul class="space-y-2 ">
+            <li @click="showClothe = true" @mouseleave="showClothe = false" class="hover:bg-gray-300 ">
               <button
                 type="button"
-                class="flex relative items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                class="flex relative items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group  dark:text-white dark:hover:bg-gray-700"
                 aria-controls="dropdown-example"
                 data-collapse-toggle="dropdown-example"
               >
                
                 <span
-                  class="flex-1 ml-3 text-left whitespace-nowrap"
+                  class="flex-1 text-white ml-3 text-left hover:text-black whitespace-nowrap"
                   sidebar-toggle-item
                   >Clothes</span
                 >
@@ -124,7 +325,7 @@
               <ul
                 id="dropdown-example"
                 v-if="showClothe"
-                class="bg-slate-200 absolute py-2 space-y-2"
+                class="bg-slate-200 absolute text-black py-2 space-y-2"
               >
               <li>
                   <button
@@ -163,17 +364,17 @@
                         >
                       </li>
                       <li>
-                        <a
-                          href="#"
+                        <router-link
+                          to="/menjackets"
                           class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >Jacket</a
+                          >Jackets</router-link
                         >
                       </li>
                        <li>
-                        <a
-                          href="#"
+                        <router-link
+                          to="/menclotheothers"
                           class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >Others</a
+                          >Others</router-link
                         >
                       </li>
                       
@@ -204,31 +405,31 @@
                       aria-labelledby="doubleDropdownButton"
                     >
                       <li>
-                        <a
-                          href="#"
+                        <router-link to="/femaletrousers"
+                        
                           class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
-                          >Trouser</a
+                          >Trouser</router-link
                         >
                       </li>
                       <li>
-                        <a
-                          href="#"
-                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >Tshirt</a
+                        <router-link to="/femaletshirts"
+                         
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
+                          >Tshirts</router-link
                         >
                       </li>
                       <li>
-                        <a
-                          href="#"
-                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >Jacket</a
+                        <router-link to="/femalejackets"
+                          
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
+                          >Jackets</router-link
                         >
                       </li>
                        <li>
-                        <a
-                          href="#"
-                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >Others</a
+                        <router-link to="/femaleclotheothers"
+                         
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
+                          >Others</router-link
                         >
                       </li>
                       
@@ -240,7 +441,7 @@
             </li>
           </ul>
          
-          <ul class="space-y-2">
+          <ul class="space-y-2 hover:bg-gray-300" >
             <li @click="showBag = true" @mouseleave="showBag = false">
               <button
                 type="button"
@@ -250,7 +451,7 @@
               >
                
                 <span
-                  class="flex-1 ml-3 text-left whitespace-nowrap"
+                  class="flex-1 ml-3 text-left text-white hover:text-black whitespace-nowrap"
                   sidebar-toggle-item
                   >Bags</span
                 >
@@ -268,7 +469,7 @@
                     data-dropdown-toggle="doubleDropdown"
                     data-dropdown-placement="right-start"
                     type="button"
-                    class="flex justify-between items-center py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    class="flex justify-between text-black items-center py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     Male's
                   </button>
@@ -284,17 +485,18 @@
                       aria-labelledby="doubleDropdownButton"
                     >
                       <li>
-                        <a
-                          href="#"
-                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
-                          >lazer</a
-                        >
+                        <router-link to="/menlazerbags"
+                        
+                        class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
+                        >Lazer</router-link
+                      >
+                        
                       </li>
                       <li>
-                        <a
-                          href="#"
-                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >fashion</a
+                        <router-link to="/menfashionbags"
+                        
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
+                          >Fashion</router-link
                         >
                       </li>
                       
@@ -310,7 +512,7 @@
                     data-dropdown-toggle="doubleDropdown"
                     data-dropdown-placement="right-start"
                     type="button"
-                    class="flex justify-between items-center py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    class="flex justify-between text-black items-center py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     Females's
                   </button>
@@ -326,18 +528,18 @@
                       aria-labelledby="doubleDropdownButton"
                     >
                       <li>
-                        <a
-                          href="#"
-                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
-                          >Lazer</a
-                        >
+                        <router-link to="/femalelazerbags"
+                        
+                        class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
+                        >Lazer</router-link
+                      >
                       </li>
                       <li>
-                        <a
-                          href="#"
-                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >Fashion</a
-                        >
+                        <router-link to="/femalefashionbags"
+                        
+                        class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
+                        >Fashion</router-link
+                      >
                       </li>
                      
                       
@@ -349,16 +551,148 @@
             </li>
           </ul>
 
-          <router-link
-            to="/bags"
-            class="py-2 px-2 text-base font-regular primary-color"
-            >Bags</router-link
-          >
-          <router-link
-            to="/shoes"
-            class="vue-active-class py-4 sm:flex px-2 text-base font-regular primary-color"
-            >Shoes</router-link
-          >
+        
+          <ul class="space-y-2 ">
+            <li @click="showShoes = true" @mouseleave="showShoes = false" class="hover:bg-gray-300 ">
+              <button
+                type="button"
+                class="flex relative items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group  dark:text-white dark:hover:bg-gray-700"
+                aria-controls="dropdown-example"
+                data-collapse-toggle="dropdown-example"
+              >
+               
+                <span
+                  class="flex-1 text-white ml-3 text-left hover:text-black whitespace-nowrap"
+                  sidebar-toggle-item
+                  >Shoes</span
+                >
+               
+              </button>
+              <ul
+                id="dropdown-example"
+                v-if="showShoes"
+                class="bg-slate-200 absolute text-black py-2 space-y-2"
+              >
+              <li>
+                  <button
+                    @click="showMenShoesDrop =true" 
+                    id="doubleDropdownButton"
+                    data-dropdown-toggle="doubleDropdown"
+                    data-dropdown-placement="right-start"
+                    type="button"
+                    class="flex justify-between items-center py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    Male's
+                  </button>
+                  <div
+                    v-if="showMenShoesDrop"
+                    
+                    id="doubleDropdown"
+                    class="z-10  w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700"
+                  >
+                    <ul
+                      @mouseleave="showMenShoesDrop=false"
+                      class="py-1 ml-6 text-sm text-gray-700 dark:text-gray-200"
+                      aria-labelledby="doubleDropdownButton"
+                    >
+                      <li>
+                        <router-link
+                          to="/menlazershoes"
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
+                          >Lazer</router-link
+                        >
+                      </li>
+                      <li>
+                        <router-link
+                          to="/mensherashoes"
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >Shera</router-link
+                        >
+                      </li>
+                      <li>
+                        <router-link
+                          to="/mensnickershoes"
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >Snicker</router-link
+                        >
+                      </li>
+                       <li>
+                        <router-link
+                          to="/menothershoes"
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >Others</router-link
+                        >
+                      </li>
+                      
+                    </ul>
+                  </div>
+                </li>
+                
+                <li>
+                  <button
+                    @click="showFemaleShoesDrop =true" 
+                    id="doubleDropdownButton"
+                    data-dropdown-toggle="doubleDropdown"
+                    data-dropdown-placement="right-start"
+                    type="button"
+                    class="flex justify-between items-center py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    Females's
+                  </button>
+                  <div
+                    v-if="showFemaleShoesDrop"
+                    
+                    id="doubleDropdown"
+                    class="z-10  w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700"
+                  >
+                    <ul
+                      @mouseleave="showFemaleShoesDrop=false"
+                      class="py-1 ml-6 text-sm text-gray-700 dark:text-gray-200"
+                      aria-labelledby="doubleDropdownButton"
+                    >
+                      <li>
+                        <router-link to="/femalelazershoes"
+                        
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
+                          >Lazer</router-link
+                        >
+                      </li>
+                      <li>
+                        <router-link to="/femalehealshoes"
+                         
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
+                          >Heal</router-link
+                        >
+                      </li>
+                      <li>
+                        <router-link to="/femalesherashoes"
+                          
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
+                          >shera</router-link
+                        >
+                      </li>
+                      <li>
+                        <router-link to="/femalesnickershoes"
+                          
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
+                          >snicker</router-link
+                        >
+                      </li>
+                       <li>
+                        <router-link to="/femaleothershoes"
+                         
+                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
+                          >Others</router-link
+                        >
+                      </li>
+                      
+                    </ul>
+                  </div>
+                </li>
+               
+              </ul>
+            </li>
+          </ul>
           <router-link
             to="/foods"
             class="py-4 px-2 text-base font-regular primary-color"
@@ -374,7 +708,7 @@
             to="/Perfumes"
             class="py-4 px-2 text-base font-regular primary-color"
             >Perfumes</router-link
-          >
+          > -->
 
           <router-link
             to="/stocks"
@@ -391,8 +725,8 @@
         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
         </div>
-        <input type="text " v-model="query" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." required>
-        <button @click="searchProducts(query)"   class="text-white visible focus:invisible absolute  right-1 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+        <input type="text" @keyup="searchProducts(query)" v-model="query" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." required>
+        <button  @click="searchProducts(query)"   class="text-white visible focus:invisible absolute  right-1 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
     </div>
 </div>
 <!-- 
@@ -431,7 +765,7 @@
     <!-- mobile menu -->
     <div
       v-if="popupOpen"
-      class="md:hidden max-w-[50%] fixed top-13 bg-gray-500 text-white right-2"
+      class="md:hidden max-w-[50%] z-4 fixed top-13 bg-gray-500 text-white right-2"
     >
       <ul>
         <li>
@@ -460,7 +794,16 @@
     <SideBar />
 
   </div>
+  <div v-if="noProductDisplay">
+   
+    <div
+    v-if="products.length<1"
+    class="flex items-center mt-12 h-48 mb-12 justify-center"
+  >
+  <div class="text-3xl">Sorry  searched Products not found</div>
+  </div>
 
+  </div>
   <div class="mt-10" v-if="products.length>0">
   <h1 class="h-full flex items-center justify-center text-3xl">Searched Products</h1>
   
@@ -601,15 +944,17 @@ import axios from 'axios'
         const route=useRoute()
         const products=ref([])
         const isLoading=ref(false)
+        const noProductDisplay=ref(false)
 
 
       const searchProducts=async(query)=>{
-    alert(query);
+      noProductDisplay.value=true;
     let res=await axios.post('http://127.0.0.1:8000/api/search?page=' + page.value,{
       searchData:query,
     })
     pageCount.value = res.data.page_count
     products.value = res.data.products.data
+   
     console.log('response',res);
     
 
@@ -617,7 +962,7 @@ import axios from 'axios'
 
    }
 
-
+const   showActiveElectronics=ref(false)
 const showSide = ref(false);
 const show = ref(false);
 const showDrop = ref(false);
@@ -625,6 +970,17 @@ const showClothe = ref(false);
 const showClothDrop = ref(false);
 const showMenClothDrop = ref(false);
 const showFemaleClothDrop = ref(false);
+
+const showShoes = ref(false);
+const showShoesDrop = ref(false);
+const showMenShoesDrop = ref(false);
+const showFemaleShoesDrop = ref(false);
+
+const showMobile=ref(false);
+const showMobileDrop=ref(false);
+
+const showLaptopDrop=ref(false);
+const showDesktopDrop=ref(false);
 
 const showBag = ref(false);
 const showMenBagDrop = ref(false);
@@ -634,7 +990,7 @@ const showFemaleBagDrop = ref(false);
 
 <style>
 a.router-link-exact-active {
-  color: purple;
+  color: rgb(173, 15, 173);
   border-bottom: black;
 }
 </style>

@@ -13,7 +13,6 @@
                 <div v-if="cart.quantity>0" class="w-1/4 flex flex-wrap mr-auto mt-2 text-lg p-1 text-gray-900">
                    {{++index}}   
                    
-                  
                 </div>
                 <div v-if="cart.quantity>0" v-for="cartwproduct in cartStore.carts.cartwithproduct" :key="cartwproduct">
                    
@@ -32,11 +31,11 @@
 
                    <div v-if="cart.product_id==cartwproduct.id">
                       
-                      Sale_price :  ${{cartwproduct.sale_price}}
+                      Sale_price :  {{cartwproduct.sale_price}} birr
                    </div>
                    <div v-if="cart.product_id==cartwproduct.id">
                       
-                      Subtotal :  ${{cartwproduct.total}}
+                      Subtotal :  {{cartwproduct.total}} birr
                    </div>
                    <div v-if="cart.product_id==cartwproduct.id">
                            
@@ -131,7 +130,7 @@
        
         <div class="mb-10">
 
-            <span v-if="cartStore.carts">Total Amount : ${{ cartStore.carts.cartwithproduct.totalAmount }}</span>
+            <span v-if="cartStore.carts">Total Amount : {{ cartStore.carts.cartwithproduct.totalAmount }} birr</span>
                   
             <router-link to="/checkout">
                 <button class="bg-green-500 mt-3 mx-5 text-white  p-1"> Order Now</button>
@@ -143,11 +142,14 @@
 
 <script setup>
     import axios from 'axios'
+    import { ref } from 'vue'
     import Swal from 'sweetalert2'
     import { useCartStore } from '../../../stores/cart-store'
     import { useUserStore } from '../../../stores/user-store'
     const userStore = useUserStore()
     const cartStore = useCartStore()
+    const cartQuantity = ref(0)
+    const productQuantity = ref(0)
     const deleteCart = async (cart) => {
         Swal.fire({
             title: 'Are you sure you want to remove this from cart?',
@@ -178,7 +180,30 @@
 
     const   addToCart=async(product_id)=>{
            
-            
+        let res = await axios.get('http://127.0.0.1:8000/api/getcart/' + product_id );
+        cartQuantity.value=res.data.cartQuantity;
+        console.log(cartQuantity.value);
+        let ress= await axios.get('http://127.0.0.1:8000/api/getsingleproduct/' + product_id );
+        productQuantity.value=ress.data[0].productquantity;
+        console.log(ress.data[0].productquantity);
+  if(cartQuantity.value>=productQuantity.value){
+   
+    Swal.fire({
+        toast: true,
+        icon: "error",
+        title: "Sorry,You are ordering " + cartQuantity.value + " currently the available quantity of this product is "  + productQuantity.value,
+        animation: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 5000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+    return
+  } 
          await axios.post("http://127.0.0.1:8000/api/cart/"+userStore.id,{
                 'product_id':product_id,
                 'user_id':userStore.id

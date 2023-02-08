@@ -91,7 +91,7 @@
                         class="w-full bg-red-600 text-white  font-semibold rounded hover:border-transparent border  px-4 py-2 hover:text-white text-center bg-transparent text-lg mt-2"
                        
         
-                    >Logout</button>
+                    >Cancel</button>
 
 
                     
