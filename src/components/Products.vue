@@ -41,7 +41,7 @@
 
 
 
- <div class="antialiased bg-gray-200 text-gray-900 font-sans p-6">
+ <div class="antialiased bg-gray-200  text-gray-900 font-sans p-6">
 
 
   <div

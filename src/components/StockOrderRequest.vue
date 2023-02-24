@@ -1,32 +1,49 @@
 <template>
-  <TopNavigation />
-  <NavigationVue />
-  <div class="bg-gray-200">
-    <div id="messageus" class="container max-w-4xl mx-auto pt-20 pb-20 px-6">
-      <div class="text-gray-900 text-xl">Message Us</div>
-      <div class="bg-green-500 w-full h-1"></div>
 
-      <div class="flex flex-wrap mt-4 mb-6">
-        <div class="w-full md:w-1/2 px-3">
+  <div class="bg-gray-200">
+    <div id="stockorderus" class="container max-w-4xl mx-auto pt-20 pb-20 px-6">
+      <div class="text-gray-900 text-xl">Stock Order</div>
+      <div class="bg-gray-500 w-full md:w-1/2  h-1"></div>
+      <div class="border border-gray-500 w-full md:w-1/2 px-3">
+        <div class="flex flex-wrap mt-4 mb-6">
+        <div class="w-full ">
           <label
             class="block uppercase tracking-wide text-xs font-bold text-gray-900 mb-2"
           >
-            Enter you full Name
+            Enter you first Name
           </label>
           <input
             type="text"
-            name="product name"
-            v-model="message.name"
+            name="first name"
+            v-model="firstName"
             id=""
-            placeholder="Abebe Kebede"
+            placeholder="Abebe"
             class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           />
-          <p class="text-red-600" v-if="errors.name">* {{ errors.name[0] }}</p>
+          <p class="text-red-600" v-if="errors.firstName">* {{ errors.firstName[0] }}</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap mt-4 mb-6">
+        <div class="w-full ">
+          <label
+            class="block uppercase tracking-wide text-xs font-bold text-gray-900 mb-2"
+          >
+            Enter your last Name
+          </label>
+          <input
+            type="text"
+            name="first name"
+            v-model="lastName"
+            id=""
+            placeholder="Abebe"
+            class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          />
+          <p class="text-red-600" v-if="errors.lastName">* {{ errors.lastName[0] }}</p>
         </div>
       </div>
 
       <div class="flex flex-wrap mt-4 mb-6">
-        <div class="w-full md:w-1/2 px-3">
+        <div class="w-full ">
           <label
             class="block uppercase tracking-wide text-xs font-bold text-gray-900 mb-2"
           >
@@ -35,19 +52,17 @@
           <input
             type="email"
             name=""
-            v-model="message.email"
+            v-model="email"
             id=""
             placeholder="abebe123@gmail.com"
             class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           />
-          <p class="text-red-600" v-if="errors.email">
-            * {{ errors.email[0] }}
-          </p>
+         
         </div>
       </div>
 
       <div class="flex flex-wrap mt-4 mb-6">
-        <div class="w-full md:w-1/2 px-3">
+        <div class="w-full">
           <label
             class="block uppercase tracking-wide text-xs font-bold text-gray-900 mb-2"
           >
@@ -56,7 +71,7 @@
           <input
             type="text"
             name=""
-            v-model="message.phone"
+            v-model="phone"
             id=""
             placeholder="0938943835"
             class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -66,32 +81,31 @@
           </p>
         </div>
       </div>
-
       <div class="flex flex-wrap mt-4 mb-6">
-        <div class="w-full px-3">
+        <div class="w-full ">
           <label
             class="block uppercase tracking-wide text-xs font-bold text-gray-900 mb-2"
           >
-            Enter Message
+            Enter Your Address
           </label>
-          <textarea
+          <input
+            type="text"
+            name=""
+            v-model="address"
+            id=""
+            placeholder="Addis Ababa, kebele 5"
             class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            cols="30"
-            rows="10"
-            placeholder="Enter the message you want to send us!!!"
-            v-model="message.message"
-          ></textarea>
-          <p class="text-red-600" v-if="errors.message">
-            * {{ errors.message[0] }}
-          </p>
+          />
+         
         </div>
       </div>
 
+
       <div class="flex flex-wrap mb-6">
-        <div class="w-full px-3">
+        <div class="w-full ">
           <button
             @click.prevent="Submit()"
-            class="px-4 py-4 mb-10 text-sm relative font-medium w-full text-center item-center rounded text-white bg-green-600 hover:bg-green-600/80"
+            class="px-4 py-4 mb-10 text-sm relative font-medium w-full   text-center item-center rounded text-white bg-green-600 hover:bg-green-600/80"
           >
             <svg
               v-show="isLoading"
@@ -136,52 +150,67 @@
           </button>
         </div>
       </div>
+      </div>
+     
     </div>
   </div>
 
-  <FooterSection />
 </template>
 
 <script setup>
-import TextArea from "../components/global/TextArea.vue";
-import SubmitFormButton from "../components/global/SubmitFormButton.vue";
+
 import axios from "axios";
 import Swal from "sweetalert2";
 
 import { ref } from "vue";
-import { useRouter } from "vue-router";
-import TopNavigation from "../components/structure/TopNavigation.vue";
-import NavigationVue from "../components/NavigationVue.vue";
-import FooterSection from "../components/structure/FooterSection.vue";
+import { useRouter ,useRoute} from "vue-router";
+
+import { useUserStore } from "../stores/user-store";
 
 const router = useRouter();
+const route=useRoute();
 
 let errors = ref([]);
 let isLoading = ref(false);
 let showCorrect = ref(false);
+const userStore=useUserStore();
 
-const message = {
-  name: "",
-  email: "",
-  phone: "",
-  message: "",
-};
+
+let  firstName=ref("")
+let  lastName=ref("")
+ let email =ref("")
+ let phone =ref("")
+ let address =ref("")
+
+ 
+
 
 const Submit = async () => {
   isLoading.value = true;
   errors.value = [];
+  alert(stocks.selling_price)
 
   try {
     const res = await axios.post(
-      "http://127.0.0.1:8000/api/savemessage",
-      message
+      "http://127.0.0.1:8000/api/savestockorder",{
+        firstName:firstName.value,
+        lastName:lastName.value,
+        email:email.value,
+        phone:phone.value,
+        address:address.value,
+        user_id:userStore.id,
+        stock_id:route.params.id,
+        amount:stocks.value.amount,
+        buying_price:stocks.value.selling_price,
+      }
+   
     );
     console.log(res.data.success);
     if (res.data.success == "true") {
       Swal.fire({
         toast: true,
         icon: "success",
-        title: "You Sent message successfully ",
+        title: "You Sent stockorder successfully ",
         animation: true,
         position: "top-end",
         showConfirmButton: false,

@@ -4,13 +4,13 @@
       <div class="h-full hidden md:flex items-center">
         <router-link to="/" class="flex items-center py-4 px-2">
           <img
-            src="https://cdn-icons-png.flaticon.com/512/2415/2415292.png"
+            src="../../assets/cropped-Abay.png"
             class="mr-3 h-6 sm:h-10 bg-white rounded-full"
-            alt="Food Recipie"
+            alt="Abay Ecommerce"
           />
           <span
             class="self-center hidden md:flex text-xl text-black whitespace-nowrap dark:text-white"
-            >Abay Ecommerce</span
+            >Abay Stock Market</span
           >
           <div class="flex justify-center px-5 items-center">
             <img
@@ -229,7 +229,7 @@
         </router-link>
         <router-link
           v-if="userStore.id"
-          :to="'/account/profile/' + userStore.id"
+          :to="userStore.role=='manager'||userStore.role=='admin'||userStore.role=='delivery'?'/admindashboard':'/account/profile/' + userStore.id"
           class="flex justify-center px-5 items-center"
         >
           <div class=" ">

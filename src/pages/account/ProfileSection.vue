@@ -1,5 +1,5 @@
 <template>
-<div >
+<div class="mb-10">
     <div class="w-full ">
         <div class=" flex mt-10 mr-10">
             <div class="w-1/3">
@@ -47,7 +47,7 @@
         <CartsByIdSection />
        
              
-        <CheckOutForm />
+      
         <!-- <SongsSection />
         <YoutubeVideoSection />
         <PostsSection/> -->
@@ -68,12 +68,7 @@ import RouterLinkButton from '../../components/global/RouterLinkButton.vue';
 import SongsSection from '../../components/partials/profile/SongsSection.vue'
 import YoutubeVideoSection from '../../components/partials/profile/YoutubeVideoSection.vue';
 import PostsSection from '../../components/partials/profile/PostsSection.vue'
-    // import PostsSection from '../../components/partials/profile/PostsSection.vue'
-    // import RouterLinkButton from '../../components/global/RouterLinkButton.vue'
-    // import ProfileInfoSection from '../../components/partials/profile/ProfileInfoSection.vue'
-    // import ProfileAboutSection from '../../components/partials/profile/ProfileAboutSection.vue'
-    // import SongsSection from '../../components/partials/profile/SongsSection.vue'
-    // import YoutubeVideosSection from '../../components/partials/profile/YoutubeVideosSection.vue'
+  
     import { useUserStore } from '../../stores/user-store'
     import { useProfileStore } from '../../stores/profile-store'
     import { useSongStore } from '../../stores/song-store'
@@ -81,7 +76,7 @@ import PostsSection from '../../components/partials/profile/PostsSection.vue'
     import { useRoute } from 'vue-router'
 import CartsByIdSection from '../../components/partials/profile/CartsByIdSection.vue';
 import FooterSection from '../../components/structure/FooterSection.vue';
-import CheckOutForm from '../../components/CheckOutForm.vue';
+
 import OrderResponse from '../../components/OrderResponse.vue';
     const route = useRoute()
     const userStore = useUserStore()

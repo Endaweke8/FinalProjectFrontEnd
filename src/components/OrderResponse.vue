@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-8">
+    <div class="mt-8 ">
       <div  class="italic mb-3">
     <div class="text-3xl font-bold ">Your Ordered History</div>
   </div>
@@ -8,7 +8,7 @@
     <div v-show="isLoading" class="flex items-center mt-12 h-48  mb-12 justify-center">
     <img   class="w-20 h-20 absolute  left-1/2 -ml-2.5" src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif" alt="" />
   </div>
-    <table v-if="isLoading==false" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <table v-if="isLoading==false" class="w-full text-sm text-left text-gray-500 dark:text-gray-400 z-0">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
              

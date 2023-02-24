@@ -6,12 +6,12 @@
   <img   class="w-20 h-20 absolute  left-1/2 -ml-2.5" src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif" alt="" />
 </div>
 
-  <div v-if="bookmarkStore.bookmarks" class="grid grid-cols-1 z-17 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-4">
+  <div v-if="bookmarkStore.bookmarks" >
 
-    <div
+    <!-- <div
     v-for="product in bookmarkStore.bookmarks.bookmarkwithproduct"
       :key="product.id"
-    class="relative max-w-sm bg-white  z-17 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+    class="relative max-w-sm bg-white mt-12 mb-12  z-1 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
   >
   <span 
         @click="removeFromBookmark(product.id)"
@@ -125,60 +125,34 @@
         >
       </div>
     </div>
-  </div>
-    <!-- <div
-      v-for="product in products"
-      :key="product.id"
-      class="flex flex-col py-4 px-6 shadow-md bg-white hover:bg-grey-50 h-[470px]"
-    >
-      <img :src="product.image_name" alt="" class="w-full h-40 object-cover" />
-      <h4 class="mt-4 text-lg font-bold">{{ product.name }}</h4>
-      <h4 class="mt-4 text-lg font-bold">{{ product.slug }}</h4>
-      <h4 class="mt-4 text-lg font-bold">{{ product.description }}</h4>
-      <h4 class="mt-4 text-lg font-bold">{{ product.price }}</h4>
-      <h4 class="mt-4 text-lg font-bold">{{ product.sale_price }}</h4>
+  </div> -->
+  <div class="antialiased  text-gray-900 font-sans p-6">
 
-      <div class="flex justify-between items-centere mt-2">
-        <router-link
-          :to="{ name: 'DetailView', params: { id: product.id } }"
-          class="flex py-2 px-4 border border-transparent text-sm rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-6 h-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-            />
-          </svg>
 
-          Add To Cart
-        </router-link>
-      </div>
-    </div> -->
-  </div>
-  
-  
-<div >
+<div
+  v-show="isLoading"
+  class="flex items-center mt-12 h-48 mb-12 justify-center"
+>
+  <img
+    class="w-20 h-20 absolute left-1/2 -ml-2.5"
+    src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif"
+    alt=""
+  />
+</div>
 
-  <!-- <div v-for="product in bookmarkStore.bookmarks.bookmarkwithproduct"
-      :key="product.id"
-   
+<div
+  class="grid  grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-4"
+>
+  <div
+    v-for="product in bookmarkStore.bookmarks.bookmarkwithproduct"
+    :key="product.id"
+    class="hover:scale-110  transition duration-300 ease-in-out hover:shadow-lg max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
   >
-   <div  class="grid z-0 grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 mt-4">
-    <div
-    
-      class="relative max-w-sm bg-white z-3 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
-    >
-      <span 
+
+  <router-link :to="`/detailview/${product.id}`" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden" >
+          <span 
         @click="removeFromBookmark(product.id)"
-        class="absolute right-0 top-0"
+        class=" z-1 right-0 top-0"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -195,113 +169,106 @@
           />
         </svg>
       </span>
-      <a href="#" >
-        <img
-          class="p-8 ml-10 h-60 w-full rounded-t-lg object-fill"
-          :src="product.image_name"
-          alt="product name"
-        />
-      </a>
-      <div class="px-5 pb-5" >
-        <a href="#">
-          <h5
-            class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white"
-          >
-            {{ product.name }}
-          </h5>
-        </a>
-        <div class="flex items-center mt-2.5 mb-5" >
-          <svg
-            aria-hidden="true"
-            class="w-5 h-5 text-yellow-300"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>First star</title>
-            <path
-              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-            ></path>
-          </svg>
-          <svg
-            aria-hidden="true"
-            class="w-5 h-5 text-yellow-300"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>Second star</title>
-            <path
-              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-            ></path>
-          </svg>
-          <svg
-            aria-hidden="true"
-            class="w-5 h-5 text-yellow-300"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>Third star</title>
-            <path
-              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-            ></path>
-          </svg>
-          <svg
-            aria-hidden="true"
-            class="w-5 h-5 text-yellow-300"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>Fourth star</title>
-            <path
-              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-            ></path>
-          </svg>
-          <svg
-            aria-hidden="true"
-            class="w-5 h-5 text-yellow-300"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>Fifth star</title>
-            <path
-              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-            ></path>
-          </svg>
-          <span
-            class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3"
-            >5.0</span
-          >
-        </div>
-        <div class="flex items-center justify-between" >
-          <span class="text-3xl font-bold text-gray-900 dark:text-white"
-            >${{ product.price }}</span
-          >
-          <router-link
-            :to="`/detailview/${product.id}`"
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >Add to cart</router-link
-          >
-        </div>
+        <img  class=" h-60 w-full rounded-t-lg " :src="product.image_name" alt="">
+     
+      <div class="p-4">
+        <!-- <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">{{product.subcategory1}}</span> -->
+        <h2 class="mt-2 mb-2  font-bold">{{product.name}}</h2>
+                     
+        <div class="flex items-center mt-1">
+          <span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{product.sale_price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span>
+           </div>
+
+       
+
+        <!-- <div class="mt-3 flex items-center">
+          <span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{product.sale_price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span>
+        </div> -->
       </div>
-    </div>
-   </div>
+      <!-- <div class="p-4 border-t border-b text-xs text-gray-700">
+        <span class="flex items-center mb-1">
+          <i class="far fa-clock fa-fw mr-2 text-gray-900"></i>posted {{ filterTime( product.created_at)}}
+        </span>
+        <span class="flex items-center mb-1" >
+          <i class="fa fa-users mr-2" aria-hidden="true"></i> reviewed by {{ product.stars.length}} person
+        </span>
+              
+      </div> -->
+      <!-- <div class="p-4 flex items-center border-t border-b text-sm text-gray-600"> 
+        <div class="flex items-center">
+          <span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{product.sale_price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span>
+        </div>
+        <div
+      
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >Ad to cart</div
+        ></div> -->
+<!-- 
+        <div class="flex items-center justify-between mb-2 ml-2 mr-2 border-t border-gray-300">
+
+           <div >
+              
+              <span ><i :class="getStars(product.stars,product.stars.length)>=1?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+           
+            <span ><i :class="getStars(product.stars,product.stars.length)>=2?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+            
+            <span ><i :class="getStars(product.stars,product.stars.length)>=3?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+            
+            <span ><i :class="getStars(product.stars,product.stars.length)>=4?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+           
+            <span ><i :class="getStars(product.stars,product.stars.length)>=5?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+            
+            
+          </div>
+           
+            <button
+              
+              class="text-white mt-1 bg-gray-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Add to Cart
+            </button>
+
+          </div> -->
+
+          <div class="flex items-center justify-between mb-2 ml-2 mr-2 border-t border-gray-300">
+
+<!-- <div >
+   
+   <span ><i :class="getStars(product.stars,product.stars.length)>=1?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+
+ <span ><i :class="getStars(product.stars,product.stars.length)>=2?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+ 
+ <span ><i :class="getStars(product.stars,product.stars.length)>=3?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+ 
+ <span ><i :class="getStars(product.stars,product.stars.length)>=4?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+
+ <span ><i :class="getStars(product.stars,product.stars.length)>=5?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+ 
+ 
 </div> -->
+
+ <button
+   
+   class="text-white mt-1 bg-gray-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+ >
+   Add to Cart
+ </button>
+
+</div>
+      </router-link>
+  </div>
+ 
+</div>
+
+</div>
+   
+  </div>
+  
+  
+<div >
+
   </div>
 
-  <!-- <div class="flex items-center justify-center p-2">
-                <v-pagination
-                    class="p-10"
-                    v-model="page"
-                    :pages="pageCount"
-                    :range-size="1"
-                    active-color="#337aff"
-                    @update:modelValue="getProducts"
-                />
-            </div> -->
 </template>
 
 <script setup>

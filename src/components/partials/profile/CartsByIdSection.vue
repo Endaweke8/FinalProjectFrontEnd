@@ -2,7 +2,7 @@
     
    
     
-    <div  class=" mx-auto mt-12 ">
+    <div  v-if="cartStore.carts" class=" mx-auto mt-12 ">
         
         <div class="text-gray-900 text-xl">Carts</div>
         <div class="bg-green-500 w-full h-1 mb-4"></div>
@@ -130,11 +130,15 @@
        
         <div class="mb-10">
 
-            <span v-if="cartStore.carts">Total Amount : {{ cartStore.carts.cartwithproduct.totalAmount }} birr</span>
+            <span v-if="cartStore.carts"><span class="text-3xl text-bold" v-if=" cartStore.carts.cartwithproduct.totalAmount>0">Total Amount : {{ cartStore.carts.cartwithproduct.totalAmount }} birr</span></span>
                   
-            <router-link to="/checkout">
-                <button class="bg-green-500 mt-3 mx-5 text-white  p-1"> Order Now</button>
-            </router-link>
+            <span v-if="cartStore.carts.cartwithproduct.totalAmount>0" >
+                <button class="bg-green-500 mt-3 mx-5 px-4 py-4 text-2xl rounded text-white  p-1" @click="showPayForm=!showPayForm"> Pay Now </button>
+            </span>
+            <div v-if="showPayForm">
+              <CheckOutForm />
+            </div>
+
         </div>
 
     </div>
@@ -146,9 +150,11 @@
     import Swal from 'sweetalert2'
     import { useCartStore } from '../../../stores/cart-store'
     import { useUserStore } from '../../../stores/user-store'
+import CheckOutForm from '../../CheckOutForm.vue'
     const userStore = useUserStore()
     const cartStore = useCartStore()
     const cartQuantity = ref(0)
+    const showPayForm=ref(false)
     const productQuantity = ref(0)
     const deleteCart = async (cart) => {
         Swal.fire({

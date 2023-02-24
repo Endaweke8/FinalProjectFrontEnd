@@ -1,9 +1,17 @@
 <template>
-    <div id="Register">
+    <div id="Register" class="antialiased bg-gray-200">
         <TopNavigation />
         <NavigationVue />
-        <div class="w-full p-6 flex justify-center items-center">
-            <div class="w-full max-w-xs">
+        <div class="w-full mt-5 flex justify-center items-center ">
+          <div class="items-center">
+                        <img src="../assets/cropped-Abay.png" class="rounded-full ml-3" width="50" />
+            </div> 
+          <span class="ml-2 text-2xl">Abay Stock Market</span>
+          
+           
+        </div>
+        <div class="w-full p-6 flex justify-center items-center ">
+            <div class="w-full max-w-xs border border-gray-300  mb-8">
                 <div
                 v-if="errors.length>0"
               class="flex items-center justify-between py-3 px-5 bg-red-500 text-white rounded"
@@ -31,9 +39,7 @@
             </div>
                
                 <div class="bg-slate-100 p-8 shadow rounded mb-6">
-                    <div class="items-center mx-10">
-                        <img src="../assets/cropped-Abay.png" class="rounded-full ml-3" width="50" />
-                    </div>
+                  <div class="mb-6 text-lg  font-thin"><span class="text-2xl text-gray-900">Login</span></div>
 
                     <div class="mb-4">
                         <TextInput 
@@ -59,7 +65,7 @@
 
                     <button
             @click.prevent="login()"
-            class="px-4 py-4 mb-10 text-sm relative font-medium w-full text-center rounded text-white bg-green-600 hover:bg-rose-600/80"
+            class="px-4 mt-6 py-4 mb-10 text-sm relative font-medium w-full text-center rounded text-white bg-gray-500 hover:bg-gray-400"
           >
             <svg
               v-show="isLoading"
@@ -83,7 +89,7 @@
               ></path>
             </svg>
             <span :class="{ invisible: isLoading }"
-              >Login</span
+              ><span class="text-xl">Submit</span></span
             >
           </button>
                 </div>
@@ -147,12 +153,12 @@ import NavigationVue from '../components/NavigationVue.vue';
             // await songStore.fetchSongsByUserId(userStore.id)
             await postStore.fetchPostsByUserId(userStore.id)
             await videoStore.fetchVideosByUserId(userStore.id)
-            if(userStore.role=='admin'){
+            if(userStore.role=='admin'||userStore.role=='manager'||userStore.role=='delivery'){
                 router.push('/dashboardhome')   
             }
             else
             {
-              router.push("/account/profile/" + userStore.id);
+              router.push("/");
             }
         
         } catch (err) {

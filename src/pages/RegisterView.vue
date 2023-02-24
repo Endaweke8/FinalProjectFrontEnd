@@ -1,17 +1,25 @@
 <template>
   <TopNavigation />
   <NavigationVue />
-  <div id="Register">
+  <div id="Register" class="antialiased bg-gray-200">
+    <div class="w-full  flex justify-center items-center ">
+          <div class="items-center mt-5">
+                        <img src="../assets/cropped-Abay.png" class="rounded-full ml-3" width="50" />
+            </div> 
+          <span class="ml-2 text-2xl mt-5">Abay Stock Market</span>
+          
+           
+        </div>
     <div class="w-full p-6 flex justify-center items-center">
-      <div class="w-full max-w-xs">
+      <div class="w-full max-w-md border border-gray-400 mb-12">
         <div class="bg-slate-100 p-8 shadow rounded mb-6">
-          <h1 class="mb-6 text-lg text-black font-thin">Let's get rocking!</h1>
+          <div class="mb-6 text-lg  font-thin"><span class="text-2xl text-white-900">Register</span></div>
 
           <div class="mb-4">
             <TextInput
               label="First Name"
               :labelColor="black"
-              placeholder="John"
+              placeholder="Endaweke"
               v-model:input="firstName"
               inputType="text"
               :error="errors.first_name ? errors.first_name[0] : ''"
@@ -22,7 +30,7 @@
             <TextInput
               label="Last Name"
               :labelColor="black"
-              placeholder="Doe"
+              placeholder="Enkuahone"
               v-model:input="lastName"
               inputType="text"
               :error="errors.last_name ? errors.last_name[0] : ''"
@@ -63,7 +71,7 @@
 
           <button
             @click.prevent="register()"
-            class="px-4 py-4 mb-10 text-sm relative font-medium w-full text-center rounded text-white bg-green-600 hover:bg-rose-600/80"
+            class="px-4 py-4 mb-10 text-sm relative font-medium w-full text-center rounded text-white bg-gray-500 hover:bg-gray-400 z-1 mt-8"
           >
             <svg
               v-show="isLoading"
@@ -87,7 +95,7 @@
               ></path>
             </svg>
             <span :class="{ invisible: isLoading }"
-              >Register</span
+              ><span class="text-xl">Submit</span></span
             >
           </button>
         </div>

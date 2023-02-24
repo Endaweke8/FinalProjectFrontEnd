@@ -105,7 +105,7 @@
                     name="first_name"
                     v-model="form.firstName"
                     class="focus:outline-none px-3"
-                    placeholder="Try Odinsson"
+                    placeholder="Try Endaweke"
                     required=""
                   />
                 </label>
@@ -117,7 +117,7 @@
                     name="last_name"
                     v-model="form.lastName"
                     class="focus:outline-none px-3"
-                    placeholder="Try Odinsson"
+                    placeholder="Try Enkuahone"
                     required=""
                   />
                 </label>
@@ -135,23 +135,23 @@
                 <label
                   class="flex border-b border-gray-200 h-12 py-3 items-center"
                 >
-                  <span class="text-right px-2">City</span>
+                  <span class="text-right px-2">Sub City</span>
                   <input
                     name="city"
                     v-model="form.city"
                     class="focus:outline-none px-3"
-                    placeholder="San Francisco"
+                    placeholder="saris"
                   />
                 </label>
                 <label
                   class="flex border-b border-gray-200 h-12 py-3 items-center"
                 >
-                  <span class="text-right px-2">State</span>
+                  <span class="text-right px-2">Kebele</span>
                   <input
                     name="state"
                     v-model="form.state"
                     class="focus:outline-none px-3"
-                    placeholder="Try CA"
+                    placeholder="Try 14"
                     required=""
                   />
                 </label>
@@ -184,7 +184,7 @@
                 <label
                   class="xl:w-1/4 xl:inline-flex py-3 items-center flex xl:border-none border-t border-gray-200 py-3"
                 >
-                  <span class="text-right px-2 xl:px-0 xl:text-none">ZIP</span>
+                  <span class="text-right px-2 xl:px-0 xl:text-none">PostalCode/ZIP</span>
                   <input
                     name="zip_code"
                     v-model="form.zipCode"
@@ -308,10 +308,10 @@
                 </select>
               </label>
             </fieldset>
-            <div class="my-5">
+            <div class="my-5"  >
               <button
                 @click.prevent="getUserAddress()"
-                class="px-4 py-4 mb-10 text-sm relative font-medium w-full text-center rounded text-white bg-green-600 hover:bg-rose-600/80"
+                class="px-4 py-4 mb-10 text-sm relative font-medium w-full text-center rounded text-white bg-green-600 hover:bg-green-400/90"
               >
                 <svg
                   v-show="isLoading"
@@ -334,17 +334,13 @@
                     fill="currentColor"
                   ></path>
                 </svg>
-                <span :class="{ invisible: isLoading }"
+                <span  :class="{ invisible: isLoading }"
                   >Pay
                   {{ sumTotal(items.totalAmount, shippingBirr) }} Birr</span
                 >
               </button>
             </div>
-            <div>
-              <button class="bg-green-500 px-5" @click="showStripeForm = false">
-                Cancel Stripe
-              </button>
-            </div>
+            
             </div>
           </section>
         </div>
@@ -364,7 +360,7 @@
         <div class="my-5"  v-if="showChapaForm">
               <button
                 @click.prevent="payChapa()"
-                class="px-4 py-4 mb-10 text-sm relative font-medium w-full text-center rounded text-white bg-green-600 hover:bg-rose-600/80"
+                class="px-4 py-4 mb-10 text-sm relative font-medium w-full text-center rounded text-white bg-green-600 hover:bg-green-400/90"
               >
                 <svg
                   v-show="isChapaLoading"
@@ -394,16 +390,16 @@
               </button>
             </div>
 
-        <h1>Please click pament link to Pay </h1>
+        <h1 v-if="paymentCheckout">Please click pament link to Pay </h1>
         <p v-if="paymentCheckout">
           <a class="hover:cursor-pointer" :href="paymentCheckout">{{
             paymentCheckout
           }}</a>
         </p>
-        <div class="my-5">
+        <div class="my-5" v-if="referenceStore.paymentReference">
           <button
             @click.prevent="getVerified()"
-            class="px-4 py-4 mb-10 text-sm relative font-medium w-full text-center rounded text-white bg-green-600 hover:bg-rose-600/80"
+            class="px-4 py-4 mb-10 text-sm relative font-medium w-full text-center rounded text-white bg-gray-500 hover:bg-gray-400"
           >
             <svg
               v-show="isLoading"
@@ -435,9 +431,7 @@
      
         <div>
 
-          <button class="bg-gray-500 px-5" @click="showChapaForm = false">
-            Cancel
-          </button>
+          
         </div>
        </div>
       </div>
@@ -451,6 +445,14 @@
         </p>
       </div>
       <button class="bg-green-600" @click="getVerified()">getVerified {{ referenceStore.paymentReference}}</button> -->
+  </div>
+  <div v-if="removeFromDisplay">
+  <div v-for="item in items" :key="item.id">
+    {{ item.id}} {{ item.quantity }}
+    {{ decreseQuantity(item.id,item.quantity) }}
+     
+  </div>
+  
   </div>
 </template>
 
@@ -473,6 +475,7 @@ const referenceStore = paymentReferenceStore();
 const showChapaForm = ref(false);
 const showStripeForm = ref(false);
 const showVerifyForm=ref(false);
+const stripeError=ref('');
 
 const isLoading = ref(false);
 const isChapaLoading=ref(false);
@@ -483,6 +486,7 @@ const router = useRouter();
 const store = useStore();
 const paymentCheckout = ref("");
 const paymentReference = ref("");
+const removeFromDisplay=ref(false);
 let form = ref({
   country: "",
   firstName: "",
@@ -513,10 +517,33 @@ const sumTotal = (total, shipping) => {
   return parseInt(total) + parseInt(shipping);
 };
 
+const decreseQuantity=async(id,productQuantity)=>{
+  if(id){
+        try {
+          var page="http://127.0.0.1:8000/api/decreaseproduct/"+id;
+             const res=await axios.put(page,{
+                      'productquantity':productQuantity,
+                      'status':'requested'
+                  });
+   
+          } catch (err) {
+              console.log(err)
+          }
+      
+        }
+        else{
+           cartStore.clearCarts();
+           await axios.delete('http://127.0.0.1:8000/api/cartafterpayment/' + userStore.id)
+           router.push("/userorderhistory");
+        }
+
+
+}
+
 const showCountry = (country) => {
   if (country == "bahirdar") {
     shippingBirr.value = 2000;
-    alert(country);
+  
   } else if (country == "gonder") {
     shippingBirr.value = 3000;
   } else if (country == "debremarkos") {
@@ -588,8 +615,7 @@ const getCartItemsOnPageLoad = async () => {
 
 const getUserAddress = async () => {
   isLoading.value = true;
-  user.value = store.state.user.data;
-  console.log(user.value.id);
+ 
   if (
     form.value.firstName == "" ||
     form.value.address == "" ||
@@ -616,7 +642,9 @@ const getUserAddress = async () => {
     form.address != "" &&
     form.cardNumber != "" &&
     form.cvv != ""
-  ) {
+  ) try {
+    
+    
     // alert(`expiration Year is ${this.expirationYear} and expiration Month is ${this.expirationMonth} and the country is ${this.country} and card Type is ${this.cardType}`)
     let response = await axios.post("http://127.0.0.1:8000/api/payment", {
       user_id: userStore.id,
@@ -637,9 +665,10 @@ const getUserAddress = async () => {
       amount: items.value.totalAmount + shippingBirr.value,
       order: items.value,
     });
-    console.log(response);
+    console.log(response.data.errors);
     if (response.data.success) {
-      cartStore.clearCarts();
+      removeFromDisplay.value=true;
+      // cartStore.clearCarts();
       isLoading.value = false;
       Swal.fire({
         toast: true,
@@ -657,12 +686,29 @@ const getUserAddress = async () => {
       });
 
       setTimeout(() => {
-        router.push("/userorderhistory");
+        // router.push("/userorderhistory");
       }, 3000);
     }
-  } else {
-    alert("bro");
-    isLoading.value = false;
+  
+
+  } catch (error) {
+    console.log(error.response.data.errors)
+    isLoading.value=false
+    Swal.fire({
+        toast: true,
+        icon: "error",
+        title: "Failed to pay because, "+error.response.data.errors,
+        animation: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 6500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+
   }
 };
 
@@ -686,8 +732,22 @@ const payChapa = async () => {
   isChapaLoading.value=false;
 
  } catch (error) {
-  alert("Errorrrrrr")
+
   isChapaLoading.value=false
+  Swal.fire({
+        toast: true,
+        icon: "error",
+        title: 'please try again',
+        animation: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
  }
 };
 const getVerified = async () => {
@@ -726,7 +786,7 @@ const getVerified = async () => {
     Swal.fire({
         toast: true,
         icon: "success",
-        title: "Thank you , We are annouce you",
+        title: "Thank you ,order comleted successfuly , We will send you reciept via your email",
         animation: true,
         position: "top-end",
         showConfirmButton: false,
@@ -737,7 +797,7 @@ const getVerified = async () => {
           toast.addEventListener("mouseleave", Swal.resumeTimer);
         },
       });
-    cartStore.clearCarts();
+    removeFromDisplay.value=true;
     console.log(res);
     isLoading.value = false;
   }

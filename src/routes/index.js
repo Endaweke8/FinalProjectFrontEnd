@@ -25,6 +25,15 @@ import MenTrousersView from "../pages/MenTrousersView.vue";
 import MenTshirtsView from "../pages/MenTshirtsView.vue";
 
 
+import TelevisionView from "../pages/TelevisionView.vue";
+import HeadSetsView from "../pages/HeadSetsView.vue";
+
+
+import SellStocks from "../pages/SellStocks.vue";
+
+import AskStock from "../pages/AskStock.vue";
+
+
 import AddEmployeeRole from "../pages/AddEmployeeRole.vue";
 
 import StocksView from "../pages/StocksView.vue";
@@ -65,6 +74,7 @@ import Clothes from "../pages/Clothes.vue";
 import Orders from "../pages/Orders.vue";
 import Products from "../pages/Products.vue";
 import Users from "../pages/Users.vue";
+import UserStockRequest from "../pages/UserStockRequest.vue";
 import Settings from "../pages/Settings.vue";
 import UserOrderHistory from "../pages/UserOrderHistory.vue";
 
@@ -72,7 +82,12 @@ import AdminNotificationView from "../pages/AdminNotificationView.vue";
 import AddProducts from "../pages/AddProducts.vue";
 import AddStock from "../pages/AddStock.vue";
 import EditProduct from "../pages/EditProduct.vue";
+import ViewProductStoreDetails from "../pages/ViewProductStoreDetails.vue";
+
+
 import EditStock from "../pages/EditStock.vue";
+import ViewStockStoreDetail from "../pages/ViewStockStoreDetail.vue";
+
 import Messages from "../pages/Messages.vue";
 import AdminDashboard from "../pages/AdminDashboard.vue";
 import DashboardHome from "../pages/DashboardHome.vue";
@@ -146,14 +161,32 @@ const routes = [
         component: EditProduct,
       },
       {
+        path: "/viewproductstoredetails/:id",
+        name: "ViewProductStoreDetails",
+        component: ViewProductStoreDetails,
+      },
+      {
         path: "/editstock/:id",
         name: "EditStock",
         component: EditStock,
       },
+
+      {
+        path: "/viewstockstoredetail/:id",
+        name: "ViewStockStoreDetail",
+        component: ViewStockStoreDetail,
+      },
+
+      
       {
         path: "/users",
         name: "Users",
         component: Users,
+      },
+      {
+        path: "/userstockrequests",
+        name: "UserStockRequest",
+        component: UserStockRequest,
       },
       {
         path: "/addemployeerole",
@@ -424,6 +457,44 @@ const routes = [
     name: "ButtonMobilesView",
     component: ButtonMobilesView,
   },
+
+
+  {
+    path: "/television",
+    name: "TelevisionView",
+    component: TelevisionView,
+  },
+
+
+  {
+    path: "/headsets",
+    name: "HeadSetsView",
+    component: HeadSetsView,
+  },
+
+
+
+
+  {
+    path: "/sellstocks",
+    beforeEnter: (to, from, next) => {
+      useUserStore().id ? next() : next("/loginview");
+    },
+    name: "SellStocks",
+    component: SellStocks,
+  },
+
+  {
+    path: "/askstock",
+    beforeEnter: (to, from, next) => {
+      useUserStore().id ? next() : next("/loginview");
+    },
+    name: "AskStock",
+    component: AskStock,
+  },
+
+
+
   {
     path: "/mentrousers",
     name: "MenTrousersView",

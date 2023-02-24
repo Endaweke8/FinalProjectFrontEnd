@@ -39,13 +39,34 @@
         <p class="text-gray-700 text-base ">{{ product.description }}</p>
       </div>
       <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center justify-between mb-2 ml-2 mr-2 border-t border-gray-300">
+
+<div >
+   
+   <span ><i :class="getStars(product.stars,product.stars.length)>=1?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+
+ <span ><i :class="getStars(product.stars,product.stars.length)>=2?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+ 
+ <span ><i :class="getStars(product.stars,product.stars.length)>=3?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+ 
+ <span ><i :class="getStars(product.stars,product.stars.length)>=4?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+
+ <span ><i :class="getStars(product.stars,product.stars.length)>=5?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+ 
+ 
+</div>
+
+
+
+</div>
+           
           <span class="text-3xl font-bold text-gray-900 dark:text-white"
             >{{ product.price }} Birr</span
           >
           <router-link
             :to="`/detailview/${product.id}`"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >Shop Now</router-link
+            >Buy Now</router-link
           >
         </div>
     </div>
@@ -84,6 +105,27 @@
     console.log(products.value)
 
    }
+
+   const getStars =  (star,starlength) => {
+  
+  console.log(star)
+ 
+const value = star.reduce((total,e)=>{
+console.log(e.stars_rated);
+   console.log("star length",starlength)
+  return Math.ceil( total+Number(e.stars_rated)/starlength);
+},0)
+console.log(value);
+return value;
+
+
+ 
+  // let response = await axios.get("http://127.0.0.1:8000/api/rates/"+id);
+  // console.log("totalProductrate", response.data.totalRateGiven);
+  // return Math.ceil(response.data.totalRateGiven)
+  
+};
+
  
   </script>
   
