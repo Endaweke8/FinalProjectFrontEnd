@@ -42,7 +42,12 @@
 
 
  <div class="antialiased bg-gray-200  text-gray-900 font-sans p-6">
-
+  <div
+   
+   class="flex items-center  justify-center"
+ >
+ <div v-if="products.length>0" class="text-4xl mb-6">Discover More Products</div>
+ </div>
 
   <div
     v-show="isLoading"
@@ -71,10 +76,10 @@
           <!-- <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">{{product.subcategory1}}</span> -->
           <h2 class="mt-2 mb-2  font-bold">{{product.name}}</h2>
                        
-          <div class="flex items-center mt-1">
-            <span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{product.sale_price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span>
+         <div class="flex items-center justify-between mt-1">
+            <span><span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{product.sale_price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span></span>
+            <span class="line-through"><span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{product.price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span></span>
              </div>
-
          
 
           <!-- <div class="mt-3 flex items-center">

@@ -13,7 +13,7 @@
           shadowOffset: 20,
           shadowScale:0.94
         }"
-        :pagination="true"
+       
         :autoplay='{
              "delay": 5000,
              "speed":3000,

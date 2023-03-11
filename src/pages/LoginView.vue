@@ -11,7 +11,7 @@
            
         </div>
         <div class="w-full p-6 flex justify-center items-center ">
-            <div class="w-full max-w-xs border border-gray-300  mb-8">
+            <div class="w-full max-w-xs border border-gray-300  bg-slate-100 mb-8">
                 <div
                 v-if="errors.length>0"
               class="flex items-center justify-between py-3 px-5 bg-red-500 text-white rounded"
@@ -89,15 +89,16 @@
               ></path>
             </svg>
             <span :class="{ invisible: isLoading }"
-              ><span class="text-xl">Submit</span></span
+              ><span class="text-xl">Login</span></span
             >
           </button>
+          <router-link to="forgotpassword" class="text-lg font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</router-link>
                 </div>
 
-                <p class="text-center text-md text-gray-900">
+                <p class="text-center text-md text-gray-900 mb-5">
                     Don't have an account yet?
                     <router-link to="registerview" class="text-blue-500 no-underline hover:underline">
-                        Register
+                        Register here
                     </router-link>
                 </p>
             </div>
@@ -153,7 +154,7 @@ import NavigationVue from '../components/NavigationVue.vue';
             // await songStore.fetchSongsByUserId(userStore.id)
             await postStore.fetchPostsByUserId(userStore.id)
             await videoStore.fetchVideosByUserId(userStore.id)
-            if(userStore.role=='admin'||userStore.role=='manager'||userStore.role=='delivery'){
+            if(userStore.role=='admin'||userStore.role=='manager'||userStore.role=='delivery'||userStore.role=='socialmediamanager'||userStore.role=='customerserviceofficor'){
                 router.push('/dashboardhome')   
             }
             else

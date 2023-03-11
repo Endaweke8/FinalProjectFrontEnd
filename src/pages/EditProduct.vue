@@ -16,6 +16,20 @@
  
         <div class="flex flex-wrap mt-4 mb-6">
             <div class="w-full md:w-1/2 px-3">
+                <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product Name
+        </label>
              <input type="text" name="product name" v-model="name" id="" placeholder="Enter the product name" class="appearance-none
                 block
                 w-full
@@ -33,6 +47,20 @@
                 " >
             </div>
             <div class="w-full md:w-1/2 px-3">
+                <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product Category
+        </label>
                <input type="text" v-model="category" placeholder="Enter the product category" class="appearance-none
                 block
                 w-full
@@ -53,6 +81,20 @@
 
         <div class="flex flex-wrap mt-4 mb-6">
             <div class="w-full md:w-1/2 px-3">
+                <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product Subcategory
+        </label>
              <input type="text" name="" v-model="subcategory" id="" placeholder="Enter the product subcategory"  class="appearance-none
                 block
                 w-full
@@ -70,6 +112,20 @@
                 " >
             </div>
             <div class="w-full md:w-1/2 px-3">
+                <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product Subcategory1
+        </label>
                <input type="text" v-model="subcategory1" placeholder="Enter the product subcategory1" class="appearance-none
                 block
                 w-full
@@ -90,6 +146,20 @@
 
         <div class="flex flex-wrap mt-4 mb-6">
             <div class="w-full md:w-1/2 px-3">
+                <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product slug
+        </label>
              <input type="text" name="" v-model="slug" id="" placeholder="Enter the product slug" class="appearance-none
                 block
                 w-full
@@ -106,7 +176,60 @@
                 focus:border-gray-500
                 " >
             </div>
-            <div class="w-full md:w-1/2 px-3">
+
+            
+
+            
+        </div>
+        
+        <div class="w-full md:w-1/2 px-3 mb-6">
+            <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product buying_price
+        </label>
+               <input type="text" v-model="buying_price" class="appearance-none 
+                block
+                w-full
+                bg-white
+                text-gray-700
+                border
+                border-gray-400
+                rounded
+                py-3
+                px-4
+                leading-tight
+                focus:outline-none
+                focus:bg-white
+                focus:border-gray-500
+                " placeholder="Enter the buying price">
+            </div>
+
+
+        <div class="w-full md:w-1/2 px-3">
+            <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product price
+        </label>
                <input type="text" v-model="price" class="appearance-none 
                 block
                 w-full
@@ -123,10 +246,22 @@
                 focus:border-gray-500
                 " placeholder="Enter the product price">
             </div>
-        </div>
-        
         <div class="flex flex-wrap mt-4 mb-6">
             <div class="w-full md:w-1/2 px-3">
+                <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product Sale Price
+        </label>
              <input type="text" name="" v-model="sale_price" id="" placeholder="Enter the product sale Price" class="appearance-none
                 block
                 w-full
@@ -149,6 +284,20 @@
 
         <div class="flex flex-wrap mt-4 mb-6">
             <div class="w-full md:w-1/2 px-3">
+                <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product quantity
+        </label>
              <input type="text" name="" v-model="productquantity" id="" placeholder="Enter the product quantity" class="appearance-none
                 block
                 w-full
@@ -170,6 +319,20 @@
 
         <div class="flex flex-wrap mt-4 mb-6">
             <div class="w-full px-3">
+                <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product Description
+        </label>
                 <textarea
                     class=" appearance-none
             block
@@ -254,6 +417,7 @@
       const subcategory1=ref(null)
 
       const price=ref(null)
+      const buying_price=ref(null)
       const sale_price=ref(null)
       const image_name=ref(null)
       const productquantity=ref(null);
@@ -278,6 +442,7 @@
                   slug.value=data.slug
                   description.value=data.description
                   price.value=data.price
+                  buying_price.value=data.buying_price
                   image_name.value=data.image_name
                   sale_price.value=data.sale_price
                   category.value=data.category
@@ -323,6 +488,7 @@
                     'subcategory':subcategory.value,
                     'subcategory1':subcategory1.value,
                     'description':description.value,
+                    'buying_price':buying_price.value,
                      'price':price.value,
                     'image_name':image_name.value,
                     

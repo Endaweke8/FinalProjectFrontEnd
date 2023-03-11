@@ -28,12 +28,12 @@
           <img  class=" h-60 w-full rounded-t-lg " :src="stock.image_name" alt="">
        
         <div class="p-4">
-          <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">{{stock.subcategory1}}</span>
-          <h2 class="mt-2 mb-2  font-bold">{{stock.name}}</h2>
-          <div class="mt-3 flex items-center">
+          
+          <h2 class=" font-bold">{{stock.name}}</h2>
+          <div class=" flex items-center">
             Amount :<span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{stock.amount}}</span>&nbsp;<span class="text-sm font-semibold">birr</span>
           </div>
-          <div class="mt-3 flex items-center">
+          <div class="flex items-center">
            Sale_Price <span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{stock.sale_price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span>
           </div>
         </div>
@@ -46,11 +46,11 @@
           </span> -->
                 
         </div>
-        <div class="p-4 flex items-center text-sm text-gray-600"> <div
+        <div class="py-2 flex items-center text-sm text-gray-600"> <div
           
             
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  w-full py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >Order Us Now</div
+            class="text-white bg-gray-600 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  w-full py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >Contact Us Now</div
           ></div>
         </router-link>
     </div>
@@ -90,10 +90,7 @@ const rateCount=ref(0);
 
 onMounted(async () => {
   isLoading.value = true;
-
-  setTimeout(() => {
     getStocks();
-  }, 1000);
 });
 
 const addStar = (star, length) => {

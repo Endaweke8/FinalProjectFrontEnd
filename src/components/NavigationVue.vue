@@ -80,13 +80,7 @@
                           >Apple Laptop</router-link
                         >
                       </li>
-                      <li>
-                        <router-link
-                          to="/buttonmobiles"
-                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >Other Laptop</router-link
-                        >
-                      </li>
+                     
                       
                     </ul>
                   </div>
@@ -133,13 +127,7 @@
                           >Apple Desktop</router-link
                         >
                       </li>
-                      <li>
-                        <router-link
-                          to="/buttonmobiles"
-                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >Other Desktop</router-link
-                        >
-                      </li>
+                    
                       
                     </ul>
                   </div>
@@ -238,52 +226,7 @@
                     >Button Mobiles</router-link
                   >
                 </li>
-                <li  >
-                  <button
-                    @click="showMobileDrop =true" 
-                    id="doubleDropdownButton"
-                    data-dropdown-toggle="doubleDropdown"
-                    data-dropdown-placement="right-start"
-                    type="button"
-                    class="flex justify-between items-center py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    Others
-                  </button>
-                  <div
-                    v-if="showMobileDrop"
-                    
-                    id="doubleDropdown"
-                    class="z-10  w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700"
-                  >
-                    <ul
-                      @mouseleave="showMobileDrop=false"
-                      class="py-1 ml-6 text-sm text-gray-700 dark:text-gray-200"
-                      aria-labelledby="doubleDropdownButton"
-                    >
-                      <li >
-                        <router-link
-                          to="/iphonemobiles"
-                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-200 dark:hover:text-white"
-                          >Iphone</router-link
-                        >
-                      </li>
-                      <li>
-                        <router-link 
-                          to="androidmobiles"
-                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >Adroid</router-link>
-                      </li>
-                      <li>
-                        <router-link
-                          to="/buttonmobiles"
-                          class="block py-2 px-4 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >Buttons</router-link
-                        >
-                      </li>
-                      
-                    </ul>
-                  </div>
-                </li>
+             
                
               </ul>
             </li>
@@ -798,7 +741,7 @@
                 </li>
                 <li  >
                   <router-link
-                    to="/aboutus"
+                    to="/whoarewe"
                     id="doubleDropdownButton"
                    
                     data-dropdown-placement="right-start"
@@ -930,7 +873,7 @@
 
 
 
-<div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-4">
+<div class="grid grid-cols-1 bg-gray-200 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-4">
 
   <div
       v-for="product in products"
@@ -945,9 +888,11 @@
           <!-- <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">{{product.subcategory1}}</span> -->
           <h2 class="mt-2 mb-2  font-bold">{{product.name}}</h2>
                        
-          <div class="flex items-center mt-1">
-            <span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{product.sale_price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span>
+          <div class="flex items-center justify-between mt-1">
+            <span><span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{product.sale_price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span></span>
+            <span class="line-through"><span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{product.price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span></span>
              </div>
+         
 
          
 

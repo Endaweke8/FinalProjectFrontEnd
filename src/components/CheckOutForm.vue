@@ -402,7 +402,7 @@
             class="px-4 py-4 mb-10 text-sm relative font-medium w-full text-center rounded text-white bg-gray-500 hover:bg-gray-400"
           >
             <svg
-              v-show="isLoading"
+              v-show="isVerifiedLoading"
               class="w-8 h-7 text-white animate-spin absolute left-1/2 -ml-2.5"
               fill="none"
               viewBox="0 0 24 24"
@@ -422,7 +422,7 @@
                 fill="currentColor"
               ></path>
             </svg>
-            <span :class="{ invisible: isLoading }"
+            <span :class="{ invisible: isVerifiedLoading }"
               >getVerified {{ referenceStore.paymentReference }}</span
             >
           </button>
@@ -476,6 +476,7 @@ const showChapaForm = ref(false);
 const showStripeForm = ref(false);
 const showVerifyForm=ref(false);
 const stripeError=ref('');
+const isVerifiedLoading=ref(false);
 
 const isLoading = ref(false);
 const isChapaLoading=ref(false);
@@ -752,7 +753,7 @@ const payChapa = async () => {
 };
 const getVerified = async () => {
   try {
-    isLoading.value = true;
+    isVerifiedLoading.value = true;
   alert(`Your chapa reference is ${referenceStore.paymentReference}`);
   let response = await axios.get(
     "http://127.0.0.1:8000/api/callback/" + referenceStore.paymentReference
@@ -797,9 +798,10 @@ const getVerified = async () => {
           toast.addEventListener("mouseleave", Swal.resumeTimer);
         },
       });
+    referenceStore.clearPaymentReference();
     removeFromDisplay.value=true;
     console.log(res);
-    isLoading.value = false;
+    isVerifiedLoading.value = false;
   }
   } catch (error) {
     Swal.fire({
@@ -816,7 +818,7 @@ const getVerified = async () => {
           toast.addEventListener("mouseleave", Swal.resumeTimer);
         },
       });
-    isLoading.value=false
+    isVerifiedLoading.value=false
   }
 
   // console.log(response.data.payment.data.checkout_url);
@@ -945,6 +947,7 @@ const getVerified = async () => {
 //     },
 //   },
 // };
+
 </script>
 
 <style scoped></style>

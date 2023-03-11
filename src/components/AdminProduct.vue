@@ -109,7 +109,7 @@
               </router-link>
               View Details
             </td>
-            <td class="py-4 px-6">
+            <td class="py-4 px-6" v-if="userStore.role=='socialmediamanager'">
               <router-link
                 :to="`/editproduct/${product.id}`"
                 class="font-medium text-green-600 dark:text-red-500 hover:underline"
@@ -130,7 +130,7 @@
               </router-link>
               Edit Product
             </td>
-            <td class="py-4 px-6">
+            <!-- <td class="py-4 px-6">
               <button
                 @click="deleteProduct(product)"
                 class="font-medium text-red-600 dark:text-red-500 hover:underline"
@@ -150,7 +150,7 @@
                 </svg>
                 Remove Product
               </button>
-            </td>
+            </td> -->
           </tr>
         </tbody>
       </table>
@@ -176,6 +176,7 @@ import axios from "axios";
 import Swal from 'sweetalert2'
 import VPagination from "@hennge/vue3-pagination";
 import "@hennge/vue3-pagination/dist/vue3-pagination.css";
+import { useUserStore } from "../stores/user-store";
 let products = ref([]);
 const showModal = ref(false);
 let page = ref(1)
@@ -183,7 +184,7 @@ let pageCount = ref(null)
 const isLoading=ref(false)
 const noProductDisplay=ref(false)
 const findTime=ref(0)
-
+const userStore=useUserStore();
 
 
 onMounted(async () => {

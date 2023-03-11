@@ -149,6 +149,43 @@
             </div>
         </div>
 
+
+        <div class="flex flex-wrap mt-4 mb-6">
+            <div class="w-full md:w-1/2 px-3">
+                <label 
+            class="
+                block 
+                uppercase 
+                tracking-wide 
+                text-xs 
+                font-bold 
+                text-gray-900
+                mb-2 
+            "
+          
+        >
+           Product buying_price
+        </label>
+             <input type="text" name="" v-model="product.buying_price" id="" placeholder="Enter the product buying_price" class="appearance-none
+                block
+                w-full
+                bg-white
+                text-gray-700
+                border
+                border-gray-400
+                rounded
+                py-3
+                px-4
+                leading-tight
+                focus:outline-none
+                focus:bg-white
+                focus:border-gray-500
+                " >
+                <p class="text-red-600" v-if="errors.buying_price">* {{ errors.buying_price[0] }}</p>
+            </div>
+            
+        </div>
+
         <div class="flex flex-wrap mt-4 mb-6">
             <div class="w-full md:w-1/2 px-3">
                 <label 
@@ -393,6 +430,7 @@ import SubmitFormButton from '../components/global/SubmitFormButton.vue'
       slug:'',
       description:'',
       image_name:'',
+      buying_price:'',
       price:'',
       sale_price:'',
       productquantity:'',

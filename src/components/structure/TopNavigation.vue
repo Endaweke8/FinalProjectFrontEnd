@@ -20,7 +20,12 @@
               width="50"
             />
           </div>
+         
         </router-link>
+        <div class="flex justify-center px-5 items-center">
+            <p class="text-lg">+251 911248597/</p>
+            <p class="text-lg">+251 940599595</p>
+          </div>
 
         <!-- <router-link to="/" class="justify-center items-center">
                     <div class="text-black text-2xl"><b>MSN</b></div>
@@ -229,11 +234,12 @@
         </router-link>
         <router-link
           v-if="userStore.id"
-          :to="userStore.role=='manager'||userStore.role=='admin'||userStore.role=='delivery'?'/admindashboard':'/account/profile/' + userStore.id"
+          :to="userStore.role=='manager'||userStore.role=='admin'||userStore.role=='delivery' || userStore.role=='socialmediamanager' || userStore.role=='customerserviceofficor' ?'/admindashboard':'/account/profile/' + userStore.id"
           class="flex justify-center px-5 items-center"
         >
           <div class=" ">
             <span>Welcome {{ userStore.firstName }} </span>
+            
           </div>
         </router-link>
         <FullScreenModal />
@@ -270,6 +276,8 @@ import { useProfileStore } from "../../stores/profile-store";
 import { useSongStore } from "../../stores/song-store";
 import { useVideoStore } from "../../stores/video-store";
 import { useBookmarkStore } from "../../stores/bookmark-store";
+import {paymentReferenceStore} from "../../stores/paymentReference-store"
+
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -279,6 +287,7 @@ const postStore = usePostStore();
 const videoStore = useVideoStore();
 const cartStore = useCartStore();
 const bookmarkStore = useBookmarkStore();
+const paymentReference=paymentReferenceStore();
 
 let open = ref(false);
 
@@ -298,6 +307,7 @@ const logout = async () => {
     songStore.clearSongs();
     postStore.clearPosts();
     videoStore.clearVideos();
+    paymentReference.clearPaymentReference();
 
     open.value = !open.value;
     router.push("/");

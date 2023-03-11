@@ -131,8 +131,19 @@
       </div>
     </div>
 
+   
     <div
-      class="container mx-auto max-w-4xl h-full flex flex-wrap justify-between items-center text-sm py-6 pl-6 pr-4"
+      class="container mx-auto max-w-4xl h-full  text-sm py-6 pl-6 pr-4"
+    >
+      <div class="mt-4 text-2xl justify-center items-center flex">Follow Us On</div>
+      <div class="mt-4 text-2xl"><SocialMediaLinks />
+     </div>
+      
+     
+    </div>
+
+    <div
+      class="container mx-auto max-w-4xl h-full flex flex-wrap justify-center items-center text-sm py-6 pl-6 pr-4"
     >
       <div class="mt-4 text-2xl">&copy;2023 Abay Stock Market. All rights reserved.</div>
     
@@ -140,4 +151,7 @@
   </footer>
 </template>
 
-<script setup></script>
+<script setup>
+import SocialMediaLinks from './SocialMediaLinks.vue';
+
+</script>

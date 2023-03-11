@@ -4,7 +4,7 @@
   <NavigationVue />
   <div class="m-12 " >
     <CartsByIdSection />       
-       <CheckOutForm/>
+       <!-- <CheckOutForm/> -->
   </div>
   <FooterSection />
 </template>

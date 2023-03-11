@@ -81,6 +81,9 @@
                 <td class="py-4 px-6">
                     <button @click="deleteUser(user.id)"  class="font-medium text-white dark:text-blue-500 bg-red-500 rounded p-2">Delete user</button>
                 </td>
+                <td class="py-4 px-6">
+                    <button   class="font-medium text-white dark:text-blue-500 bg-gray-500 rounded p-2">  <a :href="`mailto:${ user.email}`">Replay</a></button>
+                </td>
             </tr>
           
         </tbody>

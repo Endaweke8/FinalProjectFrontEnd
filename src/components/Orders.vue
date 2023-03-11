@@ -2,7 +2,7 @@
   <div>
     <div  class="italic mb-3">
             
-  <div class="text-3xl font-bold">Today's Orders</div>
+  <div class="text-3xl font-bold">Today's  Orders</div>
 
       <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
   <div class="flex justify-between items-center pb-4 bg-white dark:bg-gray-900">
@@ -60,8 +60,14 @@
                   Status
               </th>
               <th scope="col" class="py-3 px-6">
-                  Action
+                Notified to delivery man
               </th>
+              <th scope="col" class="py-3 px-6">
+                Accepted By Customer
+              </th>
+              <!-- <th scope="col" class="py-3 px-6">
+                  Action
+              </th> -->
           </tr>
       </thead>
       <tbody>
@@ -97,17 +103,72 @@
                 <p :class="order.status=='delivered'? 'text-green-500' :'text-black'">
                   {{order.status}}
                 </p>
-                  
-                  <div v-if="order.status=='pending'">
-                    <div  v-if="userStore.role=='manager'">
+                <div v-if="order.status=='pending'">
+                    <div  v-if="userStore.role=='manager' && order.accepted =='accepted'">
                       <button @click="markAsDelivered(order.id)"  class="font-medium text-white dark:text-blue-500 bg-green-500 rounded p-2">mark as delivered</button>
                     </div>
                   </div>
               </td>
-
-              <td v-if="filterTodayTime( order.created_at)" class="py-4 px-6">
-                    <button @click="deleteOrder(order.id)"  class="font-medium text-white dark:text-blue-500 bg-red-500 rounded p-2">Delete order</button>
+              <td v-if="filterTodayTime( order.created_at)" class="py-4 px-6" >
+                <p :class="order.notified=='notified'? 'text-blue-500' :'text-black'"  >
+                  {{order.notified}}
+                </p>
+                  
+                  <div >
+                    <div  v-if="userStore.role=='customerserviceofficor' && order.notified !='notified'  && order.status !='delivered'">
+                      <button @click="notifyDeliveryMan(order.id)"  class="font-medium text-white dark:text-blue-500 bg-gray-500 rounded p-2">Notify Delivery man</button>
+                    </div>
+                  </div>
               </td>
+
+              <td  v-if="filterTodayTime( order.created_at)" class="py-4 px-6" >
+                <p :class="order.accepted=='accepted'? 'text-blue-500' :'text-black'"  >
+                  {{order.accepted}}
+                </p>
+                  
+                  <div >
+                    <div  v-if="userStore.id==order.client_id   && order.accepted !='accepted'">
+                      
+                      <button
+                      @click="notifyAsAccepted(order.id)"
+            class="px-4 py-4 mb-10 text-sm relative font-medium w-full text-center item-center rounded text-white bg-gray-600 hover:bg-green-600/80"
+          >
+            <svg
+              v-show="isAcceptedLoading"
+              class="w-8 h-7 text-white animate-spin relative left-1/2 -ml-2.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="11"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                fill="currentColor"
+              ></path>
+            </svg>
+            <span :class="{ invisible: isLoisAcceptedLoadingading }">
+              
+              <span >Mark as Accepted</span></span
+            >
+          </button>
+                    </div>
+                  </div>
+              </td>
+               
+             
+
+              
+              <!-- <td v-if="filterTodayTime( order.created_at)" class="py-4 px-6">
+                    <button @click="deleteOrder(order.id)"  class="font-medium text-white dark:text-blue-500 bg-red-500 rounded p-2">Delete order</button>
+              </td> -->
           </tr>
         
       </tbody>
@@ -124,7 +185,7 @@
               />
           </div> -->
       
-  <div class="text-3xl mt-5 font-bold">Older Orders</div>
+  <div class="text-3xl mt-5 font-bold">All Orders</div>
 </div>
       <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
   <div class="flex justify-between items-center pb-4 bg-white dark:bg-gray-900">
@@ -182,8 +243,14 @@
                   Status
               </th>
               <th scope="col" class="py-3 px-6">
-                  Action
+                Notified to delivery man
               </th>
+              <th scope="col" class="py-3 px-6">
+                Accepted By Customer
+              </th>
+              <!-- <th scope="col" class="py-3 px-6">
+                  Action
+              </th> -->
           </tr>
       </thead>
       <tbody>
@@ -221,15 +288,71 @@
                 </p>
                   
                   <div v-if="order.status=='pending'">
-                    <div  v-if="userStore.role=='manager'">
+                    <div  v-if="userStore.role=='manager' && order.accepted =='accepted'">
                       <button @click="markAsDelivered(order.id)"  class="font-medium text-white dark:text-blue-500 bg-green-500 rounded p-2">mark as delivered</button>
                     </div>
                   </div>
               </td>
 
-              <td class="py-4 px-6">
-                    <button @click="deleteOrder(order.id)"  class="font-medium text-white dark:text-blue-500 bg-red-500 rounded p-2">Delete order</button>
+              <td  class="py-4 px-6" >
+                <p :class="order.notified=='notified'? 'text-blue-500' :'text-black'"  >
+                  {{order.notified}}
+                </p>
+                  
+                  <div >
+                    <div  v-if="userStore.role=='customerserviceofficor' && order.notified !='notified'  && order.status !='delivered'">
+                      <button @click="notifyDeliveryMan(order.id)"  class="font-medium text-white dark:text-blue-500 bg-gray-500 rounded p-2">Notify Delivery man</button>
+                    </div>
+                  </div>
               </td>
+
+              <td  class="py-4 px-6" >
+                <p :class="order.accepted=='accepted'? 'text-blue-500' :'text-black'"  >
+                  {{order.accepted}}
+                </p>
+                  
+                  <div >
+                    <div  v-if="userStore.id==order.client_id   && order.accepted !='accepted'">
+                      
+                      <button
+                      @click="notifyAsAccepted(order.id)"
+            class="px-4 py-4 mb-10 text-sm relative font-medium w-full text-center item-center rounded text-white bg-gray-600 hover:bg-green-600/80"
+          >
+            <svg
+              v-show="isAcceptedLoading"
+              class="w-8 h-7 text-white animate-spin relative left-1/2 -ml-2.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="11"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                fill="currentColor"
+              ></path>
+            </svg>
+            <span :class="{ invisible: isLoisAcceptedLoadingading }">
+              
+              <span >Mark as Accepted</span></span
+            >
+          </button>
+                    </div>
+                  </div>
+              </td>
+              <!-- <td class="py-4 px-6" >
+                    <div v-if="userStore.role=='manager'">
+                      <button @click="deleteOrder(order.id)"  class="font-medium text-white dark:text-blue-500 bg-red-500 rounded p-2">Delete order</button>
+                    </div>
+                    
+              </td> -->
           </tr>
         
       </tbody>
@@ -246,6 +369,7 @@
               />
           </div>
   </div>
+
 </template>
 
 <script setup>
@@ -256,6 +380,13 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 import { useUserStore } from "../stores/user-store";
 const userStore=useUserStore();
+
+const name=ref('');
+const email=ref('');
+const subject=ref('');
+const message=ref('');
+const isAcceptedLoading=ref(false);
+
 
 let orders=ref([]);
 let page = ref(1)
@@ -296,6 +427,10 @@ const searchOrder=async(query)=>{
     
 
    }
+
+
+
+
 
 const deleteOrder = async (id) => {
         Swal.fire({
@@ -350,6 +485,74 @@ const deleteOrder = async (id) => {
             }
         })
     }
+
+    const notifyDeliveryMan = async (id) => {
+        Swal.fire({
+            title: 'Are you sure you want to notify this to delivery man?',
+            text: 'You won\'t be able to revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, mark it!',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await axios.put('http://127.0.0.1:8000/api/notifydeliveryman/' + id,{
+                      "notified":'notified',
+                    })
+                    getOrders()
+                    Swal.fire(
+                        'Notifed Delivery man!',
+                        'Delivery man   has been notified.',
+                        'success'
+                    )
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+        })
+    }
+
+
+
+    const notifyAsAccepted = async (id) => {
+      isAcceptedLoading.value=true;
+        Swal.fire({
+            title: 'Are you sure ,you recived your order?',
+            text: 'You won\'t be able to revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, mark it!',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await axios.put('http://127.0.0.1:8000/api/notifyasaccepted/' + id,{
+                      "accepted":'accepted',
+                      "email":userStore.email,
+                      'name':userStore.firstName,
+                      'userid':userStore.id
+
+                    })
+                    getOrders()
+                    isAcceptedLoading=false;
+                    Swal.fire(
+                        'Mark as Accepted',
+                        'You notified as Accepted.',
+                        'success'
+                    )
+                } catch (err) {
+                  isAcceptedLoading.value=false;
+                    console.log(err)
+                }
+            }
+        })
+    }
+
+
+
 
     const filterTime = (created_at) => {
   const currentTime = new Date();

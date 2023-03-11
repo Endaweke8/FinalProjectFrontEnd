@@ -1,10 +1,10 @@
 <template>
   
     <div id="Register">
-      <div class="w-full p-6 flex justify-center items-center">
-        <div class="w-full max-w-xs">
+      <div class="w-full p-6 flex justify-center items-center ">
+        <div class="w-full max-w-xs border border-gray-500">
           <div class="bg-slate-100 p-8 shadow rounded mb-6">
-            <h1 class="mb-6 text-lg text-black font-thin">Let's get rocking!</h1>
+            <h1 class="mb-6 text-lg text-black font-thin">Add Employee</h1>
             <div class="mb-4">
               <TextInput
                 label="First Name"
@@ -70,7 +70,7 @@
   
             <button
               @click.prevent="register()"
-              class="px-4 py-4 mb-10 text-sm relative font-medium w-full text-center rounded text-white bg-green-600 hover:bg-rose-600/80"
+              class="px-4 py-4 mb-10 text-sm relative font-medium w-full text-center rounded text-white bg-gray-600 hover:bg-gray-400"
             >
               <svg
                 v-show="isLoading"
@@ -99,15 +99,6 @@
             </button>
           </div>
   
-          <p class="text-center text-md text-gray-900">
-            Already have an account?
-            <router-link
-              to="loginview"
-              class="text-blue-500 no-underline hover:underline"
-            >
-              Login
-            </router-link>
-          </p>
         </div>
       </div>
     </div>
@@ -162,7 +153,21 @@
       // // await songStore.fetchSongsByUserId(userStore.id)
       // await postStore.fetchPostsByUserId(userStore.id);
       // await videoStore.fetchVideosByUserId(userStore.id);
-     alert('Successful')
+      Swal.fire({
+          toast: true,
+          icon: "success",
+          title:
+            " Your Added Employee successfuly",
+          animation: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
     //   router.push("/LoginView");
     } catch (err) {
       errors.value = err.response.data.errors;

@@ -7,7 +7,9 @@ import LaptopComputers from "../pages/LaptopComputers.vue";
 
 
 
+import TutorialsView from "../pages/TutorialsView.vue";
 
+import WhoAreWe from "../pages/WhoAreWe.vue";
 
 import HpLaptopComputers from "../pages/HpLaptopComputers.vue";
 import LenevoLaptopComputers from "../pages/LenevoLaptopComputers.vue";
@@ -71,15 +73,33 @@ import FemaleHealShoesView from "../pages/shoes/females/FemaleHealShoesView.vue"
 
 
 import Clothes from "../pages/Clothes.vue";
+
+
+import DailyReport from "../pages/DailyReport.vue";
+import WeeklyReport from "../pages/WeeklyReport.vue";
+
+
+
+import NotifiedOrder from "../pages/NotifiedOrder.vue";
+import PendingOrders from "../pages/PendingOrders.vue";
+import DeliveredOrder from "../pages/DeliveredOrder.vue";
+import AcceptedOrder from "../pages/AcceptedOrder.vue";
 import Orders from "../pages/Orders.vue";
 import Products from "../pages/Products.vue";
+import TotalSoldProducts from "../pages/TotalSoldProducts.vue";
 import Users from "../pages/Users.vue";
+import Employees from "../pages/Employees.vue";
 import UserStockRequest from "../pages/UserStockRequest.vue";
+import UserStockSellRequest from "../pages/UserStockSellRequest.vue";
+
+import UserStockOrders from "../pages/UserStockOrders.vue";
 import Settings from "../pages/Settings.vue";
 import UserOrderHistory from "../pages/UserOrderHistory.vue";
 
 import AdminNotificationView from "../pages/AdminNotificationView.vue";
 import AddProducts from "../pages/AddProducts.vue";
+
+import BreakingNews from "../pages/BreakingNews.vue"
 import AddStock from "../pages/AddStock.vue";
 import EditProduct from "../pages/EditProduct.vue";
 import ViewProductStoreDetails from "../pages/ViewProductStoreDetails.vue";
@@ -103,6 +123,9 @@ import Counter from "../pages/Counter.vue";
 import HeroSection from "../pages/HeroSection.vue";
 import LoginView from "../pages/LoginView.vue";
 import RegisterView from "../pages/RegisterView.vue";
+import EmailVerification from "../pages/EmailVerification.vue";
+import ResetPassword from "../pages/ResetPassword.vue";
+import ForgetPassword from "../pages/ForgetPassword.vue";
 import AccountView from "../pages/AccountView.vue";
 import ProfileSection from "../pages/account/ProfileSection.vue";
 import EditProfile from "../pages/account/EditProfile.vue";
@@ -125,7 +148,7 @@ const routes = [
     path: "/admindashboard",
 
     beforeEnter: (to, from, next) => {
-      useUserStore().role == "admin" || useUserStore().role == "delivery" ||  useUserStore().role == "manager" ? next() : next("/");
+      useUserStore().role == "admin" || useUserStore().role == "delivery" ||  useUserStore().role == "manager" ||  useUserStore().role == "socialmediamanager" ||  useUserStore().role == "customerserviceofficor" ? next() : next("/");
     },
     name: "AdminDashboard",
     component: AdminDashboard,
@@ -146,9 +169,34 @@ const routes = [
         component: Orders,
       },
       {
+        path: "/pendingorders",
+        name: "PendingOrders",
+        component: PendingOrders,
+      },
+      {
+        path: "/notifiedorder",
+        name: "NotifiedOrder",
+        component: NotifiedOrder,
+      },
+      {
+        path: "/deliveredorders",
+        name: "DeliveredOrder",
+        component: DeliveredOrder,
+      },
+      {
+        path: "/acceptedorders",
+        name: "AcceptedOrder",
+        component: AcceptedOrder,
+      },
+      {
         path: "/products",
         name: "Products",
         component: Products,
+      },
+      {
+        path: "/totalsoldproducts",
+        name: "TotalSoldProducts",
+        component: TotalSoldProducts,
       },
       {
         path: "/adminstocks",
@@ -179,14 +227,41 @@ const routes = [
 
       
       {
+        path: "/dailyreport",
+        name: "DailyReport",
+        component: DailyReport,
+      },
+
+      {
+        path: "/weeklyreport",
+        name: "WeeklyReport",
+        component: WeeklyReport,
+      },
+
+      {
         path: "/users",
         name: "Users",
         component: Users,
       },
       {
+        path: "/employees",
+        name: "Employees",
+        component: Employees,
+      },
+      {
         path: "/userstockrequests",
         name: "UserStockRequest",
         component: UserStockRequest,
+      },
+      {
+        path: "/usersellstockrequests",
+        name: "UserStockSellRequest",
+        component: UserStockSellRequest,
+      },
+      {
+        path: "/userstockorders",
+        name: "UserStockOrders",
+        component: UserStockOrders,
       },
       {
         path: "/addemployeerole",
@@ -247,6 +322,38 @@ const routes = [
     name: "HeroSection",
     component: HeroSection,
   },
+  {
+    path: "/resetpassword",
+    name: "ResetPassword",
+    beforeEnter: (to, from, next) => {
+      useUserStore().id
+        ? next("/")
+        : next();
+    },
+    component: ResetPassword,
+  },
+  
+  {
+    path: "/emailverification",
+    name: "EmailVerification",
+    // beforeEnter: (to, from, next) => {
+    //   useUserStore().id
+    //     ? next("/account/profile/" + useUserStore().id)
+    //     : next();
+    // },
+    component: EmailVerification,
+  },
+  {
+    path: "/forgotpassword",
+    name: "ForgetPassword",
+    beforeEnter: (to, from, next) => {
+      useUserStore().id
+        ? next("/")
+        : next();
+    },
+    component: ForgetPassword,
+  },
+
   {
     path: "/registerview",
     name: "RegisterView",
@@ -634,6 +741,23 @@ const routes = [
     path: "/femalehealshoes",
     name: "FemaleHealShoesView",
     component: FemaleHealShoesView,
+  },
+
+  {
+    path: "/breakingnews",
+    name: "BreakingNews",
+    component: BreakingNews,
+  },
+  {
+    path: "/tutorials",
+    name: "TutorialsView",
+    component: TutorialsView,
+  },
+
+  {
+    path: "/whoarewe",
+    name: "WhoAreWe",
+    component: WhoAreWe,
   },
 
 

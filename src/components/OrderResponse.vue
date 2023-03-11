@@ -1,6 +1,9 @@
 <template>
     <div class="mt-8 ">
       <div  class="italic mb-3">
+        <div class="items-center flex justify-center text-xl">
+       <b>Notice :</b>   When you recived your ordered, Click Mark as Accepted button, else don't.
+        </div>
     <div class="text-3xl font-bold ">Your Ordered History</div>
   </div>
         <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
@@ -37,6 +40,9 @@
                 <th scope="col" class="py-3 px-6">
                     Ordered At
                 </th>
+                <th scope="col" class="py-3 px-6">
+                    Mark As Accepted
+                </th>
             
               
             </tr>
@@ -69,7 +75,47 @@
                 <td class="py-4 px-6">
                     {{ filterTime( order.created_at)}}
                 </td>
-               
+                <td  class="py-4 px-6" >
+                <p :class="order.accepted=='accepted'? 'text-blue-500' :'text-black'"  >
+                  {{order.accepted}}
+                </p>
+                  
+                  <div >
+                    <div  v-if="userStore.id==order.client_id   && order.accepted !='accepted'">
+                      
+                      <button
+                      @click="notifyAsAccepted(order.id)"
+            class="px-4 py-4 mb-10 text-sm relative font-medium w-full text-center item-center rounded text-white bg-gray-600 hover:bg-green-600/80"
+          >
+            <svg
+              v-show="isAcceptedLoading"
+              class="w-8 h-7 text-white animate-spin relative left-1/2 -ml-2.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="11"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                fill="currentColor"
+              ></path>
+            </svg>
+            <span :class="{ invisible: isLoisAcceptedLoadingading }">
+              
+              <span >Mark as Accepted</span></span
+            >
+          </button>
+                    </div>
+                  </div>
+              </td>
               
             </tr>
           
@@ -98,6 +144,7 @@
     const orderResponse=ref([]);
     const isLoading=ref(false);
     const findTime=ref(0);
+    const isAcceptedLoading=ref(false);
   
     onMounted(() => {
         getOrderResponse();
@@ -110,6 +157,46 @@
     console.log('response',res);
     isLoading.value=false;
     }
+
+
+
+   
+    const notifyAsAccepted = async (id) => {
+      isAcceptedLoading.value=true;
+        Swal.fire({
+            title: 'Are you sure ,you recived your order?',
+            text: 'You won\'t be able to revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, mark it!',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await axios.put('http://127.0.0.1:8000/api/notifyasaccepted/' + id,{
+                      "accepted":'accepted',
+                      "email":userStore.email,
+                      'name':userStore.firstName,
+                      'userid':userStore.id
+
+                    })
+                    getOrderResponse()
+                    isAcceptedLoading=false;
+                    Swal.fire(
+                        'Mark as Accepted',
+                        'You notified as Accepted.',
+                        'success'
+                    )
+                } catch (err) {
+                  isAcceptedLoading.value=false;
+                    console.log(err)
+                }
+            }
+        })
+    }
+
+
  
     const filterTime = (created_at) => {
   const currentTime = new Date();

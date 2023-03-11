@@ -148,9 +148,7 @@
     :key="product.id"
     class="hover:scale-110  transition duration-300 ease-in-out hover:shadow-lg max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
   >
-
-  <router-link :to="`/detailview/${product.id}`" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden" >
-          <span 
+  <span 
         @click="removeFromBookmark(product.id)"
         class=" z-1 right-0 top-0"
       >
@@ -169,15 +167,17 @@
           />
         </svg>
       </span>
+  <router-link :to="`/detailview/${product.id}`" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden" >
+       
         <img  class=" h-60 w-full rounded-t-lg " :src="product.image_name" alt="">
      
       <div class="p-4">
         <!-- <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">{{product.subcategory1}}</span> -->
         <h2 class="mt-2 mb-2  font-bold">{{product.name}}</h2>
-                     
-        <div class="flex items-center mt-1">
-          <span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{product.sale_price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span>
-           </div>
+        <div class="flex items-center justify-between mt-1">
+            <span><span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{product.sale_price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span></span>
+            <span class="line-through"><span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{product.price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span></span>
+             </div>
 
        
 

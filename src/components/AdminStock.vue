@@ -116,7 +116,7 @@
               </router-link>
               Edit Stock
             </td>
-            <td class="py-4 px-6">
+            <!-- <td class="py-4 px-6">
               <button
                 @click="deleteStock(stock)"
                 class="font-medium text-red-600 dark:text-red-500 hover:underline"
@@ -136,7 +136,7 @@
                 </svg>
                 Delete Stock
               </button>
-            </td>
+            </td> -->
           </tr>
         </tbody>
       </table>

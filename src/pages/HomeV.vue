@@ -3,7 +3,7 @@
   <div>
     <Slider />
     <NavigationVue />
-  
+    <LatestProducts />
     
     <Products />
   </div>
@@ -12,6 +12,7 @@
 
 <script>
 
+import LatestProducts from '../components/LatestProducts.vue';
 import NavigationVue from '../components/NavigationVue.vue';
 import Products from '../components/Products.vue';
 import Slider from '../components/Slider.vue';
@@ -21,7 +22,7 @@ import TopNavigation from '../components/structure/TopNavigation.vue';
 
 
   export default {
-    components: { NavigationVue, Products, TopNavigation, FooterSection, Slider }
+    components: { NavigationVue, Products, TopNavigation, FooterSection, Slider, LatestProducts }
 }
 </script>
 

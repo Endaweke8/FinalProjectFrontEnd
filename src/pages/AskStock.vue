@@ -276,7 +276,7 @@ import FooterSection from "../components/structure/FooterSection.vue";
   const Submit = async () => {
     isLoading.value = true;
     errors.value = [];
-    alert(description.value)
+    
   
     try {
       const res = await axios.post(
@@ -299,7 +299,7 @@ import FooterSection from "../components/structure/FooterSection.vue";
         Swal.fire({
           toast: true,
           icon: "success",
-          title: "You Sent stockorder successfully ",
+          title: "You Sent Stock Request successfully ",
           animation: true,
           position: "top-end",
           showConfirmButton: false,

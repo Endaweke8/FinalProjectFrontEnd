@@ -58,9 +58,9 @@
                 </svg>
                 {{ stocks.name }}
               </p>
-              <div class="text-gray-900 font-bold text-xl mb-2">
+              <!-- <div class="text-gray-900 font-bold text-xl mb-2">
                 {{ stocks.slug }}
-              </div>
+              </div> -->
           
               <p class="text-gray-700 text-base">
                 {{ stocks.description }}
@@ -76,9 +76,18 @@
                 Voluptatibus quia, nulla! Maiores et perferendis eaque,
                 exercitationem praesentium nihil.
               </p>
-              <span class="text-3xl mt-5 mb-5 font-bold text-gray-900 dark:text-white"
+               <div >
+                <span class="text-2xl">Stock Amount -</span>
+                <span class="text-2xl mt-5 mb-5 font-bold text-gray-900 dark:text-white"
+                >{{ stocks.amount }} Birr</span
+              >
+               </div>
+               <div >
+                <span class="text-2xl">Sale Price -</span>
+                <span class="text-2xl mt-5 mb-5 font-bold text-gray-900 dark:text-white"
                 >{{ stocks.sale_price }} Birr</span
               >
+               </div>
         
              
 
@@ -89,33 +98,16 @@
       
             <div class="flex items-center justify-between">
               
-           
+              <span class="flex items-center mb-1">
+            <i class="far fa-clock fa-fw mr-2 text-gray-900"></i>posted {{ filterTime( stocks.created_at)}}
+          </span>
           
 
-              <span>
-                <button @click="addToBookmark(stock.name)">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="red"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-8 h-8 cursor-pointer hover:stroke-blue-600"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-                    />
-                  </svg>
-                </button>
-              </span>
-
               <button
-                @click="showOrderStockForm=true"
+                @click="showOrderStockForm=!showOrderStockForm"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                Order Us Now
+                Contact Us Now
               </button>
 
             </div>
@@ -311,8 +303,9 @@ const stocks = ref([]);
 const isLoading = ref(false);
 const userStore = useUserStore();
 const cartStore = useCartStore();
-const showOrderRequestLoading=ref(false)
-const showOrderStockForm=ref(false)
+const showOrderRequestLoading=ref(false);
+const showOrderStockForm=ref(false);
+const findTime=ref(0);
 
 const router = useRouter();
 let errors = ref([]);
@@ -364,7 +357,7 @@ let  lastName=ref("")
 const Submit = async () => {
   showOrderRequestLoading.value = true;
   errors.value = [];
-  alert(stocks.value.amount)
+  
   console.log(stocks.value.amount)
   try {
     const res = await axios.post(
@@ -379,8 +372,6 @@ const Submit = async () => {
       buying_price:stocks.value.sale_price,
       user_id:userStore.id,
       stock_id:route.params.id,
-
-
       }
     );
     console.log(res.data.success);
@@ -408,6 +399,47 @@ const Submit = async () => {
     console.log(errors.value);
   }
 };
+
+
+
+ 
+const filterTime = (created_at) => {
+  const currentTime = new Date();
+
+  findTime.value = parseInt((currentTime - Date.parse(created_at)) / (1000));
+  if(findTime.value>60)
+  {
+    findTime.value = parseInt((currentTime - Date.parse(created_at)) / (1000*60));
+    if(findTime.value>60)
+  {
+    findTime.value = parseInt((currentTime - Date.parse(created_at)) / (1000 * 60*60));
+     
+  if (findTime.value > 24) {
+    findTime.value =parseInt((currentTime - Date.parse(created_at)) / (1000 * 60 * 60 * 24));  
+    if (findTime.value >= 7) {
+      findTime.value = parseInt(
+        (currentTime - Date.parse(created_at)) / (1000 * 60 * 60 * 24 * 7)
+      );
+      if (findTime >= 4) {
+        findTime.value = parseInt(
+          (currentTime - Date.parse(created_at)) / (1000 * 60 * 60 * 24 * 7 * 4)
+        );
+        return `${findTime.value} monthes ago`;
+      }
+      return `${findTime.value} weeks ago`;
+    }
+    return `${findTime.value} days ago`;
+  } 
+    return `${findTime.value} hours ago`;
+  }
+
+    return `${findTime.value} minutes ago`;
+  }
+ 
+  return `${findTime.value} seconds ago`;
+
+}
+
 </script>
 
 <style scoped>

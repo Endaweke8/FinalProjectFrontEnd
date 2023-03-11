@@ -277,7 +277,7 @@ import FooterSection from "../components/structure/FooterSection.vue";
   const Submit = async () => {
     isLoading.value = true;
     errors.value = [];
-    alert(description.value)
+    
   
     try {
       const res = await axios.post(

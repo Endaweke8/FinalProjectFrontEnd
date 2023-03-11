@@ -6,7 +6,7 @@
         class="h-[60px] w-1/5 bg-gray-900 fixed flex justify-start items-center"
       >
         <div class="px-[20px]">
-          <h3 class="font-bold text-xl">Admin Dashboard</h3>
+          <h3 class="font-bold text-xl">Dashboard</h3>
         </div>
       </div>
       <div
@@ -60,7 +60,7 @@
               Profile
             </router-link>
             <router-link
-             v-if="userStore.role=='manager'"
+              v-if="userStore.role == 'customerserviceofficor'"
               to="/messages"
               class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
             >
@@ -81,7 +81,12 @@
 
               Messages
             </router-link>
+
+        
+
+
             <router-link
+              v-if="userStore.role == 'customerserviceofficor'"
               to="/userstockrequests"
               class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
             >
@@ -100,8 +105,55 @@
                 />
               </svg>
 
-              StockRequests
+              StockAsked
             </router-link>
+
+            <router-link
+              v-if="userStore.role == 'customerserviceofficor'"
+              to="/usersellstockrequests"
+              class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="mr-2 w-[25px] h-[25px] fill-current"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                />
+              </svg>
+
+              SellStockRequeststed
+            </router-link>
+
+            <router-link
+              v-if="userStore.role == 'customerserviceofficor'"
+              to="/userstockorders"
+              class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="mr-2 w-[25px] h-[25px] fill-current"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                />
+              </svg>
+
+              StockOrdered
+            </router-link>
+
             <router-link
               to="/orders"
               class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
@@ -123,9 +175,9 @@
 
               Orders
             </router-link>
-          
+
             <router-link
-              v-if="userStore.role=='manager'"
+              v-if="userStore.role == 'socialmediamanager'"
               to="/products"
               class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
             >
@@ -147,7 +199,7 @@
               Products Store
             </router-link>
             <router-link
-              v-if="userStore.role=='manager'"
+              v-if="userStore.role == 'socialmediamanager'"
               to="/adminstocks"
               class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
             >
@@ -169,7 +221,7 @@
               Stocks Store
             </router-link>
             <router-link
-              v-if="userStore.role=='manager'"
+              v-if="userStore.role == 'customerserviceofficor'"
               to="/users"
               class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
             >
@@ -190,9 +242,77 @@
 
               Users
             </router-link>
+            <router-link
+              v-if="userStore.role == 'manager'"
+              to="/employees"
+              class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="mr-2 w-[25px] h-[25px] fill-current"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
+                />
+              </svg>
+
+              Employees
+            </router-link>
+
+
+            <router-link
+              v-if="userStore.role == 'manager'"
+              to="/dailyreport"
+              class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="mr-2 w-[25px] h-[25px] fill-current"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                />
+              </svg>
+
+              Generate Daily Report
+            </router-link>
+            <router-link
+              v-if="userStore.role == 'manager'"
+              to="/weeklyreport"
+              class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="mr-2 w-[25px] h-[25px] fill-current"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                />
+              </svg>
+
+              GenerateWeeklyReport
+            </router-link>
           </div>
           <div class="h-[60px]">
-            <div  v-if="userStore.role=='manager'">
+            <div v-if="userStore.role == 'manager'">
               <router-link
                 to="/addemployeerole"
                 class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
@@ -212,14 +332,12 @@
                   />
                 </svg>
 
-                Add Employee role
+                Add Employee
               </router-link>
             </div>
-  
 
-            <div  v-if="userStore.role=='manager'">
+            <div v-if="userStore.role == 'socialmediamanager'">
               <router-link
-                
                 to="/addproducts"
                 class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
               >
@@ -241,10 +359,10 @@
                 Add Products
               </router-link>
             </div>
-  
+
             <div>
               <router-link
-                v-if="userStore.role=='manager'"
+                v-if="userStore.role == 'socialmediamanager'"
                 to="/addstocks"
                 class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
               >
@@ -272,21 +390,21 @@
                 to="/"
                 class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
               >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="mr-2 w-[25px] h-[25px] fill-current"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-                />
-              </svg>
-               Go front home
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="mr-2 w-[25px] h-[25px] fill-current"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+                  />
+                </svg>
+                Go front home
               </router-link>
             </div>
           </div>
@@ -314,7 +432,6 @@
 
         <div class="w-[calc(100%-30px)] flex">
           <div class="w-[calc(100%-200px)] flex justify-center">
-          
             <!-- <form class="flex items-center w-[500px]">
               <label for="voice-search" class="sr-only">Search</label>
               <div class="relative w-full">
@@ -365,7 +482,7 @@
           </div>
           <!-- Notification -->
           <!-- User login -->
-          <div v-if="userStore.role=='manager'" class="w-[200px]">
+          <div v-if="userStore.role == 'manager' || userStore.role == 'customerserviceofficor' "  class="w-[200px]">
             <div
               class="flex items-center justify-start space-x-4"
               @click="toggleDropNotification"
@@ -417,7 +534,6 @@
             </div>
             <!-- Drop down -->
             <div
-              
               v-show="showDropDownNotifications"
               class="absolute right-[0px] z-10 mt-2 w-70 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
               role="menu"
@@ -503,7 +619,7 @@
             >
               <div class="py-1 text-left" role="none">
                 <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-                <a
+                <!-- <a
                   href="#"
                   class="text-gray-700 block px-4 py-2 text-sm"
                   role="menuitem"
@@ -526,7 +642,7 @@
                   tabindex="-1"
                   id="menu-item-2"
                   >License</a
-                >
+                > -->
 
                 <button
                   class="text-gray-700 block w-full px-4 py-2 text-left text-sm"
@@ -547,8 +663,9 @@
       >
         <div class="border border-gray-300 rounded-md p-[20px] mb-10 z-19">
           <div class="grid gap-4 lg:grid-cols-4">
-            <div v-if="userStore.role=='manager'"
-              class="flex border-gray-800 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
+            <div
+              v-if="userStore.role == 'manager'"
+              class="flex border-gray-800 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
             >
               <div class="p-3 bg-indigo-600 rounded">
                 <svg
@@ -567,14 +684,20 @@
                 </svg>
               </div>
               <div class="mx-4">
-                <h4 class="text-2xl font-semibold text-gray-700">
-                  {{ totalUsers }}
-                </h4>
-                <div class="text-gray-500">All Customers</div>
+                <router-link to="/users">
+                  <h4 class="text-2xl font-semibold text-gray-700">
+                    {{ totalUsers }}
+                  </h4>
+                  <div class="text-gray-500">All Customers</div>
+                </router-link>
               </div>
             </div>
-            <div v-if="userStore.role=='manager'"
-              class="flex transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
+            <div
+              v-if="
+                userStore.role == 'manager' ||
+                userStore.role == 'socialmediamanager'
+              "
+              class="flex transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
             >
               <div class="p-3 bg-indigo-600 rounded">
                 <svg
@@ -593,15 +716,111 @@
                 </svg>
               </div>
               <div class="mx-4">
-                <h4 class="text-2xl font-semibold text-gray-700">
-                  {{ totalProducts }}
-                </h4>
-                <div class="text-gray-500">All Products</div>
+                <router-link to="/products">
+                  <h4 class="text-2xl font-semibold text-gray-700">
+                    {{ totalProducts }}
+                  </h4>
+                  <div class="text-gray-500">All Products</div>
+                </router-link>
               </div>
             </div>
+
             <div
-             
-              class="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
+              v-if="
+                userStore.role == 'manager' ||
+                userStore.role == 'socialmediamanager'
+              "
+              class="flex transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
+            >
+              <div class="p-3 bg-indigo-600 rounded">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6 text-white"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"
+                  />
+                </svg>
+              </div>
+              <div class="mx-4">
+                <router-link to="/totalsoldproducts">
+                  <h4 class="text-2xl font-semibold text-gray-700">
+                    {{ totalSoldProducts }}
+                  </h4>
+                  <div class="text-gray-500">Totally Sold Products</div>
+                </router-link>
+              </div>
+            </div>
+
+            <div
+              v-if="
+                userStore.role == 'manager' ||
+                userStore.role == 'socialmediamanager'
+              "
+              class="flex transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
+            >
+              <div class="p-3 bg-indigo-600 rounded">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6 text-white"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"
+                  />
+                </svg>
+              </div>
+              <div class="mx-4">
+                <router-link to="/adminstocks">
+                  <h4 class="text-2xl font-semibold text-gray-700">
+                    {{ totalStocks }}
+                  </h4>
+                  <div class="text-gray-500">All Stocks</div>
+                </router-link>
+              </div>
+            </div>
+
+            <div
+              v-if="
+                userStore.role == 'manager' ||
+                userStore.role == 'customerserviceofficor'
+              "
+              class="flex transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
+            >
+              <div class="p-3 bg-indigo-600 rounded text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+</svg>
+
+              </div>
+              <div class="mx-4">
+                <router-link to="/messages">
+                  <h4 class="text-2xl font-semibold text-gray-700">
+                    {{ totalMessages }}
+                  </h4>
+                  <div class="text-gray-500">All Messages</div>
+                </router-link>
+              </div>
+            </div>
+
+            <div
+            v-if="
+                userStore.role == 'manager' ||
+                userStore.role == 'customerserviceofficor'
+                ||userStore.role == 'delivery'
+              "
+              class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
             >
               <div class="p-3 bg-indigo-600 rounded">
                 <svg
@@ -620,15 +839,124 @@
                 </svg>
               </div>
               <div class="mx-4">
-                <h4 class="text-2xl font-semibold text-gray-700">
-                  {{ totalTransactions }}
-                </h4>
-                <div class="text-gray-500">All Orders</div>
+                <router-link to="/orders">
+                  <h4 class="text-2xl font-semibold text-gray-700">
+                    {{ totalTransactions }}
+                  </h4>
+                  <div class="text-gray-500">All Orders</div>
+                </router-link>
               </div>
             </div>
+
             <div
-            v-if="userStore.role=='manager'"
-              class="flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100"
+            v-if="
+                userStore.role == 'manager' ||
+                userStore.role == 'customerserviceofficor'
+            
+              "
+              class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
+            >
+              <div class="p-3 bg-indigo-600 rounded text-white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"
+                  />
+                </svg>
+              </div>
+              <div class="mx-4">
+                <router-link to="/userstockorders">
+                  <h4 class="text-2xl font-semibold text-gray-700">
+                    {{ totalStockOrders }}
+                  </h4>
+                  <div class="text-gray-500">Total Stock Ordered</div>
+                </router-link>
+              </div>
+            </div>
+
+
+           
+
+            <div
+            v-if="
+                userStore.role == 'manager' ||
+                userStore.role == 'customerserviceofficor'
+                
+              "
+              class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
+            >
+              <div class="p-3 bg-indigo-600 rounded text-white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"
+                  />
+                </svg>
+              </div>
+              <div class="mx-4">
+                <router-link to="/userstockrequests">
+                  <h4 class="text-2xl font-semibold text-gray-700">
+                    {{ totalStockAsked }}
+                  </h4>
+                  <div class="text-gray-500">Total Stock Asked</div>
+                </router-link>
+              </div>
+            </div>
+
+
+            <div
+            v-if="
+                userStore.role == 'manager' ||
+                userStore.role == 'customerserviceofficor'
+                
+              "
+              class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
+            >
+              <div class="p-3 bg-indigo-600 rounded text-white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"
+                  />
+                </svg>
+              </div>
+              <div class="mx-4">
+                <router-link to="/usersellstockrequests">
+                  <h4 class="text-2xl font-semibold text-gray-700">
+                    {{ totalSellStockRequested }}
+                  </h4>
+                  <div class="text-gray-500">Total Sell Stock Requested</div>
+                </router-link>
+              </div>
+            </div>
+
+            <div
+              v-if="userStore.role == 'manager'"
+              class="flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100"
             >
               <div class="p-3 bg-indigo-600 rounded">
                 <svg
@@ -648,10 +976,120 @@
               </div>
               <div class="mx-4">
                 <span class="text-2xl font-semibold text-gray-700">
-                  {{ totalSales }} 
+                  {{ totalSales }}
                 </span>
-                <span class="ml-1 text-xl text-blue-400">birr</span >
+                <span class="ml-1 text-xl text-blue-400">birr</span>
                 <div class="text-gray-500">Total Sales</div>
+              </div>
+            </div>
+
+            <div
+            v-if="
+                userStore.role == 'manager' ||
+                userStore.role == 'customerserviceofficor'
+                ||userStore.role == 'delivery'
+              "
+              class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
+            >
+              <div class="p-3 bg-indigo-600 rounded text-white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"
+                  />
+                </svg>
+              </div>
+              <div class="mx-4">
+                <router-link to="/pendingorders">
+                  <h4 class="text-2xl font-semibold text-gray-700">
+                    {{ pendingOrders }}
+                  </h4>
+                  <div class="text-gray-500">Pending Orders</div>
+                </router-link>
+              </div>
+            </div>
+
+
+            <div
+            v-if="
+                userStore.role == 'manager' ||
+                userStore.role == 'customerserviceofficor'
+                ||userStore.role == 'delivery'
+              "
+              class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
+            >
+              <div class="p-3 bg-indigo-600 rounded text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+</svg>
+
+              </div>
+              <div class="mx-4">
+                <router-link to="/deliveredorders">
+                  <h4 class="text-2xl font-semibold text-gray-700">
+                    {{ deliveredOrders }}
+                  </h4>
+                  <div class="text-gray-500">Delivered Orders</div>
+                </router-link>
+              </div>
+            </div>
+
+
+            <div
+            v-if="
+                userStore.role == 'manager' ||
+                userStore.role == 'customerserviceofficor'
+                ||userStore.role == 'delivery'
+              "
+              class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
+            >
+              <div class="p-3 bg-indigo-600 rounded text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+</svg>
+
+              </div>
+              <div class="mx-4">
+                <router-link to="/notifiedorder">
+                  <h4 class="text-2xl font-semibold text-gray-700">
+                    {{ notifiedOrders }}
+                  </h4>
+                  <div class="text-gray-500">Notified Orders</div>
+                </router-link>
+              </div>
+            </div>
+
+
+
+            <div
+            v-if="
+                userStore.role == 'manager' ||
+                userStore.role == 'customerserviceofficor'
+                ||userStore.role == 'delivery'
+              "
+              class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
+            >
+              <div class="p-3 bg-indigo-600 rounded text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+</svg>
+
+              </div>
+              <div class="mx-4">
+                <router-link to="/acceptedorders">
+                  <h4 class="text-2xl font-semibold text-gray-700">
+                    {{ acceptedOrders }}
+                  </h4>
+                  <div class="text-gray-500">Accepted Orders</div>
+                </router-link>
               </div>
             </div>
           </div>
@@ -696,6 +1134,17 @@ const showSide = ref(true);
 const notifications = ref([]);
 const totalUsers = ref(0);
 const totalProducts = ref(0);
+const totalSoldProducts = ref(0);
+const totalStocks = ref(0);
+const totalMessages = ref(0);
+const totalStockOrders = ref(0);
+const totalStockAsked = ref(0);
+const pendingOrders=ref(0);
+const deliveredOrders=ref(0);
+const acceptedOrders=ref(0);
+const totalSellStockRequested=ref(0);
+const notifiedOrders=ref(0);
+
 const totalTransactions = ref(0);
 const totalSales = ref(0);
 
@@ -704,7 +1153,17 @@ onMounted(() => {
   getTotalUsers();
   getTotalProducts();
   getTotalTransaction();
+  getTotalStocks();
   getTotalSales();
+  gettotalStockOrders();
+  getTotalPendingOrders();
+  getTotalDeliveredOrders();
+  getTotalAcceptedOrders();
+  getTotalSellStockRequested();
+  getTotallySoldProducts();
+  getTotalNotifiedOrders();
+  gettotalStockAsked();
+  getTotalMessages();
 });
 
 const getTotalUsers = async () => {
@@ -723,6 +1182,93 @@ const getTotalProducts = async () => {
   console.log("response", res);
 };
 
+
+const getTotallySoldProducts = async () => {
+  let res = await axios.get("http://127.0.0.1:8000/api/get_total_soldproducts");
+
+  totalSoldProducts.value = res.data.totalSoldProducts;
+
+  console.log("response", res);
+};
+
+const getTotalStocks = async () => {
+  let res = await axios.get("http://127.0.0.1:8000/api/get_total_stocks");
+
+  totalStocks.value = res.data.totalStocks;
+
+  console.log("response", res);
+};
+
+const getTotalMessages = async () => {
+  let res = await axios.get("http://127.0.0.1:8000/api/get_total_messages");
+
+  totalMessages.value = res.data.totalMessages;
+
+  console.log("response", res);
+};
+
+const gettotalStockOrders = async () => {
+  let res = await axios.get("http://127.0.0.1:8000/api/get_total_stockorder");
+
+  totalStockOrders.value = res.data.totalStockOrders;
+
+  console.log("response", res);
+};
+
+
+const getTotalPendingOrders = async () => {
+  let res = await axios.get("http://127.0.0.1:8000/api/get_total_pendingorders");
+
+  pendingOrders.value = res.data.pendingOrders;
+
+  console.log("response", res);
+};
+
+
+
+const getTotalDeliveredOrders = async () => {
+  let res = await axios.get("http://127.0.0.1:8000/api/get_total_deliveredorders");
+
+  deliveredOrders.value = res.data.deliveredOrders;
+
+  console.log("response", res);
+};
+
+
+const getTotalNotifiedOrders = async () => {
+  let res = await axios.get("http://127.0.0.1:8000/api/get_total_notifiedorders");
+
+  notifiedOrders.value = res.data.notifiedOrders;
+
+  console.log("response", res);
+};
+
+
+const getTotalAcceptedOrders = async () => {
+  let res = await axios.get("http://127.0.0.1:8000/api/get_total_acceptedorders");
+
+  acceptedOrders.value = res.data.acceptedOrders;
+
+  console.log("response", res);
+};
+
+const gettotalStockAsked = async () => {
+  let res = await axios.get("http://127.0.0.1:8000/api/get_total_stockasked");
+
+  totalStockAsked.value = res.data.totalStockAsked;
+
+  console.log("response", res);
+};
+
+
+const getTotalSellStockRequested = async () => {
+  let res = await axios.get("http://127.0.0.1:8000/api/get_total_sellstockrequested");
+  console.log("response", res);
+  totalSellStockRequested.value = res.data.totalSellStockRequested;
+
+
+};
+
 const getTotalTransaction = async () => {
   let res = await axios.get("http://127.0.0.1:8000/api/get_total_transactions");
 
@@ -734,7 +1280,7 @@ const getTotalTransaction = async () => {
 const getTotalSales = async () => {
   let res = await axios.get("http://127.0.0.1:8000/api/get_total_sales");
 
-  totalSales.value = res.data.totalSales;
+  totalSales.value = parseInt(res.data.totalSales);
 
   console.log("response", res);
 };

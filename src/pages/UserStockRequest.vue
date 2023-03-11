@@ -58,7 +58,7 @@
                 <th scope="col" class="py-3 px-6">
                     Buying Price
                 </th>
-                <th scope="col" class="py-3 px-6">
+                <th scope="col" class="py-3 px-6 col-span-2">
                     Description
                 </th>
                 <th scope="col" class="py-3 px-6">
@@ -107,7 +107,7 @@
                 <td class="py-4 px-6">
                    {{stockrequest.buying_price}}
                 </td>
-                <td class="py-4 px-6">
+                <td class="py-4 px-6 col-span-2">
                    {{stockrequest.description}}
                 </td>
                 <td class="py-4 px-6">
@@ -121,8 +121,11 @@
                 <td class="py-4 px-6">
                     {{ filterTime( stockrequest.created_at)}}
                 </td>
-                <td class="py-4 px-6">
+                <!-- <td class="py-4 px-6">
                     <button @click="deletestockrequest(stockrequest.id)"  class="font-medium text-white dark:text-blue-500 bg-red-500 rounded p-2">Delete stockrequest</button>
+                </td> -->
+                <td class="py-4 px-6">
+                    <button   class="font-medium text-white dark:text-blue-500 bg-gray-500 rounded p-2">  <a :href="`mailto:${ stockrequest.email}`">Replay</a></button>
                 </td>
             </tr>
           
@@ -178,7 +181,7 @@ import Swal from 'sweetalert2'
 const searchStock=async(query)=>{
     noStockRequestDisplay.value=true;
     isLoading.value=true
-    let res=await axios.post('http://127.0.0.1:8000/api/searchStock?page=' + page.value,{
+    let res=await axios.post('http://127.0.0.1:8000/api/searchStockRequests?page=' + page.value,{
       searchData:query,
     })
     isLoading.value=false;
@@ -193,7 +196,7 @@ const searchStock=async(query)=>{
 
 const deletestockrequest = async (id) => {
         Swal.fire({
-            title: 'Are you sure you want to delete this customer?',
+            title: 'Are you sure you want to delete this stockrequest?',
             text: 'You won\'t be able to revert this!',
             icon: 'warning',
             showCancelButton: true,
@@ -203,11 +206,11 @@ const deletestockrequest = async (id) => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.delete('http://127.0.0.1:8000/api/customer/' + id)
+                    await axios.delete('http://127.0.0.1:8000/api/stockrequest/' + id)
                     getstockrequests()
                     Swal.fire(
                         'Deleted!',
-                        'Your customer has been deleted.',
+                        'Stock Request has been deleted successfuly.',
                         'success'
                     )
                 } catch (err) {
