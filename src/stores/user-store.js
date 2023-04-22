@@ -39,6 +39,7 @@ export const useUserStore = defineStore('user', {
         this.$state.description = res.data.user.description
         this.$state.image = res.data.user.image
         if (res.data.user.image) {
+          
           this.$state.image = 'http://127.0.0.1:8000/' + 'images/users/' + res.data.user.image
         } else {
           this.$state.image = 'http://localhost:5173/' + 'DefaultUserAvatar.png'

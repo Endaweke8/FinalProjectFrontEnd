@@ -5,108 +5,69 @@ import Electronics from "../pages/Electronics.vue";
 import BookmarkStore from "../pages/BookmarkStore.vue";
 import LaptopComputers from "../pages/LaptopComputers.vue";
 
-
-
 import TutorialsView from "../pages/TutorialsView.vue";
 
 import WhoAreWe from "../pages/WhoAreWe.vue";
 
-import HpLaptopComputers from "../pages/HpLaptopComputers.vue";
-import LenevoLaptopComputers from "../pages/LenevoLaptopComputers.vue";
-import AppleLaptopComputers from "../pages/AppleLaptopComputers.vue";
+import HpLaptopComputers from "../pages/laptops/HpLaptopComputers.vue";
+import LenevoLaptopComputers from "../pages/laptops/LenevoLaptopComputers.vue";
+import AppleLaptopComputers from "../pages/laptops/AppleLaptopComputers.vue";
 
-import HpDesktopComputers from "../pages/HpDesktopComputers.vue";
-import AppleDesktopComputers from "../pages/AppleDesktopComputers.vue";
-import LenevoDesktopComputers from "../pages/LenevoDesktopComputers.vue";
+import HpDesktopComputers from "../pages/computers/HpDesktopComputers.vue";
+import AppleDesktopComputers from "../pages/computers/AppleDesktopComputers.vue";
+import LenevoDesktopComputers from "../pages/computers/LenevoDesktopComputers.vue";
 
 import DesktopComputers from "../pages/DesktopComputers.vue";
-import IphoneMobilesView from "../pages/IphoneMobilesView.vue";
-import ButtonMobilesView from "../pages/ButtonMobilesView.vue";
-import AndroidMobilesView from "../pages/AndroidMobilesView.vue";
-import MenTrousersView from "../pages/MenTrousersView.vue";
-import MenTshirtsView from "../pages/MenTshirtsView.vue";
-
+import IphoneMobilesView from "../pages/mobiles/IphoneMobilesView.vue";
+import ButtonMobilesView from "../pages/mobiles/ButtonMobilesView.vue";
+import AndroidMobilesView from "../pages/mobiles/AndroidMobilesView.vue";
 
 import TelevisionView from "../pages/TelevisionView.vue";
 import HeadSetsView from "../pages/HeadSetsView.vue";
 
+import SellStocks from "../pages/stocks/SellStocks.vue";
+import AskStock from "../pages/stocks/AskStock.vue";
+import StocksView from "../pages/stocks/StocksView.vue";
+import AdminStocks from "../pages/stocks/AdminStocks.vue";
+import UserStockRequest from "../pages/stocks/UserStockRequest.vue";
+import UserStockSellRequest from "../pages/stocks/UserStockSellRequest.vue";
+import EditStock from "../pages/stocks/EditStock.vue";
+import ViewStockStoreDetail from "../pages/stocks/ViewStockStoreDetail.vue";
+import DetailStockVIew from "../pages/stocks/DetailStockVIew.vue";
+import AddStock from "../pages/stocks/AddStock.vue";
+import UserStockOrders from "../pages/stocks/UserStockOrders.vue";
 
-import SellStocks from "../pages/SellStocks.vue";
-
-import AskStock from "../pages/AskStock.vue";
-
-
-import AddEmployeeRole from "../pages/AddEmployeeRole.vue";
-
-import StocksView from "../pages/StocksView.vue";
-
-import AdminStocks from "../pages/AdminStocks.vue";
-
-import MenJacketsView from "../pages/clothes/MenJacketsView.vue";
-import MenClothesOthersView from "../pages/clothes/MenClothesOthersView.vue";
-import FemaleTrousersView from "../pages/clothes/FemaleTrousersView.vue";
-import FemaleJacketsView from "../pages/clothes/FemaleJacketsView.vue";
-import FemaleClothesOthersView from "../pages/clothes/FemaleClothesOthersView.vue";
-import FemaleTshirtsView from "../pages/clothes/FemaleTshirtsView.vue";
-
-
-
-
-import FemaleFashionBagsView from "../pages/bags/FemaleFashionBagsView.vue";
-import FemaleLazerBagsView from "../pages/bags/FemaleLazerBagsView.vue";
-import MenLazerBagsView from "../pages/bags/MenLazerBagsView.vue";
-import MenFashionBagsView from "../pages/bags/MenFashionBagsView.vue";
-
-
-
-import MenLazerShoesView from "../pages/shoes/males/MenLazerShoesView.vue";
-import MenOtherShoesView from "../pages/shoes/males/MenOtherShoesView.vue";
-import MenSheraShoesView from "../pages/shoes/males/MenSheraShoesView.vue";
-import MenSnickerShoesView from "../pages/shoes/males/MenSnickerShoesView.vue";
-
-
-import FemaleLazerShoesView from "../pages/shoes/females/FemaleLazerShoesView.vue";
-import FemaleOtherShoesView from "../pages/shoes/females/FemaleOtherShoesView.vue";
-import FemaleSheraShoesView from "../pages/shoes/females/FemaleSheraShoesView.vue";
-import FemaleSnickerShoesView from "../pages/shoes/females/FemaleSnickerShoesView.vue";
-import FemaleHealShoesView from "../pages/shoes/females/FemaleHealShoesView.vue";
-
-
-import Clothes from "../pages/Clothes.vue";
-
-
-import DailyReport from "../pages/DailyReport.vue";
+import AddEmployeeRole from "../pages/auth/admin/manager/AddEmployeeRole.vue";
+import DailyReport from "../pages/report/dailyreport/DailyReport.vue";
 import WeeklyReport from "../pages/WeeklyReport.vue";
 
+import AddCategory from "../pages/AddCategory.vue";
+import AdminDashboardTest from "../pages/AdminDashboardTest.vue";
+import AddSubCategory from "../pages/AddSubCategory.vue";
+import AddSubSubCategory from "../pages/AddSubSubCategory.vue";
 
-
-import NotifiedOrder from "../pages/NotifiedOrder.vue";
-import PendingOrders from "../pages/PendingOrders.vue";
-import DeliveredOrder from "../pages/DeliveredOrder.vue";
-import AcceptedOrder from "../pages/AcceptedOrder.vue";
+import NotifiedOrder from "../pages/orders/NotifiedOrder.vue";
+import PendingOrders from "../pages/orders/PendingOrders.vue";
+import DeliveredOrder from "../pages/orders/DeliveredOrder.vue";
+import AcceptedOrder from "../pages/orders/AcceptedOrder.vue";
 import Orders from "../pages/Orders.vue";
 import Products from "../pages/Products.vue";
 import TotalSoldProducts from "../pages/TotalSoldProducts.vue";
 import Users from "../pages/Users.vue";
-import Employees from "../pages/Employees.vue";
-import UserStockRequest from "../pages/UserStockRequest.vue";
-import UserStockSellRequest from "../pages/UserStockSellRequest.vue";
+import AllCategories from "../pages/AllCategories.vue";
+import EditCategory from "../pages/EditCategory.vue";
 
-import UserStockOrders from "../pages/UserStockOrders.vue";
 import Settings from "../pages/Settings.vue";
-import UserOrderHistory from "../pages/UserOrderHistory.vue";
+import UserOrderHistory from "../pages/orders/UserOrderHistory.vue";
+
+import DetailOrderResponse from "../pages/DetailOrderResponse.vue";
 
 import AdminNotificationView from "../pages/AdminNotificationView.vue";
 import AddProducts from "../pages/AddProducts.vue";
 
-import BreakingNews from "../pages/BreakingNews.vue"
-import AddStock from "../pages/AddStock.vue";
+import BreakingNews from "../pages/BreakingNews.vue";
 import EditProduct from "../pages/EditProduct.vue";
 import ViewProductStoreDetails from "../pages/ViewProductStoreDetails.vue";
-
-
-import EditStock from "../pages/EditStock.vue";
-import ViewStockStoreDetail from "../pages/ViewStockStoreDetail.vue";
 
 import Messages from "../pages/Messages.vue";
 import AdminDashboard from "../pages/AdminDashboard.vue";
@@ -116,10 +77,12 @@ import SignUp from "../pages/SignUp.vue";
 import LoginV from "../pages/LoginV.vue";
 import Checkout from "../pages/Checkout.vue";
 import DetailView from "../pages/DetailView.vue";
-import DetailStockVIew from "../pages/DetailStockVIew.vue";
+
+import Category from "../pages/Category.vue";
+import ResposiveAdminDashboard from "../pages/ResposiveAdminDashboard.vue";
+
 import AuthLayout from "../pages/AuthLayout.vue";
-import Pinia from "../pages/Pinia.vue";
-import Counter from "../pages/Counter.vue";
+
 import HeroSection from "../pages/HeroSection.vue";
 import LoginView from "../pages/LoginView.vue";
 import RegisterView from "../pages/RegisterView.vue";
@@ -129,29 +92,38 @@ import ForgetPassword from "../pages/ForgetPassword.vue";
 import AccountView from "../pages/AccountView.vue";
 import ProfileSection from "../pages/account/ProfileSection.vue";
 import EditProfile from "../pages/account/EditProfile.vue";
-import AddSong from "../pages/account/AddSong.vue";
-import DeleteSong from "../pages/account/DeleteSong.vue";
 
-import AddYoutubeVideo from "../pages/account/AddYoutubeVideo.vue";
-import DeleteYoutubeVideo from "../pages/account/DeleteYoutubeVideo.vue";
-import CreatePost from "../pages/account/CreatePost.vue";
 import CreateProduct from "../pages/account/CreateProduct.vue";
-import EditPost from "../pages/account/EditPost.vue";
-import PostsSection from "../pages/account/PostsSection.vue";
-import PostById from "../pages/account/PostById.vue";
-import store from "../store";
-
 import { useUserStore } from "../stores/user-store";
 
 const routes = [
   {
+    // path: "/admindashboard",
+
+    // beforeEnter: (to, from, next) => {
+    //   useUserStore().role == "admin" ||
+    //   useUserStore().role == "delivery" ||
+    //   useUserStore().role == "manager" ||
+    //   useUserStore().role == "socialmediamanager" ||
+    //   useUserStore().role == "customerserviceofficor"
+    //     ? next()
+    //     : next("/");
+    // },
+    // name: "AdminDashboard",
+    // component: AdminDashboard,
     path: "/admindashboard",
 
     beforeEnter: (to, from, next) => {
-      useUserStore().role == "admin" || useUserStore().role == "delivery" ||  useUserStore().role == "manager" ||  useUserStore().role == "socialmediamanager" ||  useUserStore().role == "customerserviceofficor" ? next() : next("/");
+      useUserStore().role == "admin" ||
+      useUserStore().role == "delivery" ||
+      useUserStore().role == "manager" ||
+      useUserStore().role == "socialmediamanager" ||
+      useUserStore().role == "customerserviceofficor"
+        ? next()
+        : next("/");
     },
-    name: "AdminDashboard",
-    component: AdminDashboard,
+    name: "AdminDashboardTest",
+    component: AdminDashboardTest,
     children: [
       {
         path: "/dashboardhome",
@@ -225,7 +197,6 @@ const routes = [
         component: ViewStockStoreDetail,
       },
 
-      
       {
         path: "/dailyreport",
         name: "DailyReport",
@@ -244,9 +215,15 @@ const routes = [
         component: Users,
       },
       {
-        path: "/employees",
-        name: "Employees",
-        component: Employees,
+        path: "/allcategories",
+        name: "AllCategories",
+        component: AllCategories,
+      },
+
+      {
+        path: "/editcategory/:id",
+        name: "EditCategory",
+        component: EditCategory,
       },
       {
         path: "/userstockrequests",
@@ -294,6 +271,21 @@ const routes = [
         component: AddProducts,
       },
       {
+        path: "/addcategory",
+        name: "AddCategory",
+        component: AddCategory,
+      },
+      {
+        path: "/addsubcategory",
+        name: "AddSubCategory",
+        component: AddSubCategory,
+      },
+      {
+        path: "/addsubsubcategory",
+        name: "AddSubSubCategory",
+        component: AddSubSubCategory,
+      },
+      {
         path: "/addstocks",
         name: "AddStock",
         component: AddStock,
@@ -305,6 +297,11 @@ const routes = [
     name: "homeV",
     component: HomeV,
   },
+  // {
+  //   path: "/admintest",
+  //   name: "AdminDashboardTest",
+  //   component: AdminDashboardTest,
+  // },
 
   {
     path: "/checkout",
@@ -312,11 +309,6 @@ const routes = [
     component: Checkout,
   },
 
-  {
-    path: "/pinia",
-    name: "Pinia",
-    component: Pinia,
-  },
   {
     path: "/herosection",
     name: "HeroSection",
@@ -326,13 +318,11 @@ const routes = [
     path: "/resetpassword",
     name: "ResetPassword",
     beforeEnter: (to, from, next) => {
-      useUserStore().id
-        ? next("/")
-        : next();
+      useUserStore().id ? next("/") : next();
     },
     component: ResetPassword,
   },
-  
+
   {
     path: "/emailverification",
     name: "EmailVerification",
@@ -347,9 +337,7 @@ const routes = [
     path: "/forgotpassword",
     name: "ForgetPassword",
     beforeEnter: (to, from, next) => {
-      useUserStore().id
-        ? next("/")
-        : next();
+      useUserStore().id ? next("/") : next();
     },
     component: ForgetPassword,
   },
@@ -391,57 +379,7 @@ const routes = [
         component: EditProfile,
         name: "EditProfile",
       },
-      {
-        path: "add-song",
-        component: AddSong,
-        name: "AddSong",
-      },
-      {
-        path: "delete-song",
-        component: DeleteSong,
-        name: "DeleteSong",
-      },
-      {
-        path: "add-youtube-video",
-        component: AddYoutubeVideo,
-        name: "AddYoutubeVideo",
-      },
-      {
-        path: "delete-youtube-video",
-        component: DeleteYoutubeVideo,
-        name: "DeleteYoutubeVideo",
-      },
-      {
-        path: "create-post",
-        component: CreatePost,
-        name: "CreatePost",
-      },
-      {
-        path: "edit-post/:id",
-        component: EditPost,
-        name: "EditPost",
-      },
-      {
-        path: "posts",
-        component: PostsSection,
-        name: "PostsSection",
-      },
-      {
-        path: "post-by-id",
-        component: PostById,
-        name: "PostById",
-      },
-      {
-        path: "post-by-id/:id",
-        component: PostById,
-        name: "PostById",
-      },
     ],
-  },
-  {
-    path: "/counter",
-    name: "Counter",
-    component: Counter,
   },
 
   {
@@ -454,6 +392,18 @@ const routes = [
   },
 
   {
+    path: "/category/:id",
+    name: "Category",
+    component: Category,
+  },
+
+  {
+    path: "/resadmindashboard",
+    name: "ResposiveAdminDashboard",
+    component: ResposiveAdminDashboard,
+  },
+
+  {
     path: "/detailstockview/:id",
     beforeEnter: (to, from, next) => {
       useUserStore().id ? next() : next("/loginview");
@@ -461,7 +411,6 @@ const routes = [
     name: "DetailStockVIew",
     component: DetailStockVIew,
   },
-
 
   {
     path: "/auth",
@@ -489,14 +438,11 @@ const routes = [
     component: ContactUs,
   },
 
-
-
   {
     path: "/stocks",
     name: "StocksView",
     component: StocksView,
   },
-
 
   {
     path: "/electronics",
@@ -524,7 +470,6 @@ const routes = [
     component: AppleLaptopComputers,
   },
 
-
   {
     path: "/hpdesktopcomputers",
     name: "HpDesktopComputers",
@@ -542,7 +487,6 @@ const routes = [
     name: "LenevoDesktopComputers",
     component: LenevoDesktopComputers,
   },
-
 
   {
     path: "/desktopcomputers",
@@ -565,22 +509,17 @@ const routes = [
     component: ButtonMobilesView,
   },
 
-
   {
     path: "/television",
     name: "TelevisionView",
     component: TelevisionView,
   },
 
-
   {
     path: "/headsets",
     name: "HeadSetsView",
     component: HeadSetsView,
   },
-
-
-
 
   {
     path: "/sellstocks",
@@ -600,85 +539,6 @@ const routes = [
     component: AskStock,
   },
 
-
-
-  {
-    path: "/mentrousers",
-    name: "MenTrousersView",
-    component: MenTrousersView,
-  },
-  {
-    path: "/mentshirts",
-    name: "MenTshirtsView",
-    component: MenTshirtsView,
-  },
-
-  {
-    path: "/menjackets",
-    name: "MenJacketsView",
-    component: MenJacketsView,
-  },
-  {
-    path: "/menclotheothers",
-    name: "MenClothesOthersView",
-    component: MenClothesOthersView,
-  },
-
-
-
-  {
-    path: "/femaletrousers",
-    name: "FemaleTrousersView",
-    component: FemaleTrousersView,
-  },
-  {
-    path: "/femaletshirts",
-    name: "FemaleTshirtsView",
-    component: FemaleTshirtsView,
-  },
-
-  {
-    path: "/femalejackets",
-    name: "FemaleJacketsView",
-    component: FemaleJacketsView,
-  },
-  {
-    path: "/femaleclotheothers",
-    name: "FemaleClothesOthersView",
-    component: FemaleClothesOthersView,
-  },
-
-  
-
-  {
-    path: "/femalefashionbags",
-    name: "FemaleFashionBagsView",
-    component: FemaleFashionBagsView,
-  },
-  {
-    path: "/femalelazerbags",
-    name: "FemaleLazerBagsView",
-    component: FemaleLazerBagsView,
-  },
-
-  {
-    path: "/menfashionbags",
-    name: "MenFashionBagsView",
-    component: MenFashionBagsView,
-  },
-  {
-    path: "/menlazerbags",
-    name: "MenLazerBagsView",
-    component: MenLazerBagsView,
-  },
-
-
-
-  {
-    path: "/clothes",
-    name: "Clothes",
-    component: Clothes,
-  },
   {
     path: "/bookmarks",
     name: "BookmarkStore",
@@ -690,57 +550,10 @@ const routes = [
     component: UserOrderHistory,
   },
 
-
-
   {
-    path: "/menlazershoes",
-    name: "MenLazerShoesView",
-    component: MenLazerShoesView,
-  },
-  {
-    path: "/menothershoes",
-    name: "MenOtherShoesView",
-    component: MenOtherShoesView,
-  },
-  {
-    path: "/mensherashoes",
-    name: "MenSheraShoesView",
-    component: MenSheraShoesView,
-  },
-  {
-    path: "/mensnickershoes",
-    name: "MenSnickerShoesView",
-    component: MenSnickerShoesView,
-  },
-
- 
- 
- 
-  {
-    path: "/femalelazershoes",
-    name: "FemaleLazerShoesView",
-    component: FemaleLazerShoesView,
-  },
-  {
-    path: "/femaleothershoes",
-    name: "FemaleOtherShoesView",
-    component: FemaleOtherShoesView,
-  },
-  {
-    path: "/femalesherashoes",
-    name: "FemaleSheraShoesView",
-    component: FemaleSheraShoesView,
-  },
-  {
-    path: "/femalesnickershoes",
-    name: "FemaleSnickerShoesView",
-    component: FemaleSnickerShoesView,
-  },
-
-  {
-    path: "/femalehealshoes",
-    name: "FemaleHealShoesView",
-    component: FemaleHealShoesView,
+    path: "/orderresponsedetail/:id",
+    name: "DetailOrderResponse",
+    component: DetailOrderResponse,
   },
 
   {
@@ -759,35 +572,11 @@ const routes = [
     name: "WhoAreWe",
     component: WhoAreWe,
   },
-
-
-  // {
-  //   path:'/recipe/:id',
-  //   name:'Recipie',
-  //   component:Recipie,
-  // },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
 });
-
-// router.beforeEach((to,from,next)=>{
-//   if(to.meta.requiresAuth && !store.state.user.token){
-//     next({name:'LoginV'})
-//   }
-//   else if(store.state.user.role==='admin' && (to.meta.isGuest)){
-//      next({name:"AdminDashboard"})
-//   }
-
-// //   else if(store.state.user.role==='admin'){
-// //     next({name:"AdminDashboard"})
-// //  }
-
-//   else{
-//      next();
-//   }
-// })
 
 export default router;

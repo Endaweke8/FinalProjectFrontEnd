@@ -66,7 +66,7 @@
     <router-link :to="`/detailview/${product.id}`" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden" >
         
             <div v-if="filterTodayTime( product.created_at)">
-              <img  class=" h-60 w-full rounded-t-lg " :src="product.image_name" alt="">
+              <img  class=" h-60 w-auto rounded-t-lg " :src="product.image_name" alt="">
        
        <div class="p-4">
          <!-- <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">{{product.subcategory1}}</span> -->

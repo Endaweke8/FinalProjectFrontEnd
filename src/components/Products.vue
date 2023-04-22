@@ -70,67 +70,70 @@
     >
     <router-link :to="`/detailview/${product.id}`" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden" >
         
-          <img  class=" h-60 w-full rounded-t-lg " :src="product.image_name" alt="">
-       
-        <div class="p-4">
-          <!-- <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">{{product.subcategory1}}</span> -->
-          <h2 class="mt-2 mb-2  font-bold">{{product.name}}</h2>
-                       
-         <div class="flex items-center justify-between mt-1">
-            <span><span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{product.sale_price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span></span>
-            <span class="line-through"><span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{product.price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span></span>
-             </div>
-         
-
-          <!-- <div class="mt-3 flex items-center">
-            <span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{product.sale_price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span>
-          </div> -->
+        <div class="items-center justify-center flex">
+          <img  class=" h-60 w-auto  rounded-t-lg " :src="`${endpoint}/images/productprofiles/`+product.image_name" alt="">
         </div>
-        <!-- <div class="p-4 border-t border-b text-xs text-gray-700">
-          <span class="flex items-center mb-1">
-            <i class="far fa-clock fa-fw mr-2 text-gray-900"></i>posted {{ filterTime( product.created_at)}}
-          </span>
-          <span class="flex items-center mb-1" >
-            <i class="fa fa-users mr-2" aria-hidden="true"></i> reviewed by {{ product.stars.length}} person
-          </span>
-                
+     
+      <div class="p-4 w-full">
+        <!-- <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">{{product.subcategory1}}</span> -->
+        <h2 class="w-full text-[12px] py-2 text-teal-600 font-extrabold hover:text-red-600 cursor-pointer w-full"> {{ product.name.substring(0, 40) }}...</h2>
+                     
+        <div class="flex items-center justify-between mt-1">
+          <span><span class="text-sm font-semibold">Et</span>&nbsp;<span class="text-[16px] font-extrabold">{{product.sale_price}}</span>&nbsp;<span class="text-[12px]">birr</span></span>
+          <span class="line-through"><span class="text-sm font-semibold">Et</span>&nbsp;<span class="text-[16px] font-extrabold">{{product.price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span></span>
+           </div>
+
+       
+
+        <!-- <div class="mt-3 flex items-center">
+          <span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{product.sale_price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span>
         </div> -->
-        <!-- <div class="p-4 flex items-center border-t border-b text-sm text-gray-600"> 
-          <div class="flex items-center">
-            <span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{product.sale_price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span>
+      </div>
+      <!-- <div class="p-4 border-t border-b text-xs text-gray-700">
+        <span class="flex items-center mb-1">
+          <i class="far fa-clock fa-fw mr-2 text-gray-900"></i>posted {{ filterTime( product.created_at)}}
+        </span>
+        <span class="flex items-center mb-1" >
+          <i class="fa fa-users mr-2" aria-hidden="true"></i> reviewed by {{ product.stars.length}} person
+        </span>
+              
+      </div> -->
+      <!-- <div class="p-4 flex items-center border-t border-b text-sm text-gray-600"> 
+        <div class="flex items-center">
+          <span class="text-sm font-semibold">Et</span>&nbsp;<span class="font-bold text-xl">{{product.sale_price}}</span>&nbsp;<span class="text-sm font-semibold">birr</span>
+        </div>
+        <div
+      
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >Ad to cart</div
+        ></div> -->
+
+        <div class="flex items-center justify-between mb-2 ml-2 mr-2 border-t border-gray-300">
+
+           <div >
+              
+              <span ><i :class="getStars(product.stars,product.stars.length)>=1?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+           
+            <span ><i :class="getStars(product.stars,product.stars.length)>=2?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+            
+            <span ><i :class="getStars(product.stars,product.stars.length)>=3?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+            
+            <span ><i :class="getStars(product.stars,product.stars.length)>=4?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+           
+            <span ><i :class="getStars(product.stars,product.stars.length)>=5?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
+            
+            
           </div>
-          <div
-        
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >Ad to cart</div
-          ></div> -->
+           
+            <button
+              
+              class="text-white mt-1 bg-gray-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Add to Cart
+            </button>
 
-          <div class="flex items-center justify-between mb-2 ml-2 mr-2 border-t border-gray-300">
-
-             <div >
-                
-                <span ><i :class="getStars(product.stars,product.stars.length)>=1?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
-             
-              <span ><i :class="getStars(product.stars,product.stars.length)>=2?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
-              
-              <span ><i :class="getStars(product.stars,product.stars.length)>=3?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
-              
-              <span ><i :class="getStars(product.stars,product.stars.length)>=4?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
-             
-              <span ><i :class="getStars(product.stars,product.stars.length)>=5?'checked':'unchecked'" class="fa fa-star" style="font-size:20;"></i></span>
-              
-              
-            </div>
-             
-              <button
-                
-                class="text-white mt-1 bg-gray-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                Add to Cart
-              </button>
-
-            </div>
-        </router-link>
+          </div>
+      </router-link>
     </div>
    
   </div>
@@ -155,6 +158,8 @@ import "@hennge/vue3-pagination/dist/vue3-pagination.css";
 import { computed, onMounted, ref, watch } from "vue";
 
 import axios from "axios";
+
+const endpoint=import.meta.env.VITE_APP_API_URL
 
 let page = ref(1);
 let posts = ref(null);

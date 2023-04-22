@@ -1,69 +1,73 @@
 <template>
-    <div id="Register" class="antialiased bg-gray-200">
-        <TopNavigation />
-        <NavigationVue />
-        <div class="w-full mt-5 flex justify-center items-center ">
-          <div class="items-center">
-                        <img src="../assets/cropped-Abay.png" class="rounded-full ml-3" width="50" />
-            </div> 
-          <span class="ml-2 text-2xl">Abay Stock Market</span>
-          
-           
-        </div>
-        <div class="w-full p-6 flex justify-center items-center ">
-            <div class="w-full max-w-xs border border-gray-300  bg-slate-100 mb-8">
-                <div
-                v-if="errors.length>0"
-              class="flex items-center justify-between py-3 px-5 bg-red-500 text-white rounded"
+  <div id="Register" class="antialiased bg-gray-200">
+    <TopNavigation />
+    <NavigationVue />
+    <div class="w-full mt-5 flex justify-center items-center">
+      <div class="items-center">
+        <img
+          src="../assets/cropped-Abay.png"
+          class="rounded-full ml-3"
+          width="50"
+        />
+      </div>
+      <span class="ml-2 text-2xl">Abay Stock Market</span>
+    </div>
+    <div class="w-full p-6 flex justify-center items-center">
+      <div class="w-full max-w-xs border border-gray-300 bg-slate-100 mb-8">
+        <div
+          v-if="errors.length > 0"
+          class="flex items-center justify-between py-3 px-5 bg-red-500 text-white rounded"
+        >
+          {{ errors
+          }}<span
+            @click="errors = ''"
+            class="w-8 h-8 mx-1 flex items-center justify-center rounded-full transition-colors cursor-pointer hover:bg-[rgba(0,0,0,0.2)]"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
             >
-              {{ errors }}<span
-                @click="errors = ''"
-               class="w-8 h-8 mx-1 flex items-center justify-center rounded-full transition-colors cursor-pointer hover:bg-[rgba(0,0,0,0.2)]"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-6 h-6 "
-                  
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </span>
-            </div>
-               
-                <div class="bg-slate-100 p-8 shadow rounded mb-6">
-                  <div class="mb-6 text-lg  font-thin"><span class="text-2xl text-gray-900">Login</span></div>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </span>
+        </div>
 
-                    <div class="mb-4">
-                        <TextInput 
-                            label="Email"
-                            :labelColor="black"
-                            placeholder="john.doe@m.com"
-                            v-model:input="email"
-                            inputType="text"
-                            :error="errors.email ? errors.email[0] : ''"
-                        />
-                    </div>
+        <div class="bg-slate-100 p-8 shadow rounded mb-6">
+          <div class="mb-6 text-lg font-thin">
+            <span class="text-2xl text-gray-900">Login</span>
+          </div>
 
-                    <div class="mb-4">
-                        <TextInput 
-                            label="Password"
-                            :labelColor="black"
-                            placeholder="password123?"
-                            v-model:input="password"
-                            inputType="password"
-                            :error="errors.password ? errors.password[0] : ''"
-                        />
-                    </div>
+          <div class="mb-4">
+            <TextInput
+              label="Email"
+              :labelColor="black"
+              placeholder="john.doe@m.com"
+              v-model:input="email"
+              inputType="text"
+              :error="errors.email ? errors.email[0] : ''"
+            />
+          </div>
 
-                    <button
+          <div class="mb-4">
+            <TextInput
+              label="Password"
+              :labelColor="black"
+              placeholder="password123?"
+              v-model:input="password"
+              inputType="password"
+              :error="errors.password ? errors.password[0] : ''"
+            />
+          </div>
+
+          <button
             @click.prevent="login()"
             class="px-4 mt-6 py-4 mb-10 text-sm relative font-medium w-full text-center rounded text-white bg-gray-500 hover:bg-gray-400"
           >
@@ -92,82 +96,93 @@
               ><span class="text-xl">Login</span></span
             >
           </button>
-          <router-link to="forgotpassword" class="text-lg font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</router-link>
-                </div>
-
-                <p class="text-center text-md text-gray-900 mb-5">
-                    Don't have an account yet?
-                    <router-link to="registerview" class="text-blue-500 no-underline hover:underline">
-                        Register here
-                    </router-link>
-                </p>
-            </div>
+          <router-link
+            to="forgotpassword"
+            class="text-lg font-medium text-primary-600 hover:underline dark:text-primary-500"
+            >Forgot password?</router-link
+          >
         </div>
+
+        <p class="text-center text-md text-gray-900 mb-5">
+          Don't have an account yet?
+          <router-link
+            to="registerview"
+            class="text-blue-500 no-underline hover:underline"
+          >
+            Register here
+          </router-link>
+        </p>
+      </div>
     </div>
-    <FooterSection />
+  </div>
+  <FooterSection />
 </template>
 
 <script setup>
-import FooterSection from '../components/structure/FooterSection.vue'
-import { ref } from 'vue';
-    import axios from 'axios'
-    import { useUserStore } from '../stores/user-store'
-    import { useProfileStore } from '../stores/profile-store'
-    import { useSongStore } from '../stores/song-store'
-    import { usePostStore } from '../stores/post-store'
-    import { useVideoStore } from '../stores/video-store'
-    import { useRouter } from 'vue-router';
-    import TextInput from '../components/global/TextInput.vue'
-    import TopNavigation from '../components/structure/TopNavigation.vue';
-import NavigationVue from '../components/NavigationVue.vue';
+import FooterSection from "../components/structure/FooterSection.vue";
+import { ref } from "vue";
+import axios from "axios";
+import { useUserStore } from "../stores/user-store";
+import { useProfileStore } from "../stores/profile-store";
+import { useSongStore } from "../stores/song-store";
+import { usePostStore } from "../stores/post-store";
+import { useVideoStore } from "../stores/video-store";
+import { useClinetAddressStore } from "../stores/client-address-store";
+import { useRouter } from "vue-router";
+import TextInput from "../components/global/TextInput.vue";
+import TopNavigation from "../components/structure/TopNavigation.vue";
+import NavigationVue from "../components/NavigationVue.vue";
 
-    
-    const router = useRouter()
-    const userStore = useUserStore()
-    const profileStore = useProfileStore()
-    const songStore = useSongStore()
-    const postStore = usePostStore()
-    const videoStore = useVideoStore()
+const router = useRouter();
+const userStore = useUserStore();
+const profileStore = useProfileStore();
+const songStore = useSongStore();
+const postStore = usePostStore();
+const videoStore = useVideoStore();
+const clientAddressStore = useClinetAddressStore();
 
-    const isLoading=ref(false)
-    let errors = ref([])
-    let email = ref(null)
-    let password = ref(null)
-    const login = async () => {
-        isLoading.value=true
-        errors.value = []
-        try {
-            let res = await axios.post('http://127.0.0.1:8000/api/login', {
-                email: email.value,
-                password: password.value,
-            })
-            isLoading.value=false
-            if(res.data.errors){
-                errors.value="Invalid Credentials, Please insert correct email or password"
-            }
-            console.log(res.data.errors);
-            // userStore.setUser
-            axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.token
-            userStore.setUserDetails(res)
-            
-            await profileStore.fetchProfileById(userStore.id)
-            // await songStore.fetchSongsByUserId(userStore.id)
-            await postStore.fetchPostsByUserId(userStore.id)
-            await videoStore.fetchVideosByUserId(userStore.id)
-            if(userStore.role=='admin'||userStore.role=='manager'||userStore.role=='delivery'||userStore.role=='socialmediamanager'||userStore.role=='customerserviceofficor'){
-                router.push('/dashboardhome')   
-            }
-            else
-            {
-              router.push("/");
-            }
-        
-        } catch (err) {
-            
-            errors.value = err.response.data.errors
-            console.log(err)
-            isLoading.value=false
-        }
+const isLoading = ref(false);
+let errors = ref([]);
+let email = ref(null);
+let password = ref(null);
+const login = async () => {
+  isLoading.value = true;
+  errors.value = [];
+  try {
+    let res = await axios.post("http://127.0.0.1:8000/api/login", {
+      email: email.value,
+      password: password.value,
+    });
+    isLoading.value = false;
+    if (res.data.errors) {
+      errors.value =
+        "Invalid Credentials, Please insert correct email or password";
     }
-    
+    console.log(res.data.errors);
+    // userStore.setUser
+    axios.defaults.headers.common["Authorization"] = "Bearer " + res.data.token;
+    userStore.setUserDetails(res);
+
+    await profileStore.fetchProfileById(userStore.id);
+
+    // await postStore.fetchPostsByUserId(userStore.id);
+    // await videoStore.fetchVideosByUserId(userStore.id);
+    if (
+      userStore.role == "admin" ||
+      userStore.role == "manager" ||
+      userStore.role == "delivery" ||
+      userStore.role == "socialmediamanager" ||
+      userStore.role == "customerserviceofficor"
+    ) {
+      router.push("/dashboardhome");
+    } else {
+      router.push("/");
+    }
+    await clientAddressStore.fetchClientAddressByUserId(userStore.id);
+  } catch (err) {
+    errors.value = err.response.data.errors;
+    console.log(err);
+    isLoading.value = false;
+  }
+};
 </script>

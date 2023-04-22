@@ -1,32 +1,59 @@
 <template>
   <!-- Modal toggle -->
-  <div  class="italic mb-3">
-  <div class="text-3xl font-bold">stocks</div>
-</div>
+  <div class="italic mb-3">
+    <div class="text-3xl font-bold">stocks</div>
+  </div>
   <div class="flex justify-between items-center pb-4 bg-white dark:bg-gray-900">
-        <label for="table-search" class="sr-only">Search</label>
-        <div class="relative">
-            <div @click="searchStock(queryStock)" class="flex absolute inset-y-0 right-0 bg-blue-500 rounded  items-center pl-3 hover:cursor-pointer">
-                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 " aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
-            </div>
-            <input v-model="queryStock" @keyup="searchStock(queryStock)" type="text" id="table-search-stocks" class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for stocks">
-        </div>
+    <label for="table-search" class="sr-only">Search</label>
+    <div class="relative">
+      <div
+        @click="searchStock(queryStock)"
+        class="flex absolute inset-y-0 right-0 bg-blue-500 rounded items-center pl-3 hover:cursor-pointer"
+      >
+        <svg
+          class="w-5 h-5 text-gray-500 dark:text-gray-400"
+          aria-hidden="true"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </div>
+      <input
+        v-model="queryStock"
+        @keyup="searchStock(queryStock)"
+        type="text"
+        id="table-search-stocks"
+        class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Search for stocks"
+      />
     </div>
+  </div>
 
   <!-- Main modal -->
-  <div v-show="isLoading" class="flex items-center mt-12 h-48  mb-12 justify-center">
-  <img   class="w-20 h-20 absolute  left-1/2 -ml-2.5" src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif" alt="" />
-</div>
-<div v-if="noProductDisplay">
-   
-   <div
-   v-if="stocks.length<1"
-   class="flex items-center mt-12 h-48 mb-12 justify-center"
- >
- <div class="text-3xl">Sorry  searched stocks not found</div>
- </div>
-
- </div>
+  <div
+    v-show="isLoading"
+    class="flex items-center mt-12 h-48 mb-12 justify-center"
+  >
+    <img
+      class="w-20 h-20 absolute left-1/2 -ml-2.5"
+      src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif"
+      alt=""
+    />
+  </div>
+  <div v-if="noProductDisplay">
+    <div
+      v-if="stocks.length < 1"
+      class="flex items-center mt-12 h-48 mb-12 justify-center"
+    >
+      <div class="text-3xl">Sorry searched stocks not found</div>
+    </div>
+  </div>
   <div class="m-10">
     <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -58,7 +85,11 @@
               {{ stock.id }}
             </td>
             <td class="p-4 w-32">
-              <img :src="stock.image_name" alt="Apple Watch" />
+              <img
+                class="h-20 w-20"
+                :src="`${endpoint}/images/stockprofiles/` + stock.image_name"
+                :alt="stock.image_name"
+              />
             </td>
             <td class="py-4 px-6 font-semibold text-gray-900 dark:text-white">
               {{ stock.name }}
@@ -78,20 +109,34 @@
              -->
 
             <td class="py-4 px-6 font-semibold text-gray-900 dark:text-white">
-              {{ filterTime( stock.created_at)}}
+              {{ filterTime(stock.created_at) }}
             </td>
             <td class="py-4 px-6 font-semibold text-gray-900 dark:text-white">
-              {{ filterTime( stock.updated_at)}}
+              {{ filterTime(stock.updated_at) }}
             </td>
             <td class="py-4 px-6">
               <router-link
                 :to="`/viewstockstoredetail/${stock.id}`"
                 class="font-medium text-green-600 dark:text-red-500 hover:underline"
-                ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-</svg>
-
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
               </router-link>
               View Details
             </td>
@@ -143,134 +188,127 @@
     </div>
   </div>
   <div class="flex items-center justify-center p-2">
-              <v-pagination
-                  class="p-10"
-                  v-model="page"
-                  :pages="pageCount"
-                  :range-size="1"
-                  active-color="#337aff"
-                  @update:modelValue="getAllStocks"
-              />
-          </div>
-  
-  
+    <v-pagination
+      class="p-10"
+      v-model="page"
+      :pages="pageCount"
+      :range-size="1"
+      active-color="#337aff"
+      @update:modelValue="getAllStocks"
+    />
+  </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from "vue";
 import axios from "axios";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import VPagination from "@hennge/vue3-pagination";
 import "@hennge/vue3-pagination/dist/vue3-pagination.css";
+const endpoint = import.meta.env.VITE_APP_API_URL;
 let stocks = ref([]);
 const showModal = ref(false);
-const queryStock=ref('');
-let page = ref(1)
-let pageCount = ref(null)
-const isLoading=ref(false)
-const noProductDisplay=ref(false)
-const findTime=ref(0)
-const noStockDisplay=ref(false);
-
+const queryStock = ref("");
+let page = ref(1);
+let pageCount = ref(null);
+const isLoading = ref(false);
+const noProductDisplay = ref(false);
+const findTime = ref(0);
+const noStockDisplay = ref(false);
 
 onMounted(async () => {
-  isLoading.value=true
+  isLoading.value = true;
   getAllStocks();
 });
 
+const getAllStocks = async () => {
+  let res = await axios.get(
+    "http://127.0.0.1:8000/api/stocks?page=" + page.value
+  );
+  isLoading.value = false;
+  pageCount.value = res.data.page_count;
+  stocks.value = res.data.stocks.data;
 
-
-const getAllStocks=async()=>{
-  let res=await axios.get('http://127.0.0.1:8000/api/stocks?page=' + page.value)
-  isLoading.value=false;
-  pageCount.value = res.data.page_count
-  stocks.value = res.data.stocks.data
-
-  console.log('response',res);
- 
-}
-
-
-
+  console.log("response", res);
+};
 
 const deleteProduct = async (product) => {
-        Swal.fire({
-            title: 'Are you sure you want to delete this?',
-            text: 'You won\'t be able to revert this!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                try {
-                    await axios.delete('http://127.0.0.1:8000/api/product/' + product.id)
-                    getAllStocks()
-                    Swal.fire(
-                        'Deleted!',
-                        'Your product has been deleted.',
-                        'success'
-                    )
-                } catch (err) {
-                    console.log(err)
-                }
-            }
-        })
+  Swal.fire({
+    title: "Are you sure you want to delete this?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes, delete it!",
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      try {
+        await axios.delete("http://127.0.0.1:8000/api/product/" + product.id);
+        getAllStocks();
+        Swal.fire("Deleted!", "Your product has been deleted.", "success");
+      } catch (err) {
+        console.log(err);
+      }
     }
+  });
+};
 
-    const searchStock=async(query)=>{
-    noStockDisplay.value=true;
-    isLoading.value=true
-    let res=await axios.post('http://127.0.0.1:8000/api/searchstock?page=' + page.value,{
-      searchData:query,
-    })
-    isLoading.value=false;
-    pageCount.value = res.data.page_count
-    stocks.value = res.data.stocks.data
-    console.log('response',res);
-    
-   }
+const searchStock = async (query) => {
+  noStockDisplay.value = true;
+  isLoading.value = true;
+  let res = await axios.post(
+    "http://127.0.0.1:8000/api/searchstock?page=" + page.value,
+    {
+      searchData: query,
+    }
+  );
+  isLoading.value = false;
+  pageCount.value = res.data.page_count;
+  stocks.value = res.data.stocks.data;
+  console.log("response", res);
+};
 
-
-
-    const filterTime = (created_at) => {
+const filterTime = (created_at) => {
   const currentTime = new Date();
 
-  findTime.value = parseInt((currentTime - Date.parse(created_at)) / (1000));
-  if(findTime.value>60)
-  {
-    findTime.value = parseInt((currentTime - Date.parse(created_at)) / (1000*60));
-    if(findTime.value>60)
-  {
-    findTime.value = parseInt((currentTime - Date.parse(created_at)) / (1000 * 60*60));
-     
-  if (findTime.value > 24) {
-    findTime.value =parseInt((currentTime - Date.parse(created_at)) / (1000 * 60 * 60 * 24));  
-    if (findTime.value >= 7) {
+  findTime.value = parseInt((currentTime - Date.parse(created_at)) / 1000);
+  if (findTime.value > 60) {
+    findTime.value = parseInt(
+      (currentTime - Date.parse(created_at)) / (1000 * 60)
+    );
+    if (findTime.value > 60) {
       findTime.value = parseInt(
-        (currentTime - Date.parse(created_at)) / (1000 * 60 * 60 * 24 * 7)
+        (currentTime - Date.parse(created_at)) / (1000 * 60 * 60)
       );
-      if (findTime >= 4) {
+
+      if (findTime.value > 24) {
         findTime.value = parseInt(
-          (currentTime - Date.parse(created_at)) / (1000 * 60 * 60 * 24 * 7 * 4)
+          (currentTime - Date.parse(created_at)) / (1000 * 60 * 60 * 24)
         );
-        return `${findTime.value} monthes ago`;
+        if (findTime.value >= 7) {
+          findTime.value = parseInt(
+            (currentTime - Date.parse(created_at)) / (1000 * 60 * 60 * 24 * 7)
+          );
+          if (findTime >= 4) {
+            findTime.value = parseInt(
+              (currentTime - Date.parse(created_at)) /
+                (1000 * 60 * 60 * 24 * 7 * 4)
+            );
+            return `${findTime.value} monthes ago`;
+          }
+          return `${findTime.value} weeks ago`;
+        }
+        return `${findTime.value} days ago`;
       }
-      return `${findTime.value} weeks ago`;
+      return `${findTime.value} hours ago`;
     }
-    return `${findTime.value} days ago`;
-  } 
-    return `${findTime.value} hours ago`;
-  }
 
     return `${findTime.value} minutes ago`;
   }
- 
+
   return `${findTime.value} seconds ago`;
-
-}
-
+};
 </script>
 
 <style scoped></style>

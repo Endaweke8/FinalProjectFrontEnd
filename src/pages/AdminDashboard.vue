@@ -82,9 +82,6 @@
               Messages
             </router-link>
 
-        
-
-
             <router-link
               v-if="userStore.role == 'customerserviceofficor'"
               to="/userstockrequests"
@@ -200,6 +197,28 @@
             </router-link>
             <router-link
               v-if="userStore.role == 'socialmediamanager'"
+              to="/allcategories"
+              class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="mr-2 w-[25px] h-[25px] fill-current"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"
+                />
+              </svg>
+
+              ALl Categories
+            </router-link>
+            <router-link
+              v-if="userStore.role == 'socialmediamanager'"
               to="/adminstocks"
               class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
             >
@@ -264,7 +283,6 @@
 
               Employees
             </router-link>
-
 
             <router-link
               v-if="userStore.role == 'manager'"
@@ -333,6 +351,30 @@
                 </svg>
 
                 Add Employee
+              </router-link>
+            </div>
+
+            <div v-if="userStore.role == 'socialmediamanager'">
+              <router-link
+                to="/addcategory"
+                class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="mr-2 w-[25px] h-[25px] fill-current"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4.5v15m7.5-7.5h-15"
+                  />
+                </svg>
+
+                Add Category
               </router-link>
             </div>
 
@@ -482,7 +524,13 @@
           </div>
           <!-- Notification -->
           <!-- User login -->
-          <div v-if="userStore.role == 'manager' || userStore.role == 'customerserviceofficor' "  class="w-[200px]">
+          <div
+            v-if="
+              userStore.role == 'manager' ||
+              userStore.role == 'customerserviceofficor'
+            "
+            class="w-[200px]"
+          >
             <div
               class="flex items-center justify-start space-x-4"
               @click="toggleDropNotification"
@@ -799,10 +847,20 @@
               class="flex transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
             >
               <div class="p-3 bg-indigo-600 rounded text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-</svg>
-
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                  />
+                </svg>
               </div>
               <div class="mx-4">
                 <router-link to="/messages">
@@ -815,10 +873,10 @@
             </div>
 
             <div
-            v-if="
+              v-if="
                 userStore.role == 'manager' ||
-                userStore.role == 'customerserviceofficor'
-                ||userStore.role == 'delivery'
+                userStore.role == 'customerserviceofficor' ||
+                userStore.role == 'delivery'
               "
               class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
             >
@@ -849,10 +907,9 @@
             </div>
 
             <div
-            v-if="
+              v-if="
                 userStore.role == 'manager' ||
                 userStore.role == 'customerserviceofficor'
-            
               "
               class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
             >
@@ -882,14 +939,10 @@
               </div>
             </div>
 
-
-           
-
             <div
-            v-if="
+              v-if="
                 userStore.role == 'manager' ||
                 userStore.role == 'customerserviceofficor'
-                
               "
               class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
             >
@@ -919,12 +972,10 @@
               </div>
             </div>
 
-
             <div
-            v-if="
+              v-if="
                 userStore.role == 'manager' ||
                 userStore.role == 'customerserviceofficor'
-                
               "
               class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
             >
@@ -984,10 +1035,10 @@
             </div>
 
             <div
-            v-if="
+              v-if="
                 userStore.role == 'manager' ||
-                userStore.role == 'customerserviceofficor'
-                ||userStore.role == 'delivery'
+                userStore.role == 'customerserviceofficor' ||
+                userStore.role == 'delivery'
               "
               class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
             >
@@ -1017,20 +1068,29 @@
               </div>
             </div>
 
-
             <div
-            v-if="
+              v-if="
                 userStore.role == 'manager' ||
-                userStore.role == 'customerserviceofficor'
-                ||userStore.role == 'delivery'
+                userStore.role == 'customerserviceofficor' ||
+                userStore.role == 'delivery'
               "
               class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
             >
               <div class="p-3 bg-indigo-600 rounded text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-</svg>
-
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                  />
+                </svg>
               </div>
               <div class="mx-4">
                 <router-link to="/deliveredorders">
@@ -1042,20 +1102,29 @@
               </div>
             </div>
 
-
             <div
-            v-if="
+              v-if="
                 userStore.role == 'manager' ||
-                userStore.role == 'customerserviceofficor'
-                ||userStore.role == 'delivery'
+                userStore.role == 'customerserviceofficor' ||
+                userStore.role == 'delivery'
               "
               class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
             >
               <div class="p-3 bg-indigo-600 rounded text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-</svg>
-
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                  />
+                </svg>
               </div>
               <div class="mx-4">
                 <router-link to="/notifiedorder">
@@ -1067,21 +1136,29 @@
               </div>
             </div>
 
-
-
             <div
-            v-if="
+              v-if="
                 userStore.role == 'manager' ||
-                userStore.role == 'customerserviceofficor'
-                ||userStore.role == 'delivery'
+                userStore.role == 'customerserviceofficor' ||
+                userStore.role == 'delivery'
               "
               class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-200 duration-100 flex justify-center items-center px-4 py-6 bg-white rounded-full shadow-md"
             >
               <div class="p-3 bg-indigo-600 rounded text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-</svg>
-
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                  />
+                </svg>
               </div>
               <div class="mx-4">
                 <router-link to="/acceptedorders">
@@ -1108,7 +1185,6 @@ import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { computed, ref, onMounted } from "vue";
 import { useUserStore } from "../stores/user-store";
-
 import { useBookmarkStore } from "../stores/bookmark-store";
 import { usePostStore } from "../stores/post-store";
 import { useCartStore } from "../stores/cart-store";
@@ -1117,7 +1193,6 @@ import { useSongStore } from "../stores/song-store";
 import { useVideoStore } from "../stores/video-store";
 import axios from "axios";
 // import FooterSection from "../components/structure/FooterSection.vue";
-
 const bookmarkStore = useBookmarkStore();
 const userStore = useUserStore();
 const profileStore = useProfileStore();
@@ -1127,7 +1202,6 @@ const videoStore = useVideoStore();
 const cartStore = useCartStore();
 const store = useStore();
 const router = useRouter();
-
 const showDropDownNotifications = ref(false);
 const showDropDown = ref(false);
 const showSide = ref(true);
@@ -1139,15 +1213,13 @@ const totalStocks = ref(0);
 const totalMessages = ref(0);
 const totalStockOrders = ref(0);
 const totalStockAsked = ref(0);
-const pendingOrders=ref(0);
-const deliveredOrders=ref(0);
-const acceptedOrders=ref(0);
-const totalSellStockRequested=ref(0);
-const notifiedOrders=ref(0);
-
+const pendingOrders = ref(0);
+const deliveredOrders = ref(0);
+const acceptedOrders = ref(0);
+const totalSellStockRequested = ref(0);
+const notifiedOrders = ref(0);
 const totalTransactions = ref(0);
 const totalSales = ref(0);
-
 onMounted(() => {
   getNotification();
   getTotalUsers();
@@ -1165,126 +1237,86 @@ onMounted(() => {
   gettotalStockAsked();
   getTotalMessages();
 });
-
 const getTotalUsers = async () => {
   let res = await axios.get("http://127.0.0.1:8000/api/get_total_users");
-
   totalUsers.value = res.data.totalUsers;
-
   console.log("response", res);
 };
-
 const getTotalProducts = async () => {
   let res = await axios.get("http://127.0.0.1:8000/api/get_total_products");
-
   totalProducts.value = res.data.totalProducts;
-
   console.log("response", res);
 };
-
-
 const getTotallySoldProducts = async () => {
   let res = await axios.get("http://127.0.0.1:8000/api/get_total_soldproducts");
-
   totalSoldProducts.value = res.data.totalSoldProducts;
-
   console.log("response", res);
 };
-
 const getTotalStocks = async () => {
   let res = await axios.get("http://127.0.0.1:8000/api/get_total_stocks");
-
   totalStocks.value = res.data.totalStocks;
-
   console.log("response", res);
 };
-
 const getTotalMessages = async () => {
   let res = await axios.get("http://127.0.0.1:8000/api/get_total_messages");
-
   totalMessages.value = res.data.totalMessages;
-
   console.log("response", res);
 };
-
 const gettotalStockOrders = async () => {
   let res = await axios.get("http://127.0.0.1:8000/api/get_total_stockorder");
-
   totalStockOrders.value = res.data.totalStockOrders;
-
   console.log("response", res);
 };
-
-
 const getTotalPendingOrders = async () => {
-  let res = await axios.get("http://127.0.0.1:8000/api/get_total_pendingorders");
-
+  let res = await axios.get(
+    "http://127.0.0.1:8000/api/get_total_pendingorders"
+  );
   pendingOrders.value = res.data.pendingOrders;
-
   console.log("response", res);
 };
-
-
-
 const getTotalDeliveredOrders = async () => {
-  let res = await axios.get("http://127.0.0.1:8000/api/get_total_deliveredorders");
-
+  let res = await axios.get(
+    "http://127.0.0.1:8000/api/get_total_deliveredorders"
+  );
   deliveredOrders.value = res.data.deliveredOrders;
-
   console.log("response", res);
 };
-
-
 const getTotalNotifiedOrders = async () => {
-  let res = await axios.get("http://127.0.0.1:8000/api/get_total_notifiedorders");
-
+  let res = await axios.get(
+    "http://127.0.0.1:8000/api/get_total_notifiedorders"
+  );
   notifiedOrders.value = res.data.notifiedOrders;
-
   console.log("response", res);
 };
-
-
 const getTotalAcceptedOrders = async () => {
-  let res = await axios.get("http://127.0.0.1:8000/api/get_total_acceptedorders");
-
+  let res = await axios.get(
+    "http://127.0.0.1:8000/api/get_total_acceptedorders"
+  );
   acceptedOrders.value = res.data.acceptedOrders;
-
   console.log("response", res);
 };
-
 const gettotalStockAsked = async () => {
   let res = await axios.get("http://127.0.0.1:8000/api/get_total_stockasked");
-
   totalStockAsked.value = res.data.totalStockAsked;
-
   console.log("response", res);
 };
-
-
 const getTotalSellStockRequested = async () => {
-  let res = await axios.get("http://127.0.0.1:8000/api/get_total_sellstockrequested");
+  let res = await axios.get(
+    "http://127.0.0.1:8000/api/get_total_sellstockrequested"
+  );
   console.log("response", res);
   totalSellStockRequested.value = res.data.totalSellStockRequested;
-
-
 };
-
 const getTotalTransaction = async () => {
   let res = await axios.get("http://127.0.0.1:8000/api/get_total_transactions");
-
   totalTransactions.value = res.data.totalTransactions;
-
   console.log("response", res);
 };
-
 const getTotalSales = async () => {
   let res = await axios.get("http://127.0.0.1:8000/api/get_total_sales");
-
   totalSales.value = parseInt(res.data.totalSales);
-
   console.log("response", res);
 };
-
 var user = ref([]);
 const logout = async () => {
   try {
@@ -1294,7 +1326,6 @@ const logout = async () => {
     });
     deleteCart();
     console.log(res.data);
-
     cartStore.clearCarts();
     userStore.clearUser();
     profileStore.clearProfile();
@@ -1302,7 +1333,6 @@ const logout = async () => {
     postStore.clearPosts();
     videoStore.clearVideos();
     bookmarkStore.clearBookmarks();
-
     open.value = !open.value;
     router.push("/");
   } catch (err) {
@@ -1332,7 +1362,6 @@ const deleteBookmark = async () => {
 };
 const markAsRead = (id) => {
   alert(id);
-
   try {
     var page = "http://127.0.0.1:8000/api/notification/" + id;
     axios.put(page, {
@@ -1346,22 +1375,18 @@ const markAsRead = (id) => {
 const toggleSideBar = () => {
   showSide.value = !showSide.value;
 };
-
 const toggleDropNotification = () => {
   showDropDownNotifications.value = !showDropDownNotifications.value;
 };
-
 const toggleDrop = () => {
   showDropDown.value = !showDropDown.value;
 };
 user.value = computed(() => store.state.user.data);
-
 const getNotification = async () => {
   let res = await axios.get("http://127.0.0.1:8000/api/notifications");
   console.log(res.data);
   notifications.value = res.data;
 };
-
 // export default {
 //   data() {
 //     return {
