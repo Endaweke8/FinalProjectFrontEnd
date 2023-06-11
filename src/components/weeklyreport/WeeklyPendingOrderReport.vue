@@ -43,12 +43,12 @@
                 <th scope="col" class="py-3 px-6">
                     Client Id
                 </th>
-                <th scope="col" class="py-3 px-6">
+                <!-- <th scope="col" class="py-3 px-6">
                     Client Address
                 </th>
                 <th scope="col" class="py-3 px-6">
                     Orders Details
-                </th>
+                </th> -->
                 <th scope="col" class="py-3 px-6">
                     Amount
                 </th>
@@ -66,6 +66,9 @@
                 </th>
                 <th scope="col" class="py-3 px-6">
                   Accepted By Customer
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    View Details
                 </th>
                 <!-- <th scope="col" class="py-3 px-6">
                     Action
@@ -85,12 +88,12 @@
                 <td class="py-4 px-6">
                     {{order.client_id}}
                 </td>
-                <td class="py-4 px-6">
+                <!-- <td class="py-4 px-6">
                     {{order.client_address}}
                 </td>
                 <td class="py-4 px-6">
                     {{order.order_details}}
-                </td>
+                </td> -->
                 <td class="py-4 px-6">
                     {{order.amount}}
                 </td>
@@ -106,11 +109,11 @@
                     {{order.status}}
                   </p>
                     
-                    <div v-if="order.status=='pending'">
+                    <!-- <div v-if="order.status=='pending'">
                       <div  v-if="userStore.role=='manager' && order.accepted =='accepted'">
                         <button @click="markAsDelivered(order.id)"  class="font-medium text-white dark:text-blue-500 bg-green-500 rounded p-2">mark as delivered</button>
                       </div>
-                    </div>
+                    </div> -->
                 </td>
   
                 <td  class="py-4 px-6" >
@@ -166,6 +169,12 @@
                       </div>
                     </div>
                 </td>
+          
+                <td class="py-4 px-6">
+              <router-link :to="`/orderresponsedetail/${order.id}`">
+                <button class="bg-green-500 text-white">View Details</button>
+              </router-link>
+            </td>
                 <!-- <td class="py-4 px-6" >
                       <div v-if="userStore.role=='manager'">
                         <button @click="deleteOrder(order.id)"  class="font-medium text-white dark:text-blue-500 bg-red-500 rounded p-2">Delete order</button>
@@ -356,7 +365,7 @@
   
                       })
                       getOrders()
-                      isAcceptedLoading=false;
+                      isAcceptedLoading.value=false;
                       Swal.fire(
                           'Mark as Accepted',
                           'You notified as Accepted.',

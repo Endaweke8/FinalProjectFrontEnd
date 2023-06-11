@@ -547,7 +547,7 @@ const notifyAsAccepted = async (id) => {
           userid: userStore.id,
         });
         getOrders();
-        isAcceptedLoading = false;
+        isAcceptedLoading.value = false;
         Swal.fire("Mark as Accepted", "You notified as Accepted.", "success");
       } catch (err) {
         isAcceptedLoading.value = false;

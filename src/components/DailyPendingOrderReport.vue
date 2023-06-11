@@ -219,21 +219,7 @@
                   {{ order.status }}
                 </p>
 
-                <div v-if="order.status == 'pending'">
-                  <div
-                    v-if="
-                      userStore.role == 'manager' &&
-                      order.accepted == 'accepted'
-                    "
-                  >
-                    <button
-                      @click="markAsDelivered(order.id)"
-                      class="font-medium mt-2 text-white dark:text-blue-500 bg-green-500 rounded p-2"
-                    >
-                      mark as delivered
-                    </button>
-                  </div>
-                </div>
+               
               </td>
 
               <td class="py-4 px-1 border border-slate-300">
@@ -544,7 +530,7 @@ const notifyAsAccepted = async (id) => {
           userid: userStore.id,
         });
         getOrders();
-        isAcceptedLoading = false;
+        isAcceptedLoading.value= false;
         Swal.fire("Mark as Accepted", "You notified as Accepted.", "success");
       } catch (err) {
         isAcceptedLoading.value = false;

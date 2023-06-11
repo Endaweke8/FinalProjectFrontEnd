@@ -219,21 +219,7 @@
                   {{ order.status }}
                 </p>
 
-                <div v-if="order.status == 'pending'">
-                  <div
-                    v-if="
-                      userStore.role == 'manager' &&
-                      order.accepted == 'accepted'
-                    "
-                  >
-                    <button
-                      @click="markAsDelivered(order.id)"
-                      class="font-medium mt-2 text-white dark:text-blue-500 bg-green-500 rounded p-2"
-                    >
-                      mark as delivered
-                    </button>
-                  </div>
-                </div>
+                
               </td>
 
               <td class="py-4 px-1 border border-slate-300">
@@ -283,6 +269,7 @@
                       order.accepted != 'accepted'
                     "
                   >
+
                     <button
                       @click="notifyAsAccepted(order.id)"
                       class="px-2 py-2 mb-10 text-sm relative font-medium w-full text-center item-center rounded text-white bg-gray-600 hover:bg-green-600/80"
@@ -338,17 +325,17 @@
               <td
                 class="py-4 px-1 border border-slate-300 text-xl text-black font-bold"
               >
-                <!-- {{ dailyacceptedorderreport.totalDailyAcceptedBuyingPrice }} -->
+               {{Math.floor(totalDailyAcceptedSaleAmount) }}
               </td>
               <td
                 class="py-4 px-1 border border-slate-300 text-xl text-black font-bold"
               >
-                <!-- {{ dailyacceptedorderreport.totalDailyAcceptedBuyingPrice }} -->
+                {{Math.floor(totalDailyAcceptedBuyingPrice) }}
               </td>
               <td
                 class="py-4 px-1 border border-slate-300 text-xl text-black font-bold"
               >
-                <!-- {{ dailyacceptedorderreport.totalProfit }} -->
+                {{Math.floor(totalProfit) }}
               </td>
               <td class="py-4 px-1 border border-slate-300"></td>
               <td class="py-4 px-1 border border-slate-300"></td>
@@ -370,6 +357,7 @@
       </div>
     </div>
   </div>
+  {{dailyacceptedorderreport}}
 </template>
 
 <script setup>
@@ -386,7 +374,7 @@ const name = ref("");
 const email = ref("");
 const subject = ref("");
 const message = ref("");
-const isAcceptedLoading = ref(false);
+var isAcceptedLoading = ref(false);
 
 let orders = ref([]);
 let page = ref(1);
@@ -396,6 +384,9 @@ const findTime = ref(0);
 const findTodayTime = ref(0);
 const noOrderDisplay = ref(false);
 const dailyacceptedorderreport = ref();
+const totalDailyAcceptedBuyingPrice=ref();
+const totalDailyAcceptedSaleAmount=ref();
+const totalProfit=ref();
 const date = ref();
 const month = ref();
 const year = ref();
@@ -421,7 +412,13 @@ const getOrders = async () => {
 
   pageCount.value = res.data.page_count;
   orders.value = res.data.orders.data;
-  dailyacceptedorderreport.value = res.data;
+  dailyacceptedorderreport.value = res.data.totalDailyAcceptedBuyingPrice;
+  totalDailyAcceptedBuyingPrice.value=res.data.totalDailyAcceptedBuyingPrice;
+  totalDailyAcceptedSaleAmount.value=res.data.totalDailyAcceptedSaleAmount;
+  totalProfit.value=res.data.totalProfit;
+
+
+
   console.log("response", res);
   isLoading.value = false;
   // if(res.data.products.data){
@@ -542,7 +539,7 @@ const notifyAsAccepted = async (id) => {
           userid: userStore.id,
         });
         getOrders();
-        isAcceptedLoading = false;
+        isAcceptedLoading.value = false;
         Swal.fire("Mark as Accepted", "You notified as Accepted.", "success");
       } catch (err) {
         isAcceptedLoading.value = false;

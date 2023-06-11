@@ -1,7 +1,7 @@
 <template>
   <div id="EditProfile" class="container max-w-4xl mx-auto pt-20 pb-20 px-6">
     <div class="text-gray-900 text-xl mb-3">Edit Stock</div>
-    <div class="bg-green-500 w-full h-1"></div>
+    <div class="bg-gray-500 w-full h-1"></div>
 
     <!-- <CropperModal
         
@@ -12,81 +12,83 @@
             @showModal="showModal = false"
         /> -->
 
-    <div class="flex flex-wrap mt-4 mb-6">
-      <div class="w-full md:w-1/2 px-3">
-        <input
-          type="text"
-          name="product name"
-          v-model="name"
-          id=""
-          placeholder="Enter the product name"
-          class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-        />
+    <div class="border-4 border-gray-400 shadow-2xl">
+      <div class="flex flex-wrap mt-4 mb-6">
+        <div class="w-full md:w-1/2 px-3">
+          <input
+            type="text"
+            name="product name"
+            v-model="name"
+            id=""
+            placeholder="Enter the product name"
+            class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          />
+        </div>
+        <div class="w-full md:w-1/2 px-3">
+          <input
+            type="text"
+            v-model="amount"
+            class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            placeholder="Enter the stock amount"
+          />
+        </div>
       </div>
-      <div class="w-full md:w-1/2 px-3">
-        <input
-          type="text"
-          v-model="amount"
-          class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          placeholder="Enter the stock amount"
-        />
-      </div>
-    </div>
 
-    <div class="flex flex-wrap mt-4 mb-6">
-      <div class="w-full md:w-1/2 px-3">
-        <input
-          type="text"
-          name=""
-          v-model="sale_price"
-          id=""
-          placeholder="Enter the product sale Price"
-          class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+      <div class="flex flex-wrap mt-4 mb-6">
+        <div class="w-full md:w-1/2 px-3">
+          <input
+            type="text"
+            name=""
+            v-model="sale_price"
+            id=""
+            placeholder="Enter the product sale Price"
+            class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          />
+        </div>
+        <div class="w-full md:w-1/2 px-3">
+          <input
+            type="text"
+            name=""
+            v-model="slug"
+            id=""
+            placeholder="Enter the product slug"
+            class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          />
+        </div>
+      </div>
+
+      <div class="flex flex-wrap mt-4 mb-6"></div>
+
+      <div class="flex flex-wrap mt-4 mb-6">
+        <div class="w-full px-3">
+          <textarea
+            class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            cols="30"
+            rows="10"
+            placeholder="Please Enter the product information here!!!"
+            v-model="description"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap mt-4 mb-6">
+        <div class="w-full md:w-1/2 px-3">
+          <input
+            type="file"
+            name=""
+            @change="getUploadedImage"
+            id=""
+            placeholder="Enter the product image"
+            class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          />
+        </div>
+        <img
+          :src="`${endpoint}/images/stockprofiles/` + image_name"
+          :alt="image_name"
+          height="200"
+          width="300"
         />
       </div>
-      <div class="w-full md:w-1/2 px-3">
-        <input
-          type="text"
-          name=""
-          v-model="slug"
-          id=""
-          placeholder="Enter the product slug"
-          class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-        />
-      </div>
-    </div>
-
-    <div class="flex flex-wrap mt-4 mb-6"></div>
-
-    <div class="flex flex-wrap mt-4 mb-6">
-      <div class="w-full px-3">
-        <textarea
-          class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          cols="30"
-          rows="10"
-          placeholder="Please Enter the product information here!!!"
-          v-model="description"
-        ></textarea>
-      </div>
-    </div>
-
-    <div class="flex flex-wrap mt-4 mb-6">
-      <div class="w-full md:w-1/2 px-3">
-        <input
-          type="file"
-          name=""
-          @change="getUploadedImage"
-          id=""
-          placeholder="Enter the product image"
-          class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-        />
-      </div>
-      <img
-        :src="`${endpoint}/images/stockprofiles/` + image_name"
-        :alt="image_name"
-        height="200"
-        width="300"
-      />
     </div>
   </div>
 

@@ -205,7 +205,7 @@
               </button>
             </td> -->
 
-            <td class="py-4 px-6">
+            <td class="py-4 px-6" v-if="userStore.role == 'socialmediamanager'">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

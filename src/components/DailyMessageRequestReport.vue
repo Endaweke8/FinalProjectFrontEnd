@@ -86,7 +86,7 @@
             <th scope="col" class="py-3 px-2 border border-slate-400">
               Sent at
             </th>
-            <th scope="col" class="py-3 px-2 border border-slate-400">
+            <th scope="col" class="py-3 px-2 border border-slate-400" v-if="userStore.role=='customerserviceofficor'">
               Action
             </th>
           </tr>
@@ -138,7 +138,7 @@
               </svg>
                   </button>
               </td> -->
-            <td class="py-4 px-2 border border-slate-400">
+            <td class="py-4 px-2 border border-slate-400" v-if="userStore.role=='customerserviceofficor'">
               <button
                 class="font-medium text-white dark:text-blue-500 bg-gray-500 rounded p-2"
               >
@@ -169,6 +169,12 @@ import { onMounted, ref } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
 import html2pdf from "html2pdf.js";
+import { useUserStore } from "../stores/user-store";
+
+
+const userStore=useUserStore();
+
+
 let messages = ref([]);
 let page = ref(1);
 let pageCount = ref(null);

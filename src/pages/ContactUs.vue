@@ -6,47 +6,7 @@
       <div class="text-gray-900 text-xl">Message Us</div>
       <div class="bg-gray-500 w-full h-1"></div>
       <div class="shadow-2xl shadow-gray-700 border-4 border-gray-700">
-        <div class="flex flex-wrap mt-4 mb-6">
-          <div class="w-full md:w-1/2 px-3">
-            <label
-              class="block uppercase tracking-wide text-xs font-bold text-gray-900 mb-2"
-            >
-              Enter you full Name
-            </label>
-            <input
-              type="text"
-              name="product name"
-              v-model="message.name"
-              id=""
-              placeholder="Abebe Kebede"
-              class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            />
-            <p class="text-red-600" v-if="errors.name">
-              * {{ errors.name[0] }}
-            </p>
-          </div>
-        </div>
-
-        <div class="flex flex-wrap mt-4 mb-6">
-          <div class="w-full md:w-1/2 px-3">
-            <label
-              class="block uppercase tracking-wide text-xs font-bold text-gray-900 mb-2"
-            >
-              Enter Your email
-            </label>
-            <input
-              type="email"
-              name=""
-              v-model="message.email"
-              id=""
-              placeholder="abebe123@gmail.com"
-              class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            />
-            <p class="text-red-600" v-if="errors.email">
-              * {{ errors.email[0] }}
-            </p>
-          </div>
-        </div>
+       
 
         <div class="flex flex-wrap mt-4 mb-6">
           <div class="w-full md:w-1/2 px-3">
@@ -156,6 +116,10 @@ import { useRouter } from "vue-router";
 import TopNavigation from "../components/structure/TopNavigation.vue";
 import NavigationVue from "../components/NavigationVue.vue";
 import FooterSection from "../components/structure/FooterSection.vue";
+import { useUserStore } from "../stores/user-store";
+
+
+const userStore=useUserStore();
 
 const router = useRouter();
 
@@ -164,8 +128,8 @@ let isLoading = ref(false);
 let showCorrect = ref(false);
 
 const message = {
-  name: "",
-  email: "",
+  name: userStore.firstName,
+  email:userStore.email,
   phone: "",
   message: "",
 };
@@ -181,6 +145,8 @@ const Submit = async () => {
     );
     console.log(res.data.success);
     if (res.data.success == "true") {
+      message.message=""
+      message.phone=""
       Swal.fire({
         toast: true,
         icon: "success",

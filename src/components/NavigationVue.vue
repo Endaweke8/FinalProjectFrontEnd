@@ -6,11 +6,11 @@
       <div class="flex justify-between">
         <!-- Secondary Navbar items -->
         <div
-          class="hidden divide-x divide-white md:hidden items-center space-x-3 xl:flex"
+          class="hidden divide-x divide-white md:flex items-center space-x-3 xl:flex"
         >
           <router-link
             to="/"
-            class="vue-active-class py-4 ml-10 sm:flex text-white font-regular primary-color"
+            class="vue-active-class py-4 ml-10 md:text-xs xl:text-base  sm:flex md:ml-0 text-white font-regular primary-color"
             >Home</router-link
           >
 
@@ -23,7 +23,7 @@
               <router-link :to="`/category/${category.id}`">
                 <button
                   type="button"
-                  class="flex relative items-center p-2 w-full text-white hover:text-black font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  class="flex relative items-center p-2 w-full md:text-xs xl:text-base  text-white hover:text-black font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example"
                   data-collapse-toggle="dropdown-example"
                 >
@@ -43,7 +43,7 @@
             <li @click="showStocks = true" @mouseleave="showStocks = false">
               <button
                 type="button"
-                class="flex relative items-center p-2 w-full text-white hover:text-black font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                class="flex md:text-xs relative items-center xl:text-base  p-2 w-full text-white hover:text-black font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                 aria-controls="dropdown-example"
                 data-collapse-toggle="dropdown-example"
               >
@@ -113,7 +113,7 @@
             <li @click="showAbout = true" @mouseleave="showAbout = false">
               <button
                 type="button"
-                class="flex relative items-center p-2 w-full text-white hover:text-black font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                class="flex relative items-center md:text-xs  xl:text-base   p-2 w-full text-white hover:text-black font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                 aria-controls="dropdown-example"
                 data-collapse-toggle="dropdown-example"
               >
@@ -193,7 +193,7 @@
           </ul>
           <router-link
             to="/contactus"
-            class="vue-active-class py-4 sm:flex px-2 text-white font-regular primary-color"
+            class="vue-active-class py-4 sm:flex px-2 md:text-xs xl:text-base text-white font-regular primary-color"
             >Contact Us</router-link
           >
         </div>

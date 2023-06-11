@@ -106,10 +106,10 @@
 
       <span v-if="cartStore.carts.cartwithproduct.totalAmount > 0">
         <button
-          class="bg-green-500 mt-3 mx-5 px-4 py-4 text-2xl rounded text-white p-1"
-          @click="showPayForm = !showPayForm"
+          class="bg-green-500 mt-3 mx-5 px-4 py-4 text-2xl rounded text-white p-1 hover:bg-green-300 rounded-2xl"
+          @click="checkOutForPaymentBeforPaying"
         >
-          Pay Now
+          CheckOut Now
         </button>
       </span>
       <div>
@@ -521,12 +521,12 @@
                   </button>
                 </div>
 
-                <h1 v-if="paymentCheckout">Please click payment link to Pay</h1>
+                <!-- <h1 v-if="paymentCheckout">Please click payment link to Pay</h1>
                 <p v-if="paymentCheckout">
                   <a class="hover:cursor-pointer" :href="paymentCheckout">{{
                     paymentCheckout
                   }}</a>
-                </p>
+                </p> -->
                 <div class="my-5" v-if="referenceStore.paymentReference">
                   <button
                     @click.prevent="getVerified()"
@@ -575,8 +575,15 @@
         </div>
         <div v-if="removeFromDisplay">
           <div v-for="item in items" :key="item.id">
-            {{ item.id }} {{ item.quantity }}
+           
             {{ decreseQuantity(item.id, item.quantity) }}
+          </div>
+        </div>
+
+        <div v-if="checkoutBeforPayment">
+          <div v-for="item in items" :key="item.id">
+          
+            {{ checkOut(item.id, item.quantity) }}
           </div>
         </div>
       </div>
@@ -626,6 +633,7 @@ const store = useStore();
 const paymentCheckout = ref("");
 const paymentReference = ref("");
 const removeFromDisplay = ref(false);
+const checkoutBeforPayment=ref(false);
 
 let addressform = ref({
   city: "",
@@ -801,6 +809,32 @@ const decreseQuantity = async (id, productQuantity) => {
     router.push("/userorderhistory");
   }
 };
+
+
+const checkOutForPaymentBeforPaying=()=>{
+  checkoutBeforPayment.value=true;
+}
+
+const checkOut = async (id, productQuantity) => {
+
+  if (id) {
+    try {
+      var page = "http://127.0.0.1:8000/api/checkoutForPayment/" + id;
+      const res = await axios.put(page, {
+        productquantity: productQuantity,
+        status: "requested",
+      });
+      cartStore.fetchCartsByUserId(userStore.id);
+      getCartItemsOnPageLoad();
+      sumTotal();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+};
+
+
+
 
 if (clientAddressStore.city == "bahirdar") {
   shippingBirr.value = 2000;
@@ -1011,6 +1045,7 @@ const saveAddress = async () => {
       phone: addressform.value.phone,
       email: userStore.email,
     });
+    isLoading.value=false
     // console.log(response);
     await clientAddressStore.setClientAddress(response.data);
     await clientAddressStore.fetchClientAddressByUserId(userStore.id);

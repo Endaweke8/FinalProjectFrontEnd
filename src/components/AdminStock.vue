@@ -140,7 +140,7 @@
               </router-link>
               View Details
             </td>
-            <td class="py-4 px-6">
+            <td class="py-4 px-6" v-if="userStore.role=='socialmediamanager'">
               <router-link
                 :to="`/editstock/${stock.id}`"
                 class="font-medium text-green-600 dark:text-red-500 hover:underline"
@@ -205,7 +205,14 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import VPagination from "@hennge/vue3-pagination";
 import "@hennge/vue3-pagination/dist/vue3-pagination.css";
+import { useUserStore } from "../stores/user-store";
+
+
+
+const userStore=useUserStore();
+
 const endpoint = import.meta.env.VITE_APP_API_URL;
+
 let stocks = ref([]);
 const showModal = ref(false);
 const queryStock = ref("");

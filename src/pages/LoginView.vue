@@ -98,7 +98,7 @@
           </button>
           <router-link
             to="forgotpassword"
-            class="text-lg font-medium text-primary-600 hover:underline dark:text-primary-500"
+            class="text-lg font-medium text-blue-600 hover:underline dark:text-primary-500"
             >Forgot password?</router-link
           >
         </div>

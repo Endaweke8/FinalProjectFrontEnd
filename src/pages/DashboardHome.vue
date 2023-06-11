@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="h-screen">
     <div class="inset-y-0 mt-5 right-0 bg-gray-50 p-[20px]">
       <div class="border border-gray-300 rounded-md p-[20px] mb-10 z-19">
         <div class="grid gap-4 lg:grid-cols-4">

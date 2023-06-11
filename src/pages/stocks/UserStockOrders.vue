@@ -4,7 +4,7 @@
   <div class="text-3xl font-bold">Stock Orders</div>
 </div>
         <div class="overflow-x-auto relative shadow-md sm:rounded-lg shadow-md">
-    <div class="flex justify-between items-center pb-4 bg-white dark:bg-gray-900">
+    <div class="flex justify-between items-center pb-4 bg-gray-200 dark:bg-gray-900">
         <label for="table-search" class="sr-only">Search</label>
         <div class="relative">
             <div @click="searchStock(querystockorder)" class="flex absolute inset-y-0 right-0 bg-blue-500 rounded  items-center pl-3 hover:cursor-pointer">
@@ -27,7 +27,7 @@
 
  </div>
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
             <tr>
              
                 <th scope="col" class="py-3 px-6">
@@ -69,7 +69,7 @@
                 <th scope="col" class="py-3 px-6">
                     Requestd at
                 </th>
-                <th scope="col" class="py-3 px-6">
+                <th scope="col" class="py-3 px-6" v-if="userStore.role=='customerserviceofficor'">
                     Action
                 </th>
             </tr>
@@ -120,7 +120,7 @@
                 <!-- <td class="py-4 px-6">
                     <button @click="deletestockorder(stockorder.id)"  class="font-medium text-white dark:text-blue-500 bg-red-500 rounded p-2">Delete stockorder</button>
                 </td> -->
-                <td class="py-4 px-6">
+                <td class="py-4 px-6" v-if="userStore.role=='customerserviceofficor'">
                     <button   class="font-medium text-white dark:text-blue-500 bg-gray-500 rounded p-2">  <a :href="`mailto:${ stockorder.email}`">Replay</a></button>
                 </td>
             </tr>
@@ -147,6 +147,10 @@ import "@hennge/vue3-pagination/dist/vue3-pagination.css";
 import { onMounted,ref } from 'vue';
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import { useUserStore } from "../../stores/user-store";
+
+const userStore=useUserStore();
+
  let stockorders=ref([]);
  let page = ref(1)
  let pageCount = ref(null)

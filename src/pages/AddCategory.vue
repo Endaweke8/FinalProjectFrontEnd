@@ -1,6 +1,6 @@
 
 <template>
-    <div id="Add Category" class="container max-w-4xl mx-auto pt-20 pb-20 px-6">
+    <div id="Add Category" class="container h-screen max-w-4xl mx-auto pt-20 pb-20 px-6">
         
         <div class="text-gray-900 text-xl">Add Category</div>
         <div class="bg-green-500 w-full h-1"></div>

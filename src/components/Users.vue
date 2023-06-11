@@ -27,7 +27,7 @@
 
  </div>
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
             <tr>
              
                 <th scope="col" class="py-3 px-6">
@@ -50,7 +50,10 @@
                     Registered at
                 </th>
                 <th scope="col" class="py-3 px-6">
-                    Action
+                    Delete Account
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Reply
                 </th>
             </tr>
         </thead>
@@ -79,7 +82,7 @@
                     {{ filterTime( user.created_at)}}
                 </td>
                 <td class="py-4 px-6">
-                    <button @click="deleteUser(user.id)"  class="font-medium text-white dark:text-blue-500 bg-red-500 rounded p-2">Delete user</button>
+                    <button @click="deleteUser(user.id)"  class="font-medium text-white dark:text-blue-500 bg-red-500 rounded p-2">Delete Account</button>
                 </td>
                 <td class="py-4 px-6">
                     <button   class="font-medium text-white dark:text-blue-500 bg-gray-500 rounded p-2">  <a :href="`mailto:${ user.email}`">Replay</a></button>

@@ -13,31 +13,41 @@
         /> -->
 
     <div class="flex flex-wrap mt-4 mb-6">
-      <img :src="image_name" alt="image" height="200" width="300" />
+      <a
+        :href="`${endpoint}/images/productprofiles/` + image_name"
+        target="_blank"
+      >
+        <img
+          :src="`${endpoint}/images/stockprofiles/` + image_name"
+          :alt="image_name"
+        />
+      </a>
 
-  <div class="flex  justify-center ml-12 mb-6">
-    <div class="w-full px-3 py-3">
-      
-        <button class="bg-gray-500 rounded py-2 px-4 text-white"><router-link
-                :to="`/editstock/${route.params.id}`"
-                class="font-medium text-green-600 dark:text-red-500 hover:underline"
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="white"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-6 h-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                  />
-                </svg>
-              </router-link> Edit Stock</button>
-    </div>
-  </div>
+      <!-- <div class="flex justify-center ml-12 mb-6">
+        <div class="w-full px-3 py-3">
+          <button class="bg-gray-500 rounded py-2 px-4 text-white">
+            <router-link
+              :to="`/editstock/${route.params.id}`"
+              class="font-medium text-green-600 dark:text-red-500 hover:underline"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="white"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                />
+              </svg>
+            </router-link>
+            Edit Stock
+          </button>
+        </div>
+      </div> -->
     </div>
 
     <div class="flex flex-wrap mt-4 mb-6">
@@ -47,15 +57,12 @@
       </div>
     </div>
 
-
-     
     <div class="flex flex-wrap mt-4 mb-6">
       <div class="w-full md:w-1/2 px-3">
         <span class="text-2xl underline mb-3">Stock Amount</span>
         <h1>{{ amount }}</h1>
       </div>
     </div>
-
 
     <div class="flex flex-wrap mt-4 mb-6">
       <div class="w-full md:w-1/2 px-3">
@@ -64,7 +71,6 @@
       </div>
     </div>
 
-
     <div class="flex flex-wrap mt-4 mb-6">
       <div class="w-full md:w-1/2 px-3">
         <span class="text-2xl underline mb-3">Stock slug</span>
@@ -72,20 +78,13 @@
       </div>
     </div>
 
-
     <div class="flex flex-wrap mt-4 mb-6">
       <div class="w-full md:w-1/2 px-3">
         <span class="text-2xl underline mb-3">Stock description</span>
         <h1>{{ description }}</h1>
       </div>
     </div>
-
-
-    
-
-    
   </div>
-
 </template>
 
 <script setup>
@@ -95,6 +94,7 @@ import Swal from "sweetalert2";
 
 import { ref, onMounted } from "vue";
 import { useRouter, useRoute } from "vue-router";
+const endpoint = import.meta.env.VITE_APP_API_URL;
 
 const router = useRouter();
 const route = useRoute();

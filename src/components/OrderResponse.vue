@@ -30,12 +30,14 @@
 
             <th scope="col" class="py-3 px-6">CLient Name</th>
             <th scope="col" class="py-3 px-6">Client Id</th>
-            <th scope="col" class="py-3 px-6">Client Address</th>
-            <th scope="col" class="py-3 px-6">Orders Details</th>
+            <!-- <th scope="col" class="py-3 px-6">Client Address</th>
+            <th scope="col" class="py-3 px-6">Orders Details</th> -->
             <th scope="col" class="py-3 px-6">Amount</th>
             <th scope="col" class="py-3 px-6">Currency</th>
             <th scope="col" class="py-3 px-6">Ordered At</th>
+            <th scope="col" class="py-3 px-6">Status</th>
             <th scope="col" class="py-3 px-6">Mark As Accepted</th>
+            <th scope="col" class="py-3 px-6">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -53,22 +55,11 @@
             <td class="py-4 px-6">
               {{ order.client_id }}
             </td>
-            <td class="py-4 px-6">
-              <!-- <div v-for="address in JSON.parse(order.client_address)">
-                {{ address }}
-              </div> -->
+            <!-- <td class="py-4 px-6">
+           
               {{ order.client_address }}
-            </td>
-            <td class="py-4 px-6">
-              <!-- <div
-                v-for="item in JSON.parse(order.order_details)"
-                :key="item.id"
-              >
-                {{ item.id }}
-                {{ item.quantity }}
-              </div> -->
-              {{ order.order_details }}
-            </td>
+            </td> -->
+            
 
             <td class="py-4 px-6">
               {{ order.amount }}
@@ -77,6 +68,13 @@
             <td class="py-4 px-6">
               {{ filterTime(order.created_at) }}
             </td>
+            <td class="py-4 px-6 " :class="
+                  order.status == 'delivered' ? 'text-green-500' : ''
+                ">
+             
+             {{ order.status }}
+             
+           </td>
             <td class="py-4 px-6">
               <p
                 :class="
@@ -90,7 +88,7 @@
                 <div
                   v-if="
                     userStore.id == order.client_id &&
-                    order.accepted != 'accepted'
+                    order.accepted != 'accepted' &&  order.notified == 'notified'
                   "
                 >
                   <button
@@ -128,7 +126,7 @@
 
             <td class="py-4 px-6">
               <router-link :to="`/orderresponsedetail/${order.id}`">
-                <button class="bg-green-500">View Details</button>
+                <button class="bg-green-500 text-white p-2">View Details</button>
               </router-link>
             </td>
           </tr>
@@ -193,7 +191,7 @@ const notifyAsAccepted = async (id) => {
           userid: userStore.id,
         });
         getOrderResponse();
-        isAcceptedLoading = false;
+        isAcceptedLoading.value = false;
         Swal.fire("Mark as Accepted", "You notified as Accepted.", "success");
       } catch (err) {
         isAcceptedLoading.value = false;

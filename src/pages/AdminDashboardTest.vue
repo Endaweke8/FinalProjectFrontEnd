@@ -93,7 +93,7 @@
                   Sign out
                 </button>
               </div>
-              <div class="py-1 text-left" role="none">
+              <div class="py-1 text-left" role="none" @click="showDropDown=false">
                 <router-link
                   to="/profile"
                   class="text-gray-700 block w-full px-4 py-2 text-left text-sm"
@@ -200,7 +200,7 @@
             Profile
           </router-link>
         </li> -->
-        <li @click="showSideBar = false">
+        <li @click="showSideBar = false"  v-if="userStore.role == 'customerserviceofficor'">
           <router-link
             to="/messages"
             class="inline-flex text-white relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
@@ -509,6 +509,17 @@
             </svg>
 
             Add Employee
+          </router-link>
+        </li>
+        <li @click="showSideBar = false">
+          <router-link
+            v-if="userStore.role == 'manager'"
+            to="/analysis"
+            class="inline-flex text-white relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
+          >
+          <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="currentColor" d="M22 21H2V3h2v16h2v-9h4v9h2V6h4v13h2v-5h4v7Z"></path></svg>
+
+            <span class="pl-2">Analysis</span>
           </router-link>
         </li>
         <li @click="showSideBar = false">

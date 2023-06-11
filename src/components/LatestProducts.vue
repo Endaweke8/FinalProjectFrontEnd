@@ -193,7 +193,7 @@ const getProducts = async () => {
     pageCount.value = res.data.page_count;
     products.value = res.data.products.data;
     count.value = 0;
-    console.log("response", res);
+    console.log("latest prduct reponse", res);
     if (res.data.products.data) {
       isLoading.value = false;
     }

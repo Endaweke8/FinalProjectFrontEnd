@@ -467,6 +467,7 @@ import Slide from "../components/Slide.vue";
 const carauselSlides = ["bg-1", "bg-2", "bg-3"];
 
 const endpoint = import.meta.env.VITE_APP_API_URL;
+const router=useRouter();
 
 const route = useRoute();
 const likeCount = ref(0);
@@ -645,7 +646,9 @@ const getCommentUserName = async (id) => {
 };
 
 const rateProduct = async (stars_rated, product_id) => {
-  let response = await axios.post("http://127.0.0.1:8000/api/add-rate", {
+ 
+  if(userStore.id){
+    let response = await axios.post("http://127.0.0.1:8000/api/add-rate", {
     stars_rated: stars_rated,
     product_id: product_id,
     user_id: userStore.id,
@@ -671,9 +674,14 @@ const rateProduct = async (stars_rated, product_id) => {
       toast.addEventListener("mouseleave", Swal.resumeTimer);
     },
   });
+  }
+  else{
+    router.push('/loginview')
+  }
 };
 
 const likeIt = async (id) => {
+if(userStore.id){
   console.log("I like it");
   let response = await axios.post("http://127.0.0.1:8000/api/saveLike", {
     product_id: id,
@@ -682,6 +690,9 @@ const likeIt = async (id) => {
   console.log("response", response);
   getProducts();
   likeCount.value += 1;
+}else{
+  router.push('/loginview');
+}
 };
 
 const getProducts = async () => {
@@ -717,6 +728,8 @@ const filtereProducts = computed(() => {
 });
 
 const addToCart = async (title, product_id, product_quantity) => {
+
+ if(userStore.id){
   let res = await axios.get("http://127.0.0.1:8000/api/getcart/" + product_id);
   cartQuantity.value = res.data.cartQuantity;
   if (cartQuantity.value >= product_quantity) {
@@ -767,10 +780,15 @@ const addToCart = async (title, product_id, product_quantity) => {
       console.log(response.data);
     });
   filtereProducts();
+ }
+ else{
+  router.push("/loginview");
+ }
 };
 
 const addToBookmark = async (title) => {
-  var url = "http://127.0.0.1:8000/api/bookmark";
+  if(userStore.id){
+    var url = "http://127.0.0.1:8000/api/bookmark";
   await axios
     .post("http://127.0.0.1:8000/api/bookmark/" + userStore.id, {
       product_id: route.params.id,
@@ -813,7 +831,11 @@ const addToBookmark = async (title) => {
       }
       console.log(response.data);
     });
-};
+  }
+  else{
+    router.push('/loginview')
+  }
+}
 
 const filterTime = (created_at) => {
   const currentTime = new Date();

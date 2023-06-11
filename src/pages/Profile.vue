@@ -255,8 +255,23 @@
             await axios.post('http://127.0.0.1:8000/api/users/' + userStore.id + '?_method=PUT',data)
 
             await userStore.fetchUser()
+            Swal.fire({
+          toast: true,
+          icon: "success",
+          title:
+            " Dear " + firstName.value + "  Your profile is updated ",
+          animation: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
 
-            router.push('/account/profile/'+userStore.id )
+            router.push('/profile' )
         } catch (err) {
             errors.value = err.response.data.errors;
             emailError.value=err.response.data.errors;

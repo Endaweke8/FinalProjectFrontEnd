@@ -121,64 +121,7 @@
           <div class="text-gray-900 text-xl">Stock Order</div>
           <div class="bg-gray-500 w-full md:w-1/2 h-1"></div>
           <div class="border border-gray-500 w-full md:w-1/2 px-3">
-            <div class="flex flex-wrap mt-4 mb-6">
-              <div class="w-full">
-                <label
-                  class="block uppercase tracking-wide text-xs font-bold text-gray-900 mb-2"
-                >
-                  Enter you first Name
-                </label>
-                <input
-                  type="text"
-                  name="first name"
-                  v-model="firstName"
-                  id=""
-                  placeholder="Abebe"
-                  class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                />
-                <p class="text-red-600" v-if="errors.firstName">
-                  * {{ errors.firstName[0] }}
-                </p>
-              </div>
-            </div>
-            <div class="flex flex-wrap mt-4 mb-6">
-              <div class="w-full">
-                <label
-                  class="block uppercase tracking-wide text-xs font-bold text-gray-900 mb-2"
-                >
-                  Enter your last Name
-                </label>
-                <input
-                  type="text"
-                  name="first name"
-                  v-model="lastName"
-                  id=""
-                  placeholder="Abebe"
-                  class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                />
-                <p class="text-red-600" v-if="errors.lastName">
-                  * {{ errors.lastName[0] }}
-                </p>
-              </div>
-            </div>
-
-            <div class="flex flex-wrap mt-4 mb-6">
-              <div class="w-full">
-                <label
-                  class="block uppercase tracking-wide text-xs font-bold text-gray-900 mb-2"
-                >
-                  Enter Your email
-                </label>
-                <input
-                  type="email"
-                  name=""
-                  v-model="email"
-                  id=""
-                  placeholder="abebe123@gmail.com"
-                  class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                />
-              </div>
-            </div>
+          
 
             <div class="flex flex-wrap mt-4 mb-6">
               <div class="w-full">
@@ -340,9 +283,9 @@ const Submit = async () => {
   console.log(stocks.value.amount);
   try {
     const res = await axios.post("http://127.0.0.1:8000/api/savestockorder", {
-      firstName: firstName.value,
-      lastName: lastName.value,
-      email: email.value,
+      firstName: userStore.firstName,
+      lastName: userStore.lastName,
+      email: userStore.email,
       phone: phone.value,
       address: address.value,
       amount: stocks.value.amount,
@@ -352,6 +295,8 @@ const Submit = async () => {
     });
     console.log(res.data.success);
     if (res.data.success == "true") {
+      phone.value=''
+        address.value=''
       Swal.fire({
         toast: true,
         icon: "success",

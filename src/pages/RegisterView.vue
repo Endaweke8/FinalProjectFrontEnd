@@ -162,7 +162,7 @@ const register = async () => {
     // await postStore.fetchPostsByUserId(userStore.id);
     // await videoStore.fetchVideosByUserId(userStore.id);
    
-    router.push("/");
+    router.push("/loginview");
   } catch (err) {
     errors.value = err.response.data.errors;
     isLoading.value=false

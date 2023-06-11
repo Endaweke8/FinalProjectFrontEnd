@@ -8,6 +8,7 @@ import LaptopComputers from "../pages/LaptopComputers.vue";
 import TutorialsView from "../pages/TutorialsView.vue";
 
 import WhoAreWe from "../pages/WhoAreWe.vue";
+import Employee from "../components/Employee.vue";
 
 import HpLaptopComputers from "../pages/laptops/HpLaptopComputers.vue";
 import LenevoLaptopComputers from "../pages/laptops/LenevoLaptopComputers.vue";
@@ -24,6 +25,8 @@ import AndroidMobilesView from "../pages/mobiles/AndroidMobilesView.vue";
 
 import TelevisionView from "../pages/TelevisionView.vue";
 import HeadSetsView from "../pages/HeadSetsView.vue";
+
+import Analysis from "../pages/Analysis.vue";
 
 import SellStocks from "../pages/stocks/SellStocks.vue";
 import AskStock from "../pages/stocks/AskStock.vue";
@@ -130,6 +133,12 @@ const routes = [
         name: "DashboardHome",
         component: DashboardHome,
       },
+      
+      {
+        path: "/employees",
+        name: "Employee",
+        component: Employee,
+      },
       {
         path: "/profile",
         name: "Profile",
@@ -164,6 +173,11 @@ const routes = [
         path: "/products",
         name: "Products",
         component: Products,
+      },
+      {
+        path: "/analysis",
+        name: "Analysis",
+        component: Analysis,
       },
       {
         path: "/totalsoldproducts",
@@ -384,9 +398,9 @@ const routes = [
 
   {
     path: "/detailview/:id",
-    beforeEnter: (to, from, next) => {
-      useUserStore().id ? next() : next("/loginview");
-    },
+    // beforeEnter: (to, from, next) => {
+    //   useUserStore().id ? next() : next("/loginview");
+    // },
     name: "DetailView",
     component: DetailView,
   },
@@ -435,6 +449,11 @@ const routes = [
   {
     path: "/contactus",
     name: "ContactUs",
+    beforeEnter: (to, from, next) => {
+      useUserStore().id
+        ? next()
+        : next("/loginview");
+    },
     component: ContactUs,
   },
 

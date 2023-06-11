@@ -230,7 +230,7 @@
             userStore.role == 'delivery' ||
             userStore.role == 'socialmediamanager' ||
             userStore.role == 'customerserviceofficor'
-              ? '/admindashboard'
+              ? '/dashboardhome'
               : '/account/profile/' + userStore.id
           "
           class="flex justify-center px-5 items-center"
